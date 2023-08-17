@@ -2,9 +2,8 @@ import React from "react";
 import { Box, Flex, Text, Icon, VStack, Image } from "@chakra-ui/react";
 
 import { Bree_Serif, DM_Sans } from "next/font/google";
-import profileCircleIcon from "./Icons/profileCircleIcon";
-import easySettingIcon from "./Icons/easySettingIcon";
-// import settingIcon from "./Icons/settingIcon";
+import ProfileCircleIcon from "./Icons/profileCircleIcon";
+import EasySettingIcon from "./Icons/easySettingIcon";
 import FlashIcon from "./Icons/flashIcon";
 
 const dmsans = DM_Sans({ weight: "400", subsets: ["latin"] });
@@ -82,6 +81,7 @@ function EasySteps() {
               left={"16.75rem"}
               top="7.5rem"
               display={["none", "block"]}
+              alt="curve"
             />
 
             <Image
@@ -91,6 +91,8 @@ function EasySteps() {
               right={"16.75rem"}
               top="7.5rem"
               display={["none", "block"]}
+              alt="curve"
+
 
             />
             <Image
@@ -98,12 +100,16 @@ function EasySteps() {
               position={"absolute"}
               top={"15.5rem"}
               display={["block", "none"]}
+              alt="curve"
+
             />
             <Image
               src="/dashedline.png"
               position={"absolute"}
               top={"31rem"}
               display={["block", "none"]}
+              alt="curve"
+
             />
 
 
@@ -138,11 +144,7 @@ function EasySteps() {
               >
                 1
               </Flex>
-              <Icon
-                as={profileCircleIcon}
-                h={["2.84975rem", "5rem"]}
-                w={["2.84975rem", "5rem"]}
-              ></Icon>
+              <ProfileCircleIcon boxSize={["2.84975rem" ,"5rem"]}/>
             </Flex>
             <Text
               fontSize={["0.85494rem", "1.5rem"]}
@@ -205,11 +207,12 @@ function EasySteps() {
               >
                 2
               </Flex>
-              <Icon
+              {/* <Icon
                 as={easySettingIcon}
                 h={["2.84975rem", "5rem"]}
                 w={["2.84975rem", "5rem"]}
-              ></Icon>
+              ></Icon> */}
+              <EasySettingIcon boxSize={["2.84975rem" ,"5rem"]} />
             </Flex>
             <Text
               fontSize={["0.85494rem", "1.5rem"]}
@@ -271,11 +274,7 @@ function EasySteps() {
               >
                 3
               </Flex>
-              <Icon
-                as={FlashIcon}
-                h={["2.84975rem", "5rem"]}
-                w={["2.84975rem", "5rem"]}
-              ></Icon>
+              <FlashIcon boxSize={["2.84975rem" ,"5rem"]}/>
             </Flex>
             <Text
               fontSize={["0.85494rem", "1.5rem"]}

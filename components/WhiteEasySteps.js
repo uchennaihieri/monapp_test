@@ -1,20 +1,9 @@
 import React from "react";
-import {
-  Box,
-  Flex,
-  Text,
-  Icon,
-  VStack,
-  Image,
-} from "@chakra-ui/react";
+import { Box, Flex, Text, Icon, VStack, Image } from "@chakra-ui/react";
 import { Bree_Serif, DM_Sans } from "next/font/google";
-import profileCircleIcon from "./Icons/profileCircleIcon";
-import easySettingIcon from "./Icons/easySettingIcon";
-import flashIcon from "./Icons/flashIcon";
-import settingIcon from "./Icons/settingIcon";
-import whiteSettingIcon from "./Icons/whitesettings";
-import whiteprofile from "./Icons/whiteprofile";
-import whiteflash from "./Icons/whiteflash";
+import WhiteSettingIcon from "./Icons/whitesettings";
+import Whiteflash from "./Icons/whiteflash";
+import WhiteProfile from "./Icons/whiteprofile";
 
 const dmsans = DM_Sans({ weight: "400", subsets: ["latin"] });
 
@@ -30,7 +19,7 @@ function WhiteEasySteps() {
         m={["-6rem auto 7.8rem", "-4.62rem auto 11.5rem"]}
         pt={["1rem", "3rem"]}
         h={["58.9375rem", "52.25rem"]}
-      // borderRadius={["2.375rem","3rem"]}
+        borderRadius={["2.375rem","3rem"]}
       >
         <Image
           src="/blackbirds.png"
@@ -91,6 +80,7 @@ function WhiteEasySteps() {
               left={"16.75rem"}
               top="7.5rem"
               display={["none", "block"]}
+              alt="curve"
             />
             <Image
               src="/blackcurvedown.png"
@@ -99,7 +89,7 @@ function WhiteEasySteps() {
               right={"16.75rem"}
               top="7.5rem"
               display={["none", "block"]}
-
+              alt="curve"
             />
 
             <Image
@@ -109,7 +99,7 @@ function WhiteEasySteps() {
               right={"16.75rem"}
               top="7.5rem"
               display={["none", "block"]}
-
+              alt="curve"
             />
 
             <Image
@@ -117,15 +107,15 @@ function WhiteEasySteps() {
               position={"absolute"}
               top={"15.5rem"}
               display={["block", "none"]}
+              alt="dashline"
             />
             <Image
               src="/dashedmobile.png"
               position={"absolute"}
               top={"31rem"}
               display={["block", "none"]}
+              alt="dashline"
             />
-
-
 
             <Flex
               w={[" 5.6995rem", "10rem"]}
@@ -158,12 +148,7 @@ function WhiteEasySteps() {
                 1
               </Flex>
 
-              <Icon
-                as={whiteprofile}
-                h={["2.84975rem", "5rem"]}
-                w={["2.84975rem", "5rem"]}
-                color={"red"}
-              ></Icon>
+              <WhiteProfile boxSize={["2.84975rem", "5rem"]} />
             </Flex>
             <Text
               fontSize={["0.85494rem", "1.5rem"]}
@@ -193,7 +178,6 @@ function WhiteEasySteps() {
             alignItems="center"
             position={"relative"}
             w={"20rem"}
-
           >
             <Flex
               border="1px dashed #939393"
@@ -222,15 +206,12 @@ function WhiteEasySteps() {
                 left={"-1.25rem"}
                 top={"-1rem"}
                 display={["none", "flex"]}
-
               >
                 2
               </Flex>
-              <Icon
-                as={whiteSettingIcon}
-                h={["2.84975rem", "5rem"]}
-                w={["2.84975rem", "5rem"]}
-              ></Icon>
+              <WhiteSettingIcon
+                boxSize={["2.84975rem" ,"5rem"]} 
+              />
             </Flex>
             <Text
               fontSize={["0.85494rem", "1.5rem"]}
@@ -288,15 +269,11 @@ function WhiteEasySteps() {
                 left={"-1.25rem"}
                 top={"-1rem"}
                 display={["none", "flex"]}
-
               >
                 3
               </Flex>
-              <Icon
-                as={whiteflash}
-                h={["2.84975rem", "5rem"]}
-                w={["2.84975rem", "5rem"]}
-              ></Icon>
+              <Whiteflash
+boxSize={["2.84975rem" ,"5rem"]}               />
             </Flex>
             <Text
               fontSize={["0.85494rem", "1.5rem"]}
@@ -321,7 +298,6 @@ function WhiteEasySteps() {
           </Box>
         </Flex>
       </VStack>
-
     </>
   );
 }
