@@ -61,12 +61,13 @@ export default function Features() {
   return (
     <Flex
       borderRightRadius="0.67575rem"
-      background="#FFF"
+      background="#fff"
       boxShadow="2px 8px 24px -0.5px rgba(0, 0, 0, 0.08)"
       flexDirection={{ base: "column-reverse", md: "row" }}
       w={{ base: "24.375rem", md: "82rem" }}
       h={{ base: "", md: "33.9375rem" }}
-      m={"-8.1275rem auto auto"}
+      m={["-3.1275rem auto auto","-8.1275rem auto auto"]}
+      position={"absolute"}
     >
       <Box
         w={{ base: "24.375rem", md: "31.5rem" }}
