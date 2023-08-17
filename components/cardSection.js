@@ -158,8 +158,8 @@ export default function CardSection() {
       <Container
         maxW="79.81em"
         centerContent
-        pt={{ base: "3.875rem", md: "10.25rem" }}
-        pb={["6rem", "15.25rem"]}
+        pt={{ base: "55.875rem", md: "35.25rem" }}
+        pb={["6rem","15.25rem"]}
       >
         <Flex
           flexDirection={{ base: "column", md: "row" }}
