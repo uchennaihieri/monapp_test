@@ -2,7 +2,7 @@
 'use client'
 
 import { CacheProvider } from '@chakra-ui/next-js'
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, GlobalStyle, LightMode } from '@chakra-ui/react'
 import { RecoilRoot } from 'recoil'
 
 export function Providers({ children }) {
@@ -10,7 +10,10 @@ export function Providers({ children }) {
         <CacheProvider>
             <ChakraProvider>
                 <RecoilRoot>
-                    {children}
+                    <LightMode>
+                        <GlobalStyle />
+                        {children}
+                    </LightMode>
                 </RecoilRoot>
             </ChakraProvider>
         </CacheProvider>
