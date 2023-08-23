@@ -54,7 +54,6 @@ import { BsChevronDown, BsDot } from "react-icons/bs";
 import { GoPrimitiveDot } from "react-icons/go";
 import NewDash from "../layout";
 import MerchantBoxCard from "@/components/merchantBoxCard";
-import AuthComponent from "@/services/AuthComponent";
 
 const dmsans = DM_Sans({ weight: "400", subsets: ["latin"] });
 const dmsansbold = DM_Sans({ weight: "500", subsets: ["latin"] });
