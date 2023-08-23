@@ -37,7 +37,7 @@ import { DM_Sans, Rubik } from "next/font/google";
 import { BsChevronDown, BsDot, BsInfoCircleFill } from "react-icons/bs";
 import { GoPrimitiveDot } from "react-icons/go";
 import MyChart from "@/components/myChart";
-import NewDash from "./layout";
+import NewDash from "../layout";
 import AllTransactions from "@/components/AllTransactions";
 import { db, doc, onSnapshot, updateDoc } from "@/services/firebase";
 import { getWallet, getCard, getTransactions } from "@/services/request";
@@ -47,7 +47,6 @@ import { HiOutlineX } from "react-icons/hi";
 import CancelIcon from "@/components/Icons/cancelIcon";
 import axios from "axios";
 import baseURL from "@/services/baseUrl";
-import AuthComponent from "@/services/AuthComponent";
 const dayjs = require("dayjs");
 
 const dmsans = DM_Sans({ weight: "400", subsets: ["latin"] });
