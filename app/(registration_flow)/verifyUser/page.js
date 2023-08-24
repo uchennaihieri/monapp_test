@@ -42,9 +42,7 @@ import {
     useToast,
     InputLeftAddon,
 } from '@chakra-ui/react';
-import { AuthAction, withAuthUser, withAuthUserTokenSSR } from 'next-firebase-auth';
-import { useRouter } from 'next/router';
-import useIdentityPayKYC from 'react-identity-kyc'
+import { useRouter } from 'next/navigation';
 import { useRecoilState } from 'recoil'
 import { Bree_Serif, DM_Sans, Roboto_Slab } from "next/font/google";
 import { Suspense, useEffect, useState } from 'react';
@@ -725,57 +723,8 @@ export const Verify = ({ person }) => {
 
 
 
-export const getServerSideProps = withAuthUserTokenSSR({
-    whenUnauthed: AuthAction.REDIRECT_TO_LOGIN,
-})(async ({ AuthUser }) => {
-    // Optionally, get other props.
-    console.log(AuthUser)
-
-    const token = await AuthUser.getIdToken(true)
-    const UID = AuthUser.id
-    const response = await fetch(`${baseURL}/api/user/${UID}`, {
-        method: 'GET',
-        headers: {
-            Authorization: token,
-        },
-    })
-    const data = await response.json()
 
 
-    if (data.verified == 'submitted') {
-        return {
-            redirect: {
-                destination: '/confirmOtp',
-                permanent: false,
-            },
-        }
-    }
-
-    if (data.verified == true) {
-        return {
-            redirect: {
-                destination: '/Dashboard',
-                permanent: false,
-            },
-        }
-    }
-
-
-    return {
-        props: {
-            person: data,
-        },
-    }
-})
-
-export default withAuthUser(
-    {
-
-        whenUnauthedBeforeInit: AuthAction.SHOW_LOADER,
-        whenUnauthedAfterInit: AuthAction.SHOW_LOADER,
-        LoaderComponent: Loading,
-
-    }
-)(VerifyUser)
+export default VerifyUser
 
 

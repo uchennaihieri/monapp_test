@@ -11,22 +11,21 @@ import {
     HStack,
 } from '@chakra-ui/react';
 import { PinInput, PinInputField } from '@chakra-ui/react';
-import { AuthAction, useAuthUser, withAuthUser, withAuthUserTokenSSR } from 'next-firebase-auth';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useRecoilState } from 'recoil';
-import { businessCat, businessReg, bvnN, myAddress, myPostalCode, myCity, myLocation, pinID, seller, sellerType, countDown } from '@/recoil/atoms';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { businessCat, businessReg, bvnN, myAddress, myPostalCode, myCity, myLocation, pinID, seller, sellerType, countDown, personState } from '@/recoil/atoms';
 import QRCode from 'qrcode'
 import { addDoc, collection, doc, getDocs, limit, onSnapshot, orderBy, query, setDoc, updateDoc, where } from 'firebase/firestore';
 import { getDownloadURL, getStorage, ref, uploadString } from "firebase/storage";
 import { db } from '@/services/firebase';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import CountdownTimer from '@/components/countDownTimer';
 import baseURL from '@/services/baseUrl';
 
-function ConfirmOtp({ person }) {
+function ConfirmOtp() {
 
-    const AuthUser = useAuthUser()
+
     const router = useRouter()
     const { register, handleSubmit } = useForm();
     const [src, setSrc] = useState('')
@@ -51,7 +50,7 @@ function ConfirmOtp({ person }) {
     const initialTargetTime = +new Date() + 3 * 60 * 1000;
     const [targetTime, setTargetTime] = useState(initialTargetTime);
     const [isCountdownFinished, setIsCountdownFinished] = useRecoilState(countDown);
-
+    const person = useRecoilValue(personState)
 
     const handleRestart = () => {
         verifyUser()
@@ -60,7 +59,6 @@ function ConfirmOtp({ person }) {
     };
 
 
-    console.log(isCountdownFinished)
 
     useEffect(() => {
 
@@ -129,7 +127,7 @@ function ConfirmOtp({ person }) {
     }
 
     const storage = getStorage();
-    const storageRef = ref(storage, `${AuthUser.id}`);
+    const storageRef = ref(storage, `${person.userID}`);
 
 
     const submitOtp = () => {
@@ -274,15 +272,7 @@ function ConfirmOtp({ person }) {
 
 
     return (
-        <Flex
-            flexDirection='column'
-            minH={'100vh'}
-            align={'center'}
-            justify={'center'}
-            bg={`#ffffff`}>
-            <Box mb={{ base: '2.75rem', md: "5.06rem" }}>
-                <Image src={'/footerlogo.png'} w={'14.17rem'} h={'3.06rem'} />
-            </Box>
+        <>
 
             <Stack
                 spacing={4}
@@ -307,7 +297,7 @@ function ConfirmOtp({ person }) {
                     fontSize={{ base: 'sm', sm: 'md' }}
                     fontWeight="bold"
                     color={useColorModeValue('gray.800', 'gray.400')}>
-                    {'******' + person.phoneNumber.substring(7)}
+                    {'******' + person.phoneNumber?.substring(7)}
                 </Center>
                 <FormControl>
                     <Center>
@@ -351,53 +341,11 @@ function ConfirmOtp({ person }) {
                 </Stack>
             </Stack>
 
-        </Flex>
+        </>
     );
 }
 
 
 
 
-
-export const getServerSideProps = withAuthUserTokenSSR({
-    whenUnauthed: AuthAction.REDIRECT_TO_LOGIN,
-})(async ({ AuthUser }) => {
-    // Optionally, get other props.
-    const token = await AuthUser.getIdToken(true)
-    const UID = AuthUser.id
-    const response = await fetch(`${baseURL}/api/user/${UID}`, {
-        method: 'GET',
-        headers: {
-            Authorization: token,
-        },
-    })
-    const data = await response.json()
-
-
-    if (!data.verified) {
-        return {
-            redirect: {
-                destination: '/verifyUser',
-                permanent: false,
-            },
-        }
-    }
-
-    if (data.verified == true) {
-        return {
-            redirect: {
-                destination: '/Dashboard',
-                permanent: false,
-            },
-        }
-    }
-
-
-    return {
-        props: {
-            person: data,
-        },
-    }
-})
-
-export default withAuthUser()(ConfirmOtp)
+export default ConfirmOtp

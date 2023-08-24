@@ -75,9 +75,8 @@ function Dashboard() {
 
   const { lastName, firstName } = person
 
-  console.log(bvn, dOB, gender);
 
-
+  console.log(person)
 
   useEffect(() => {
     checkOnboarding()
@@ -89,7 +88,6 @@ function Dashboard() {
 
   }, [person]);
 
-  console.log(person)
 
   const checkOnboarding = () => {
 

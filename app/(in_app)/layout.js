@@ -104,12 +104,6 @@ export default function NewDash({
     const [fetchData, setFetchData] = useState(false);
     const [person, setPerson] = useRecoilState(personState)
     const router = useRouter()
-
-
-    //   console.log(firstName)
-
-
-
     const [loggedUser, setLoggedUser] = useState(undefined);
     const fetcher = url => axios.get(url).then(res => res.data)
     const { data, error, isLoading } = useSWR(fetchData ? `${baseURL}/api/user/${loggedUser?.uid}` : null, fetcher)
@@ -128,18 +122,31 @@ export default function NewDash({
         });
     }, [loggedUser]);
 
-    console.log(loggedUser)
 
     const updatePerson = () => {
         setPerson(data)
     }
 
+
+
     if (loggedUser == undefined || isLoading) {
         return <Loading />;
     }
 
+
     if (error) {
         return <p>Error: {error.message}</p>;
+    }
+
+
+    if (!data.verified) {
+        router.push('/verifyUser')
+        return <Loading />;
+    }
+
+    if (data.verified == "submitted") {
+        router.push('/confirmOtp')
+        return <Loading />;
     }
 
 
