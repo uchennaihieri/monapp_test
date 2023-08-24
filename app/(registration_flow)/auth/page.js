@@ -51,16 +51,6 @@ const Auth = () => {
 
 
 
-    // useEffect(() => {
-    //     const { task } = router.query
-    //     if (task == 'signup') {
-    //         setPage(parseInt(1, 10))
-    //     } else {
-    //         setPage(parseInt(0, 10))
-    //     }
-    // }, [router.query])
-
-
     const goSupport = () => {
         router.push('/broker')
     }
@@ -69,8 +59,6 @@ const Auth = () => {
     const goHome = () => {
         router.push('/')
     }
-
-    console.log(auth.currentUser)
 
 
 
@@ -84,71 +72,31 @@ const Auth = () => {
         <>
             {/* <PageSeo title="Login/Signup  - Monapp" description="" /> */}
 
-            <Flex
-                flexDirection={'column'}
-                minH={'100vh'}
-                align={'center'}
-                bg={'#FFFFFF'}>
-                <Flex
-                    mt={{ base: '1.5rem', md: "2.875rem" }}
-                    width={{ base: '90%', md: "87.5rem" }}
-                    flexDir={'row'}
-                    justify="space-between"
-                    mb={{ base: '3.5rem', md: '10.6rem' }}
-                >
-                    <Button leftIcon={<AiOutlineLeft />} m="0" p="0" variant={'ghost'} _hover={{
-                        backgroundColor: 'none'
-                    }} color={'#000000'} fontSize={{ base: '1rem', md: "1.44rem" }}
-                        fontWeight={400}
-                        lineHeight={'4rem'}
-                        className={bree.className}
-                        onClick={goHome}
-                    >Return Home</Button>
 
-                    <Button onClick={goSupport} m="0" p="0" variant={'ghost'} _hover={{
-                        backgroundColor: 'none'
-                    }} color={'#000000'} fontSize={{ base: '0.75rem', md: "1rem" }}
-                        fontWeight={500}
-                        className={dmsansBold.className}
-                    >Work as Broker</Button>
-                </Flex>
-                <Box mb={{ base: '2.75rem', md: "5.06rem" }}>
-                    <Image src={'/footerlogo.png'} alt='footer logo' w={'14.17rem'} h={'3.06rem'} />
-                </Box>
 
-                <Tabs index={page} onChange={handleTabsChange} isFitted m="0" mb="2.92rem" p="0">
-                    <TabList>
-                        <Tab color={'rgba(0, 0, 0, 0.4)'} borderBottomColor='transparent' _selected={{ color: '#000000', borderBottomColor: '#000000' }}><Text fontWeight={400}
-                            lineHeight={'3.125rem'} letterSpacing={'-0.5px'}
-                            className={bree.className} fontSize={'1.125rem'}>Sign in</Text></Tab>
-                        <Tab color={'rgba(0, 0, 0, 0.4)'} borderBottomColor='transparent' _selected={{ color: '#000000', borderBottomColor: '#000000' }}><Text fontWeight={400}
-                            lineHeight={'3.125rem'} letterSpacing={'-0.5px'}
-                            className={bree.className} fontSize={'1.125rem'}>Sign up</Text></Tab>
-                    </TabList>
+            <Tabs index={page} onChange={handleTabsChange} isFitted m="0" mb="2.92rem" p="0">
+                <TabList>
+                    <Tab color={'rgba(0, 0, 0, 0.4)'} borderBottomColor='transparent' _selected={{ color: '#000000', borderBottomColor: '#000000' }}><Text fontWeight={400}
+                        lineHeight={'3.125rem'} letterSpacing={'-0.5px'}
+                        className={bree.className} fontSize={'1.125rem'}>Sign in</Text></Tab>
+                    <Tab color={'rgba(0, 0, 0, 0.4)'} borderBottomColor='transparent' _selected={{ color: '#000000', borderBottomColor: '#000000' }}><Text fontWeight={400}
+                        lineHeight={'3.125rem'} letterSpacing={'-0.5px'}
+                        className={bree.className} fontSize={'1.125rem'}>Sign up</Text></Tab>
+                </TabList>
 
-                    <TabPanels m="0" p="0">
-                        <TabPanel m="0" p="0">
-                            <Signin />
-                        </TabPanel>
-                        <TabPanel m="0" p="0">
-                            <Signup />
-                        </TabPanel>
-                    </TabPanels>
-                </Tabs>
+                <TabPanels m="0" p="0">
+                    <TabPanel m="0" p="0">
+                        <Signin />
+                    </TabPanel>
+                    <TabPanel m="0" p="0">
+                        <Signup />
+                    </TabPanel>
+                </TabPanels>
+            </Tabs>
 
 
 
 
-                <Flex>
-
-                    <HStack mb="10.93rem">
-                        <Image src={'/playstore.png'} alt='download from playstore' w={'9.25rem'} h={'3.03rem'} />
-                        <Image src={'/appstore.png'} alt='download from appstore' w={'9.3rem'} h={'3.10rem'} />
-                    </HStack>
-                </Flex>
-
-
-            </Flex>
         </>
     );
 }
@@ -160,7 +108,7 @@ const Auth = () => {
 
 export const Signin = () => {
     const toast = useToast()
-
+    const router = useRouter()
     const [show, setShow] = useState(false)
     const handleClick = () => setShow(!show)
     const { register, handleSubmit } = useForm();
