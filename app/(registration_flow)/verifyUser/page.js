@@ -457,32 +457,13 @@ const VerifyUser = ({ person }) => {
                     </ModalContent>
                 </Modal>
 
-                <Button leftIcon={<AiOutlineLeft />} m="0" p="0" variant={'ghost'} _hover={{
-                    backgroundColor: 'none'
-                }} color={'#000000'} fontSize={{ base: '1rem', md: "1.44rem" }}
-                    fontWeight={400}
-                    lineHeight={'4rem'}
-                    className={bree.className}
-                    isLoading={loadingState}
-                    loadingText='Please wait..'
-                    onClick={deleteMe}
-                >Restart Registration</Button>
 
-                <Button onClick={goSupport} m="0" p="0" variant={'ghost'} _hover={{
-                    backgroundColor: 'none'
-                }} color={'#000000'} fontSize={{ base: '0.75rem', md: "1rem" }}
-                    fontWeight={500}
-                    className={dmsansBold.className}
-                >Support</Button>
             </Flex>
-            <Box mb={{ base: '2.75rem', md: "5.06rem" }}>
-                <Image src={'/footerlogo.png'} alt='' w={'14.17rem'} h={'3.06rem'} />
-            </Box>
 
-            <Box m="0" mb="2.92rem" p="0">
-                <Verify person={person} />
-            </Box>
+            <>
+                <Verify />
 
+            </>
         </Flex>
     );
 }

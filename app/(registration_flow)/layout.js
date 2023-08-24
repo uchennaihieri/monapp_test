@@ -104,7 +104,7 @@ function AuthCover({ children }) {
                     }} color={'#000000'} fontSize={{ base: '0.75rem', md: "1rem" }}
                         fontWeight={500}
                         className={dmsansBold.className}
-                    >Work as Broker</Button>
+                    >Earn money as a Broker</Button>
                 </Flex>
                 <Box mb={{ base: '2.75rem', md: "2.06rem" }}>
                     <Image src={'/footerlogo.png'} alt='footer logo' w={'14.17rem'} h={'3.06rem'} />
