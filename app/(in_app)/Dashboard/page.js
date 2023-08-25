@@ -73,12 +73,15 @@ function Dashboard() {
   const d = new Date(Date.now())
   const person = useRecoilValue(personState)
 
+  console.log(person)
+
   const { lastName, firstName } = person
 
 
   console.log(person)
 
   useEffect(() => {
+
     checkOnboarding()
     getWallet(setWallet, person);
     getCard(setCard, person);
@@ -110,8 +113,6 @@ function Dashboard() {
 
 
   }
-
-
   const createPin = () => {
     setLoadingState(true)
 
