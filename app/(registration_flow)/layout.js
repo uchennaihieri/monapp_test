@@ -45,10 +45,14 @@ function AuthCover({ children }) {
                 setLoggedUser(user)
                 setFetchData(true)
             } else {
+                setLoggedUser(false)
                 router.push('/auth')
             }
         });
     }, [loggedUser]);
+
+
+
 
 
     const updatePerson = () => {
@@ -60,7 +64,6 @@ function AuthCover({ children }) {
     if (loggedUser == undefined || isLoading) {
         return <Loading />;
     }
-
 
 
 

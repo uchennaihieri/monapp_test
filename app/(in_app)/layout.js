@@ -117,6 +117,7 @@ export default function NewDash({
                 setLoggedUser(user)
                 setFetchData(true)
             } else {
+                setLoggedUser(false)
                 router.push('/auth')
             }
         });
@@ -124,8 +125,30 @@ export default function NewDash({
 
 
     const updatePerson = () => {
+
+
+
         setPerson(data)
     }
+
+
+    // const updatePerson = () => {
+
+    //     if (Object.keys(person).length === 0){
+    //         setFetchData(true)
+    //         setPerson(data)
+    //     } else if(loggedUser?.uid != person.userID)
+
+    //     {
+    //         setFetchData(true)
+    //         setPerson(data)
+    //     } else {
+    //         null
+    //     }
+
+
+    // }
+
 
 
 
