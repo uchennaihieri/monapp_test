@@ -97,14 +97,13 @@ export default function FooterSection() {
               color={"#fff"}
               className='clashSemiBold'
               w={['20rem', '33.5625rem']}
-              textAlign={'center'}
+              textAlign={['center','left']}
             // pr={["0","11rem"]}
             >
-              Join community of 137k+ users start making payment today.
+              Join our community of  users start making payment today.
             </Text>
             <Text color="#ffffff" w={['19.75rem', '34.0625rem']} h={['4.6875rem', '4.6875rem']} fontSize={['0.875rem', '1.125rem']} justifyContent={'center'} lineHeight={['1.25rem', '1.78125rem']} letterSpacing={['0.0175rem', '-0.0225rem']} >
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry Lorem Ipsum is simply. Lorem Ipsum is simply.
+            Join our user community today and embark on a seamless financial journey with Monapp. Simplify your payments and take control.
             </Text>
             {/* </Box> */}
 
@@ -118,6 +117,7 @@ export default function FooterSection() {
                 h={{ base: "2.61rem", md: "3.18rem" }}
                 onClick={getApp}
                 _hover={{ cursor: "pointer" }}
+                alt="app store"
               />
               <Image
                 src={"/play-store.svg"}
@@ -125,6 +125,8 @@ export default function FooterSection() {
                 h={{ base: "2.67rem", md: "3.18rem" }}
                 onClick={getApp}
                 _hover={{ cursor: "pointer" }}
+                alt="app store"
+
               />
             </HStack>
           </Flex>

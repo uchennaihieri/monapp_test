@@ -111,8 +111,7 @@ const Pricing = () => {
               className="clashSemiBold"
               lineHeight={["2.30219rem", "2.97894rem"]}
             >
-              Mobile app
-            </Text>
+Transact with Ease            </Text>
             <Text
               color="#02073E"
               fontSize={["0.86944rem", "1.125rem"]}
@@ -120,9 +119,7 @@ const Pricing = () => {
               fontWeight="400"
               lineHeight={["1.28rem", "1.65625rem"]}
             >
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry.
-            </Text>
+Make transactions hassle-free with Monapp.            </Text>
             <Button
               colorScheme="#000000"
               variant={"outline"}
@@ -137,7 +134,7 @@ const Pricing = () => {
               letterSpacing="-0.00831rem"
               lineHeight={["2.10169rem", " 2.71944rem"]}
             >
-              Get app now
+              Signup Now
             </Button>
             <Text
               fontSize={["1.73888rem", "2.5rem"]}
@@ -146,7 +143,7 @@ const Pricing = () => {
               className="clashSemiBold"
               lineHeight={["2.30219rem", "2.97894rem"]}
             >
-              Free
+              0.5% fees
             </Text>
             <Text
               color="#02073E"
@@ -155,7 +152,7 @@ const Pricing = () => {
               fontWeight="400"
               lineHeight={["1.28rem", "1.65625rem"]}
             >
-              Lorem Ipsum is simply dummy
+            seamless Digital payment.
             </Text>
             <Box mt={"1rem"}>
               <HStack>
@@ -167,7 +164,9 @@ const Pricing = () => {
                   className={dmsans.className}
                   fontSize={["0.77281rem", "1rem"]}
                 >
-                  Zero Download Fee
+               
+No hidden charges
+
                 </Text>
               </HStack>
               <HStack>
@@ -179,7 +178,7 @@ const Pricing = () => {
                   className={dmsans.className}
                   fontSize={["0.77281rem", "1rem"]}
                 >
-                  Zero Setup Fee
+                Low Transaction Fee
                 </Text>
               </HStack>
               <HStack>
@@ -191,7 +190,7 @@ const Pricing = () => {
                   className={dmsans.className}
                   fontSize={["0.77281rem", "1rem"]}
                 >
-                  Community Support
+                 On-demand Settlement
                 </Text>
               </HStack>
             </Box>
@@ -215,7 +214,7 @@ const Pricing = () => {
               className="clashSemiBold"
               lineHeight={["2.30219rem", "2.97894rem"]}
             >
-              Monapp QR Card
+          Monapp QR Card
             </Text>
             <Text
               color="#02073E"
@@ -224,9 +223,7 @@ const Pricing = () => {
               fontWeight="400"
               lineHeight={["1.28rem", "1.65625rem"]}
             >
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry.
-            </Text>
+Get the Monapp QR Card for seamless payments.            </Text>
             <Button
               bg={"#000000"}
               color="#ffffff"
@@ -244,7 +241,7 @@ const Pricing = () => {
               letterSpacing="-0.00831rem"
               lineHeight={["2.10169rem", " 2.71944rem"]}
             >
-              Order now
+         Order Now 
             </Button>
             <Text
               fontSize={"2.5rem"}
@@ -262,7 +259,7 @@ const Pricing = () => {
               fontWeight="400"
               lineHeight="1.65625rem"
             >
-              Lorem Ipsum is simply dummy
+             Enjoy easy transactions and benefits Such as:
             </Text>
             <Box mt={"1rem"}>
               <HStack>
@@ -286,7 +283,7 @@ const Pricing = () => {
                   className={dmsans.className}
                   fontSize={["0.77281rem", "1rem"]}
                 >
-                  Free DElivery
+                  Free Delivery
                 </Text>
               </HStack>
               <HStack>
@@ -298,7 +295,7 @@ const Pricing = () => {
                   className={dmsans.className}
                   fontSize={["0.77281rem", "1rem"]}
                 >
-                  Manage Card
+                 Manage Card Effortlessly
                 </Text>
               </HStack>
             </Box>
@@ -321,7 +318,7 @@ const Pricing = () => {
               className="clashSemiBold"
               lineHeight={["2.30219rem", "2.97894rem"]}
             >
-              Transact
+            Become a Broker
             </Text>
             <Text
               color="#02073E"
@@ -330,9 +327,7 @@ const Pricing = () => {
               fontWeight="400"
               lineHeight={["1.28rem", "1.65625rem"]}
             >
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry.
-            </Text>
+Join us, guide users through transactions, and earn. Be a part of the Monapp revolution.            </Text>
             <Button
               colorScheme="#000000"
               variant={"outline"}
@@ -348,7 +343,7 @@ const Pricing = () => {
               letterSpacing="-0.00831rem"
               lineHeight={["2.10169rem", " 2.71944rem"]}
             >
-              Signup now
+             Join Us
             </Button>
             <Text
               fontSize={"2.5rem"}
@@ -366,7 +361,7 @@ const Pricing = () => {
               fontWeight="400"
               lineHeight="1.65625rem"
             >
-              Lorem Ipsum is simply dummy
+              Empower Others. Earn Rewards.
             </Text>
             <Box mt={"1rem"}>
               <HStack>
@@ -378,7 +373,7 @@ const Pricing = () => {
                   className={dmsans.className}
                   fontSize={["0.77281rem", "1rem"]}
                 >
-                  No hidden charges
+                Seize Opportunity
                 </Text>
               </HStack>
               <HStack>
@@ -390,7 +385,7 @@ const Pricing = () => {
                   className={dmsans.className}
                   fontSize={["0.77281rem", "1rem"]}
                 >
-                  Low Transaction Fee
+                 Flexible Earnings 
                 </Text>
               </HStack>
               <HStack>
@@ -402,7 +397,7 @@ const Pricing = () => {
                   className={dmsans.className}
                   fontSize={["0.77281rem", "1rem"]}
                 >
-                  On-demand Settlement
+               Community Impact
                 </Text>
               </HStack>
             </Box>

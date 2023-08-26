@@ -52,8 +52,7 @@ function WhiteEasySteps() {
           lineHeight={["1.16969rem", "2.1875rem"]}
           fontWeight={"400"}
         >
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been
+         Your Digital Payment journey is simplified: Download, set up, and start transacting with ease.
         </Text>
         <Flex
           align="center"
@@ -168,8 +167,8 @@ function WhiteEasySteps() {
               textAlign={"center"}
               fontWeight={"200"}
             >
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry
+             Download Monapp from Play Store or App Store, register, and unlock seamless financial transactions.
+
             </Text>
           </Box>
           <Box
@@ -230,8 +229,8 @@ function WhiteEasySteps() {
               letterSpacing={["-0.01138rem", "-0.02rem"]}
               textAlign={"center"}
             >
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry
+              Personalize your setup in less than 2 minutes and start your journey to seamless digital payments.
+
             </Text>{" "}
           </Box>
 
@@ -292,8 +291,8 @@ boxSize={["2.84975rem" ,"5rem"]}               />
               letterSpacing={["-0.01138rem", "-0.02rem"]}
               textAlign={"center"}
             >
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry
+             Send, receive, and pay bills securely. Monapp simplifies digital payments as quick as possible.
+
             </Text>{" "}
           </Box>
         </Flex>
