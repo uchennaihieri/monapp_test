@@ -119,7 +119,7 @@ Transact with Ease            </Text>
               fontWeight="400"
               lineHeight={["1.28rem", "1.65625rem"]}
             >
-Make transactions hassle-free with Monapp.            </Text>
+Unlock a world of seamless transactions, We are on a mission to make transactions hassle-free for Africans.         </Text>
             <Button
               colorScheme="#000000"
               variant={"outline"}
@@ -223,7 +223,9 @@ No hidden charges
               fontWeight="400"
               lineHeight={["1.28rem", "1.65625rem"]}
             >
-Get the Monapp QR Card for seamless payments.            </Text>
+
+Elevate your payment experience with the Monapp QR Card, redefining convenience in every transaction.
+          </Text>
             <Button
               bg={"#000000"}
               color="#ffffff"
