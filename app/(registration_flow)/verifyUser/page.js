@@ -42,9 +42,7 @@ import {
     useToast,
     InputLeftAddon,
 } from '@chakra-ui/react';
-import { AuthAction, withAuthUser, withAuthUserTokenSSR } from 'next-firebase-auth';
-import { useRouter } from 'next/router';
-import useIdentityPayKYC from 'react-identity-kyc'
+import { useRouter } from 'next/navigation';
 import { useRecoilState } from 'recoil'
 import { Bree_Serif, DM_Sans, Roboto_Slab } from "next/font/google";
 import { Suspense, useEffect, useState } from 'react';
@@ -459,32 +457,13 @@ const VerifyUser = ({ person }) => {
                     </ModalContent>
                 </Modal>
 
-                <Button leftIcon={<AiOutlineLeft />} m="0" p="0" variant={'ghost'} _hover={{
-                    backgroundColor: 'none'
-                }} color={'#000000'} fontSize={{ base: '1rem', md: "1.44rem" }}
-                    fontWeight={400}
-                    lineHeight={'4rem'}
-                    className={bree.className}
-                    isLoading={loadingState}
-                    loadingText='Please wait..'
-                    onClick={deleteMe}
-                >Restart Registration</Button>
 
-                <Button onClick={goSupport} m="0" p="0" variant={'ghost'} _hover={{
-                    backgroundColor: 'none'
-                }} color={'#000000'} fontSize={{ base: '0.75rem', md: "1rem" }}
-                    fontWeight={500}
-                    className={dmsansBold.className}
-                >Support</Button>
             </Flex>
-            <Box mb={{ base: '2.75rem', md: "5.06rem" }}>
-                <Image src={'/footerlogo.png'} alt='' w={'14.17rem'} h={'3.06rem'} />
-            </Box>
 
-            <Box m="0" mb="2.92rem" p="0">
-                <Verify person={person} />
-            </Box>
+            <>
+                <Verify />
 
+            </>
         </Flex>
     );
 }
@@ -725,57 +704,8 @@ export const Verify = ({ person }) => {
 
 
 
-export const getServerSideProps = withAuthUserTokenSSR({
-    whenUnauthed: AuthAction.REDIRECT_TO_LOGIN,
-})(async ({ AuthUser }) => {
-    // Optionally, get other props.
-    console.log(AuthUser)
-
-    const token = await AuthUser.getIdToken(true)
-    const UID = AuthUser.id
-    const response = await fetch(`${baseURL}/api/user/${UID}`, {
-        method: 'GET',
-        headers: {
-            Authorization: token,
-        },
-    })
-    const data = await response.json()
 
 
-    if (data.verified == 'submitted') {
-        return {
-            redirect: {
-                destination: '/confirmOtp',
-                permanent: false,
-            },
-        }
-    }
-
-    if (data.verified == true) {
-        return {
-            redirect: {
-                destination: '/Dashboard',
-                permanent: false,
-            },
-        }
-    }
-
-
-    return {
-        props: {
-            person: data,
-        },
-    }
-})
-
-export default withAuthUser(
-    {
-
-        whenUnauthedBeforeInit: AuthAction.SHOW_LOADER,
-        whenUnauthedAfterInit: AuthAction.SHOW_LOADER,
-        LoaderComponent: Loading,
-
-    }
-)(VerifyUser)
+export default VerifyUser
 
 

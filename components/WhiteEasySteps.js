@@ -19,7 +19,7 @@ function WhiteEasySteps() {
         m={["-6rem auto 7.8rem", "-4.62rem auto 11.5rem"]}
         pt={["1rem", "3rem"]}
         h={["58.9375rem", "52.25rem"]}
-        borderRadius={["2.375rem","3rem"]}
+        borderRadius={["2.375rem", "3rem"]}
       >
         <Image
           src="/blackbirds.png"
@@ -209,7 +209,7 @@ function WhiteEasySteps() {
                 2
               </Flex>
               <WhiteSettingIcon
-                boxSize={["2.84975rem" ,"5rem"]} 
+                boxSize={["2.84975rem", "5rem"]}
               />
             </Flex>
             <Text
@@ -272,7 +272,7 @@ function WhiteEasySteps() {
                 3
               </Flex>
               <Whiteflash
-boxSize={["2.84975rem" ,"5rem"]}               />
+                boxSize={["2.84975rem", "5rem"]} />
             </Flex>
             <Text
               fontSize={["0.85494rem", "1.5rem"]}
