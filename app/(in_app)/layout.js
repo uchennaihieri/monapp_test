@@ -104,7 +104,7 @@ export default function NewDash({
     const [fetchData, setFetchData] = useState(false);
     const [person, setPerson] = useRecoilState(personState)
     const router = useRouter()
-    const [loggedUser, setLoggedUser] = useState(undefined);
+    const [loggedUser, setLoggedUser] = useState(null);
     const fetcher = url => axios.get(url).then(res => res.data)
     const { data, error, isLoading } = useSWR(fetchData ? `${baseURL}/api/user/${loggedUser?.uid}` : null, fetcher)
 
@@ -113,46 +113,33 @@ export default function NewDash({
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
-            if (user) {
+            console.log(user)
+
+            if (user == null) {
+                setLoggedUser(null)
+                router.push('/auth')
+
+            } else {
+                console.log(user)
                 setLoggedUser(user)
                 setFetchData(true)
-            } else {
-                setLoggedUser(false)
-                router.push('/auth')
             }
         });
-    }, [loggedUser]);
+
+    })
+
+    useEffect(() => {
+        updatePerson()
+    }, [data]);
 
 
     const updatePerson = () => {
-
-
 
         setPerson(data)
     }
 
 
-    // const updatePerson = () => {
-
-    //     if (Object.keys(person).length === 0){
-    //         setFetchData(true)
-    //         setPerson(data)
-    //     } else if(loggedUser?.uid != person.userID)
-
-    //     {
-    //         setFetchData(true)
-    //         setPerson(data)
-    //     } else {
-    //         null
-    //     }
-
-
-    // }
-
-
-
-
-    if (loggedUser == undefined || isLoading) {
+    if (loggedUser == null || isLoading) {
         return <Loading />;
     }
 
@@ -162,18 +149,29 @@ export default function NewDash({
     }
 
 
-    if (!data.verified) {
+
+    if (loggedUser == null) {
+        router.push('/auth')
+    }
+
+    if (!data?.verified) {
         router.push('/verifyUser')
         return <Loading />;
     }
 
-    if (data.verified == "submitted") {
+    if (data?.verified == "submitted") {
         router.push('/confirmOtp')
         return <Loading />;
     }
 
 
-    updatePerson()
+
+
+
+
+
+
+
 
     return (
         <Box minH="100vh" bg={'#FCFCFC'}>

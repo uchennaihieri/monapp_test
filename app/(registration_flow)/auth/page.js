@@ -289,13 +289,14 @@ export const Signin = () => {
 
 
 export const Signup = () => {
+    const router = useRouter()
     const { register, handleSubmit } = useForm();
     const [loadingState, setLoadingState] = useState(false);
     const [show, setShow] = useState(false)
     const handleClick = () => setShow(!show)
     const toast = useToast()
     const verifyUser = () => {
-        router.push('/VerifyUser')
+        router.push('/verifyUser')
     }
 
 

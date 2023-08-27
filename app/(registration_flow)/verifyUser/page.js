@@ -43,12 +43,12 @@ import {
     InputLeftAddon,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { Bree_Serif, DM_Sans, Roboto_Slab } from "next/font/google";
 import { Suspense, useEffect, useState } from 'react';
 import { AiOutlineLeft } from 'react-icons/ai';
 import { RiEyeCloseFill, RiEyeFill } from 'react-icons/ri';
-import { businessCat, businessReg, bvnN, myLocation, pinID, seller, sellerType, myCity, myAddress, myPostalCode } from '@/recoil/atoms';
+import { businessCat, businessReg, bvnN, myLocation, pinID, seller, sellerType, myCity, myAddress, myPostalCode, personState } from '@/recoil/atoms';
 import { useForm } from "react-hook-form";
 import { auth, createUserWithEmailAndPassword, db, deleteDoc, doc, deleteUser, serverTimestamp, setDoc, signInWithEmailAndPassword } from '@/services/firebase';
 import { reauthenticateWithCredential } from 'firebase/auth';
@@ -332,7 +332,9 @@ const locations = [
 
 const business = ["Electric lighting, Power", "Water, waterworks, and Supplies", "Bakery (food, pastries)", "Bar/local brew", "Food café/restaurant", "food catering", "Prepared foods", "Tortillas, ethnic bread", "Bricks", "Public Sector - Level 1", "Public Sector - Level 2", "Craft", "Knitting", "Shoes", "Mats", "Sewing/tailoring", "Soft drinks production", "Weaving", "Agriculture (grows crops/produce for sale)", "Grows mushrooms, etc.", "Dairy", "Fishing", "Livestock (various)", "Poultry", "Beekeeping", "Trees, Nursery", "Banking, Financial services", "Others", "School loan", "Private Sector - Level 1", "Private Sector - Level 2", "Manufacturing & Food Processing", "Agriculture & Forestry", "Mining & Quarry", "Trade & Commerce", "Transport & Communication", "Real Estate & Construction", "Rent/Housing", "Consumer/Personal", "Health", "Education", "Tourism & Hospitality", "Purchase of Shares", "Others (Specify)", "Alcoholic Beverages, Cigarettes, Matches", "Auto/bicycle parts", "Books, magazines, newspapers", "Charcoal/firewood", "Clothing, accessories (incl. shoes)", "Construction materials", "Cosmetics (incl. perfume)", "Crafts, souvenirs", "Drugs/Pharmacy", "Electronics (includes mobile phones)", "Flowers/plants", "Food products (groceries, dairy)", "Furniture", "Gas for cooking, heating", "Grains/legumes (incl. corn, rice)", "Household cleaning products", "Hygiene products", "Jewelry", "Kitchen, tableware", "Meat/butcher", "Office Supplies", "Oil", "Produce (fruits, vegetables, produce)", "Rugs", "Seafood/fish/salty fish", "Seeds", "Sleeping mats/blankets", "Snacks (snacks, candy, gum)", "Soft drinks", "Textiles (bed linens, towels, fabric)", "Tools, equipment, hardware", "Toys", "Video", "Telephone/Mobile Phone sales", "Auto repair", "Babysitter", "Barber shop/hair salon", "Beauty salon", "Book Keeper", "Bus/taxi driver", "Carpenter", "Construction laborer", "Electrician", "Fixes shoes", "Gas station", "Hauler/driver/cart pusher", "Health care", "Hotel/resthouse", "House-maid", "Cyber / Internet café", "Landlord", "Manager/supervisor", "Mechanic", "Welder", "Dentist", "Computer services", "Photographic Studio", "Business Services", "Air Transport", "Travel Agencies", "Postal or Courier Services"]
 
-const VerifyUser = ({ person }) => {
+
+const VerifyUser = () => {
+    const person = useRecoilValue(personState)
     const router = useRouter()
     const user = auth.currentUser;
     const [loadingState, setLoadingState] = useState(false);
@@ -469,9 +471,10 @@ const VerifyUser = ({ person }) => {
 }
 
 
-export const Verify = ({ person }) => {
+export const Verify = () => {
     const toast = useToast()
     const router = useRouter()
+    const person = useRecoilValue(personState)
     const [tokenPin, setTokenPin] = useRecoilState(pinID);
     const [verificationNumber, setVerificationNumber] = useRecoilState(bvnN);
     const [loadingState, setLoadingState] = useState(false);
@@ -506,6 +509,7 @@ export const Verify = ({ person }) => {
         setPostalCode(selectedObject.postalCode)
         setLocation(selectedObject.state)
     };
+
 
 
 

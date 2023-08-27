@@ -52,7 +52,9 @@ function AuthCover({ children }) {
     }, [loggedUser]);
 
 
-
+    useEffect(() => {
+        updatePerson()
+    }, [data]);
 
 
     const updatePerson = () => {
@@ -64,14 +66,6 @@ function AuthCover({ children }) {
     if (loggedUser == undefined || isLoading) {
         return <Loading />;
     }
-
-
-
-
-    updatePerson()
-
-
-
 
 
 
