@@ -54,7 +54,6 @@ import {
   setDoc,
   signInWithEmailAndPassword,
 } from "@/services/firebase";
-import { AuthAction, withAuthUser } from "next-firebase-auth";
 import PageSeo from "@/Seo/pageSeo";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
