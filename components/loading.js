@@ -1,3 +1,4 @@
+'use client'
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { motion, useAnimation } from 'framer-motion';
 import { useEffect } from "react";
