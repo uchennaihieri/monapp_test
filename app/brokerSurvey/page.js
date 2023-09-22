@@ -9,7 +9,9 @@ function page() {
 
     return (
 
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeASiaipEh6E63G3GftCGyO1p41PW7marehxgUA2QgdyIPgYQ/viewform?embedded=true" width="100%" height="4872" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+
+
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeASiaipEh6E63G3GftCGyO1p41PW7marehxgUA2QgdyIPgYQ/viewform?embedded=true" width="100%" height="5491" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
 
     )
 }
