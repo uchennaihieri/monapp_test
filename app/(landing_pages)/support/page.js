@@ -360,7 +360,7 @@ export default function Support() {
               <AccordionPanel>
                 You can easily download Monapp from the Google Play Store for
                 Android devices or the Apple App Store for iOS devices. Simply
-                search for "Monapp," click "Install," and follow the prompts
+                search for &quot;Monapp,&quot; click &quot;Install,&quot; and follow the prompts
               </AccordionPanel>
             </AccordionItem>
 
@@ -375,8 +375,8 @@ export default function Support() {
               </h2>
               <AccordionPanel>
                 {" "}
-                Linking your bank account is a breeze. Once you're signed in,
-                navigate to the "Settings" section, select "Link Bank Account,"
+                Linking your bank account is a breeze. Once you&apos;re signed in,
+                navigate to the &quot;Settings&quot; section, select &quot;Link Bank Account,&quot;
                 and follow the prompts to securely connect your account.
               </AccordionPanel>
             </AccordionItem>
@@ -392,7 +392,7 @@ export default function Support() {
               </h2>
               <AccordionPanel>
                 {" "}
-                At the moment, Monapp focuses on local transactions. We're
+                At the moment, Monapp focuses on local transactions. We&apos;re
                 continually working to expand our services to include
                 international transfers in the future.
               </AccordionPanel>
@@ -409,7 +409,7 @@ export default function Support() {
               </h2>
               <AccordionPanel>
                 {" "}
-                We're here to help! Visit our Support page for answers to common
+                We&apos;re here to help! Visit our Support page for answers to common
                 questions. If you need further assistance, you can reach out to
                 our dedicated support team via email or phone for personalized
                 help.
