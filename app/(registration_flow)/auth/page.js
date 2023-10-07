@@ -24,6 +24,9 @@ import {
     InputLeftElement,
     InputRightElement,
     useToast,
+    Select,
+    InputLeftAddon,
+    FormErrorMessage,
 } from '@chakra-ui/react';
 import { Bree_Serif, DM_Sans, Roboto_Slab } from "next/font/google";
 import { useEffect, useState } from 'react';
@@ -34,12 +37,283 @@ import { useRouter } from 'next/navigation'
 import { auth, createUserWithEmailAndPassword, db, doc, serverTimestamp, setDoc, signInWithEmailAndPassword } from '@/services/firebase';
 import PageSeo from '@/Seo/pageSeo';
 import { collection, getDocs, query, where } from 'firebase/firestore';
+import baseURL from '@/services/baseUrl';
+import { pinID } from '@/recoil/atoms';
+import { useRecoilState } from 'recoil';
 
 const dmsansBold = DM_Sans({ weight: '500', subsets: ['latin'] })
 const bree = Bree_Serif({ weight: '400', subsets: ['latin'] })
 const roboto = Roboto_Slab({ weight: '400', subsets: ['latin'] })
 
 const robotoItalic = DM_Sans({ weight: '400', style: 'italic', subsets: ['latin'] })
+
+
+
+
+
+const locations = [
+    {
+        state: "Abia",
+        city: "umuahia",
+        address: "umuahia",
+        postalCode: "440001"
+
+    },
+    {
+        state: "Adamawa",
+        city: "yola",
+        address: "yola",
+        postalCode: "640001"
+
+    },
+    {
+        state: "Akwa_Ibom",
+        city: "uyo",
+        address: "uyo",
+        postalCode: "520001"
+
+    },
+    {
+        state: "Anambra",
+        city: "awka",
+        address: "awka",
+        postalCode: "420001"
+
+    },
+    {
+        state: "Bauchi",
+        city: "bauchi",
+        address: "bauchi",
+        postalCode: "740001"
+
+    },
+    {
+        state: "Bayelsa",
+        city: "yenagoa",
+        address: "yenagoa",
+        postalCode: "561001"
+
+    },
+    {
+        state: "Benue",
+        city: "makurdi",
+        address: "makurdi",
+        postalCode: "970001"
+
+    },
+    {
+        state: "Borno",
+        city: "maiduguri",
+        address: "maiduguri",
+        postalCode: "600001"
+
+    },
+    {
+        state: "Cross_River",
+        city: "calabar",
+        address: "calabar",
+        postalCode: "540001"
+
+    },
+    {
+        state: "Delta",
+        city: "asaba",
+        address: "asaba",
+        postalCode: "320001"
+
+    },
+    {
+        state: "Ebonyi",
+        city: "abakaliki",
+        address: "abakaliki",
+        postalCode: "840001"
+
+    },
+    {
+        state: "Edo",
+        city: "benin_city",
+        address: "benin_city",
+        postalCode: "300001"
+
+    },
+    {
+        state: "Ekiti",
+        city: "ado_ekiti",
+        address: "ado_ekiti",
+        postalCode: "360001"
+
+    },
+    {
+        state: "Enugu",
+        city: "enugu",
+        address: "enugu",
+        postalCode: "400001"
+
+    },
+    {
+        state: "FCT",
+        city: "abuja",
+        address: "abuja",
+        postalCode: "900001"
+
+    },
+    {
+        state: "Gombe",
+        city: "gombe",
+        address: "gombe",
+        postalCode: "760001"
+
+    },
+    {
+        state: "Imo",
+        city: "owerri",
+        address: "owerri",
+        postalCode: "460001"
+
+    },
+    {
+        state: "Jigawa",
+        city: "dutse",
+        address: "dutse",
+        postalCode: "720001"
+
+    },
+    {
+        state: "Kaduna",
+        city: "kaduna",
+        address: "kaduna",
+        postalCode: "700001"
+
+    },
+    {
+        state: "Kano",
+        city: "kano",
+        address: "kano",
+        postalCode: "800001"
+
+    },
+    {
+        state: "Katsina",
+        city: "katsina",
+        address: "katsina",
+        postalCode: "820001"
+
+    },
+    {
+        state: "Kebbi",
+        city: "birnin_kebbi",
+        address: "birnin_kebbi",
+        postalCode: "860001"
+
+    },
+    {
+        state: "Kogi",
+        city: "lokoja",
+        address: "lokoja",
+        postalCode: "260001"
+
+    },
+    {
+        state: "Kwara",
+        city: "ilorin",
+        address: "ilorin",
+        postalCode: "240001"
+
+    },
+
+    {
+        state: "Lagos",
+        city: "ikeja",
+        address: "ikeja",
+        postalCode: "100001"
+
+    },
+    {
+        state: "Nasarawa",
+        city: "lafia",
+        address: "lafia",
+        postalCode: "962001"
+
+    },
+    {
+        state: "Niger",
+        city: "minna",
+        address: "minna",
+        postalCode: "920001"
+
+    },
+    {
+        state: "Ogun",
+        city: "abeokuta",
+        address: "abeokuta",
+        postalCode: "110001"
+
+    },
+    {
+        state: "Ondo",
+        city: "akure",
+        address: "akure",
+        postalCode: "340001"
+
+    },
+    {
+        state: "Osun",
+        city: "oshogbo",
+        address: "oshogbo",
+        postalCode: "230001"
+
+    },
+    {
+        state: "Oyo",
+        city: "ibadan",
+        address: "ibadan",
+        postalCode: "200001"
+
+    },
+    {
+        state: "Plateau",
+        city: "jos",
+        address: "jos",
+        postalCode: "930001"
+
+    },
+    {
+        state: "Rivers",
+        city: "port_harcourt",
+        address: "port_harcourt",
+        postalCode: "500001"
+
+    },
+    {
+        state: "Sokoto",
+        city: "sokoto",
+        address: "sokoto",
+        postalCode: "840001"
+
+    },
+    {
+        state: "Taraba",
+        city: "jalingo",
+        address: "jalingo",
+        postalCode: "660001"
+
+    },
+    {
+        state: "Yobe",
+        city: "damaturu",
+        address: "damaturu",
+        postalCode: "320001"
+
+    },
+    {
+        state: "Zamfara",
+        city: "gusau",
+        address: "gusau",
+        postalCode: "860001"
+
+    },
+]
+
 
 const Auth = () => {
 
@@ -290,49 +564,260 @@ export const Signin = () => {
 
 export const Signup = () => {
     const router = useRouter()
-    const { register, handleSubmit } = useForm();
     const [loadingState, setLoadingState] = useState(false);
+    const [tokenPin, setTokenPin] = useRecoilState(pinID);
     const [show, setShow] = useState(false)
     const handleClick = () => setShow(!show)
+    const [location, setLocation] = useState('')
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [email, setEmail] = useState('')
+    const [pwd, setPwd] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState('')
+    const [tag, setTag] = useState('')
+    const [city, setCity] = useState('')
+    const [address, setAddress] = useState('')
+    const [postalCode, setPostalCode] = useState('')
+    const [selectedOption, setSelectedOption] = useState(null);
+    const [isFirstNameValid, setIsFirstNameValid] = useState(null);
+    const [isLastNameValid, setIsLastNameValid] = useState(null);
+    const [isEmailValid, setIsEmailValid] = useState(null);
+    const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(null);
+    const [isTagValid, setIsTagValid] = useState(null);
+    const [firstNameError, setFirstNameError] = useState('')
+    const [lastNameError, setLastNameError] = useState('')
+    const [emailError, setEmailError] = useState('')
+    const [phoneNumberError, setPhoneNumberError] = useState('')
+    const [tagError, setTagError] = useState('')
+
     const toast = useToast()
     const verifyUser = () => {
         router.push('/verifyUser')
     }
 
 
-    const onSubmit = async (data) => {
+
+    const handleSelectChange = (event) => {
+        const selectedValue = event.target.value;
+        const selectedObject = locations.find((option) => option.state === selectedValue);
+        setSelectedOption(selectedObject);
+        setCity(selectedObject.city)
+        setAddress(selectedObject.address)
+        setPostalCode(selectedObject.postalCode)
+        setLocation(selectedObject.state)
+    };
+
+
+
+    const checkFirstNameValidity = () => {
+        if (firstName.trim().length >= 2) {
+            setIsFirstNameValid(true)
+            setFirstNameError('')
+        } else {
+            setIsFirstNameValid(false)
+            setFirstNameError('Name should be atleast two characters long')
+        }
+    }
+
+
+    const checkLastNameValidity = () => {
+        if (lastName.trim().length >= 2) {
+            setIsLastNameValid(true)
+            setLastNameError('')
+        } else {
+            setIsLastNameValid(false)
+            setLastNameError('Name should be atleast two characters long')
+        }
+    }
+
+    const checkEmailValidity = async () => {
+
+        const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+        const emailTest = emailRegex.test(email);
+
+        if (emailTest === true) {
+            //check if the email is not taken
+            const q = query(collection(db, "users"), where("email", "==", `${email}`));
+            const querySnapshot = await getDocs(q);
+            if (querySnapshot.empty) {
+                setIsEmailValid(true)
+                setEmailError('')
+            } else {
+                setIsEmailValid(false)
+                setEmailError('Email is already taken')
+
+            }
+
+        } else {
+            setIsEmailValid(false)
+            setEmailError('Please use a correct email format')
+        }
+    }
+
+    const checkPhoneNumberValidity = async () => {
+
+        const phoneNumberRegex = /^(070|080|081|090|091)\d{8}$/;
+        const phoneNumberTest = phoneNumberRegex.test(phoneNumber);
+
+        if (phoneNumberTest === true) {
+            const q = query(collection(db, "users"), where("phoneNumber", "==", `${phoneNumber}`));
+            const querySnapshot = await getDocs(q);
+            if (querySnapshot.empty) {
+                setIsPhoneNumberValid(true)
+                setPhoneNumberError('')
+            } else {
+                setIsPhoneNumberValid(false)
+                setPhoneNumberError('Phone Number has already been used')
+
+            }
+
+        } else {
+            setIsPhoneNumberValid(false)
+            setPhoneNumberError('Please use the correct format: 07012345678')
+        }
+    }
+
+
+    const checkTagValidity = async () => {
+
+
+
+        if (tag.trim().length >= 2) {
+            const q = query(collection(db, "cards"), where("tag", "==", `${tag}`));
+            const querySnapshot = await getDocs(q);
+            if (querySnapshot.empty) {
+                setIsTagValid(true)
+                setTagError('')
+            } else {
+                setIsTagValid(false)
+                setTagError('Tag is being used already')
+
+            }
+
+        } else {
+            setIsTagValid(false)
+            setTagError('Tag should have atleast two characters')
+        }
+    }
+
+
+
+
+    const handleSubmit = async () => {
         setLoadingState(true)
         const q = query(collection(db, "users"), where("phoneNumber", "==", `${data.phoneNumber}`));
 
 
         const querySnapshot = await getDocs(q);
         if (querySnapshot.empty) {
-            createUserWithEmailAndPassword(auth, data.email, data.pwd)
-                .then(async (userCredential) => {
-                    // Signed in 
-                    const user = userCredential.user;
-                    console.log(user)
 
-                    await setDoc(doc(db, "users", `${user.uid}`), {
-                        userID: `${user.uid}`,
-                        firstName: `${data.firstName}`,
-                        lastName: `${data.lastName}`,
-                        email: `${data.email}`,
-                        phoneNumber: `${data.phoneNumber}`,
-                        createdAt: serverTimestamp()
+
+            await fetch(`${baseURL}/api/user/register`, {
+
+                // Adding method type
+                method: "POST",
+
+                // Adding body or contents to send
+                body: JSON.stringify({
+
+                    "firstName": firstName.toLowerCase(),
+                    "lastName": lastName.toLowerCase(),
+                    "email": email,
+                    "password": pwd,
+                    "tag": tag,
+                    "phoneNumber": phoneNumber,
+                    "city": city,
+                    "state": location,
+                    "address": address,
+                    "postalCode": postalCode
+                }),
+
+                // Adding headers to the request
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            }).then(function (response) {
+                return response.json();
+            }).then(async function (res) {
+                console.log(res)
+                if (res.error == true) {
+                    toast({
+                        title: 'user creation failed',
+                        description: res.message,
+                        status: 'error',
+                        duration: 9000,
+                        isClosable: true,
+                        position: 'top',
                     })
-                    verifyUser()
                     setLoadingState(false)
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
+                } else {
 
-                    console.log(errorCode)
-                    console.log(errorMessage)
-                    // ..
-                    setLoadingState(false)
-                });
+                    signInWithEmailAndPassword(auth, email, pwd)
+
+                    await fetch(`${baseURL}/api/verifyBvn`, {
+
+                        // Adding method type
+                        method: "POST",
+
+                        // Adding body or contents to send
+                        body: JSON.stringify({
+                            "phoneNumber": phoneNumber
+                        }),
+
+                        // Adding headers to the request
+                        headers: {
+                            'Access-Control-Allow-Origin': '*',
+                            "Content-type": "application/json; charset=UTF-8"
+                        }
+                    }).then(function (res) {
+                        return res.json();
+                    })
+                        // Converting to JSON
+                        .then(async function (data) {
+                            setLoadingState(false)
+                            setTokenPin(data.pinId)
+                            router.push('/confirmOtp')
+                        })
+                        .catch(function (error) {
+                            setLoadingState(false)
+                            console.log(error);
+                        })
+                }
+
+
+            }).catch((error) => {
+                setLoadingState(false)
+                console.log({ error })
+            });
+
+            // createUserWithEmailAndPassword(auth, data.email, data.pwd)
+            //     .then(async (userCredential) => {
+            //         // Signed in 
+
+
+            //         const user = userCredential.user;
+            //         console.log(user)
+
+            //         await setDoc(doc(db, "users", `${user.uid}`), {
+            //             userID: `${user.uid}`,
+            //             firstName: `${data.firstName}`,
+            //             lastName: `${data.lastName}`,
+            //             email: `${data.email}`,
+            //             phoneNumber: `${data.phoneNumber}`,
+            //             createdAt: serverTimestamp()
+            //         })
+            //         verifyUser()
+            //         setLoadingState(false)
+            //     })
+            //     .catch((error) => {
+            //         const errorCode = error.code;
+            //         const errorMessage = error.message;
+
+            //         console.log(errorCode)
+            //         console.log(errorMessage)
+            //         // ..
+            //         setLoadingState(false)
+            //     });
         } else {
             setLoadingState(false)
             toast({
@@ -348,6 +833,7 @@ export const Signup = () => {
 
     }
 
+    console.log(firstNameError)
 
     return (
 
@@ -355,42 +841,78 @@ export const Signup = () => {
             m="0px"
             borderRadius={'2px'}
             w={{ base: "27.93rem", md: "37.93rem" }}
-            h="55.37rem"
+            h="auto"
             bg={'#F9FAFC'}
             border={'1px solid rgba(0, 0, 0, 0.14);'}
             py={'4.5rem'} px={'4.8rem'}>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form>
                 <Stack >
                     <Box mb="1.6rem">
-                        <FormControl id="email" >
+                        <FormControl isInvalid={!isFirstNameValid} id="first_name" >
                             <FormLabel className={roboto.className}>First Name</FormLabel>
 
-                            <Input {...register("firstName")} h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'} type="text" placeholder='Legal first name' />
-
+                            <Input value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)} onBlur={checkFirstNameValidity} h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'} type="text" placeholder='Legal first name' />
+                            <FormErrorMessage ><div>{firstNameError}</div></FormErrorMessage>
                         </FormControl>
                     </Box>
 
-                    <Box >
-                        <FormControl id="email" >
+                    <Box mb="1.6rem">
+                        <FormControl isInvalid={!isLastNameValid} id="last_name" >
                             <FormLabel className={roboto.className}>Last Name</FormLabel>
 
-                            <Input {...register("lastName")} mb="1.6rem" h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'} type="text" placeholder='Legal last name' />
-
+                            <Input value={lastName}
+                                onChange={(e) => setLastName(e.target.value)} onBlur={checkLastNameValidity} h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'} type="text" placeholder='Legal last name' />
+                            <FormErrorMessage ><div>{lastNameError}</div></FormErrorMessage>
                         </FormControl>
                     </Box>
-                    <Box >
-                        <FormControl id="email" >
+                    <Box mb="1.6rem" >
+                        <FormControl isInvalid={!isEmailValid} id="email" >
                             <FormLabel className={roboto.className}>Email</FormLabel>
 
-                            <Input {...register("email")} mb="1.6rem" h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'} type="email" placeholder='Enter your email' />
-
+                            <Input value={email}
+                                onChange={(e) => setEmail(e.target.value)} onBlur={checkEmailValidity} h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'} type="email" placeholder='Enter your email' />
+                            <FormErrorMessage ><div>{emailError}</div></FormErrorMessage>
                         </FormControl>
                     </Box>
-                    <Box >
-                        <FormControl id="email" >
+                    <Box mb="1.6rem"  >
+                        <FormControl id="phone_number" isInvalid={!isPhoneNumberValid}  >
                             <FormLabel className={roboto.className}>Phone Number</FormLabel>
 
-                            <Input {...register("phoneNumber")} mb="1.6rem" h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'} type="number" placeholder='Enter your active phone number' />
+                            <Input value={phoneNumber}
+                                onChange={(e) => setPhoneNumber(e.target.value.slice(0, 11))} onBlur={checkPhoneNumberValidity} h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'} type="number" placeholder='Enter your active phone number' />
+                            <FormErrorMessage ><div>{phoneNumberError}</div></FormErrorMessage>
+                        </FormControl>
+                    </Box>
+
+                    <Box mb="1.6rem">
+                        <FormControl isInvalid={!isTagValid} id="tag" >
+                            <FormLabel className={roboto.className}>Tag</FormLabel>
+                            <InputGroup h="3.6rem" >
+                                <InputLeftAddon h='100%'>
+                                    @
+                                </InputLeftAddon>
+
+                                <Input
+
+                                    value={tag}
+                                    onChange={(e) => setTag(e.target.value)} onBlur={checkTagValidity} h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'} type="text" placeholder='set a unique tag' />
+                            </InputGroup>
+                            <FormErrorMessage ><div>{tagError}</div></FormErrorMessage>
+                        </FormControl>
+                    </Box>
+
+                    <Box >
+                        <FormControl id="location" >
+                            <FormLabel className={roboto.className}>Location</FormLabel>
+
+                            <Select value={selectedOption ? selectedOption.state : ''}
+                                onChange={handleSelectChange}
+                                placeholder="Select State"
+                                variant='outline' mb="1.6rem" h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'}>
+                                {locations?.map((loc, index) => <option key={index} value={loc.state}>{loc.state}</option>)}
+
+                            </Select>
 
                         </FormControl>
                     </Box>
@@ -420,7 +942,8 @@ export const Signup = () => {
 
                                 </InputLeftElement>
 
-                                <Input {...register("pwd")} h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'}
+                                <Input value={pwd}
+                                    onChange={(e) => setPwd(e.target.value)} h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'}
                                     type={show ? 'text' : 'password'} placeholder='Enter your password' />
                                 <InputRightElement h="100%" mx="1rem">
                                     {show ?
@@ -435,7 +958,7 @@ export const Signup = () => {
                     </Box>
 
                     <Button
-                        type='submit'
+                        onSubmit={handleSubmit}
                         isLoading={loadingState}
                         loadingText='Please wait..'
                         borderRadius={'0.125rem'}
