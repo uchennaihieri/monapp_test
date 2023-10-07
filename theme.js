@@ -1,5 +1,6 @@
 import { extendTheme } from '@chakra-ui/react';
 import { tabsTheme } from './components/Tabs'
+import { accordionTheme } from './components/Accordion';
 
 
 
@@ -92,48 +93,49 @@ const theme = extendTheme({
                 },
             },
         },
-        Accordion: {
-            variants: {
-                custom: {
+        // Accordion: {
+        //     variants: {
+        //         MonappCustom: {
+        //             container: {
+        //                 // border: '2px solid rgba(0, 0, 0, 0.40)',
+        //                 border: '4px solid red',
+        //                 width: ['98%', '74.625rem'],
+        //                 borderRadius: '4px',
+        //                 boxShadow:'0px 8px 64px 0px rgba(167, 167, 167, 0.24)',
+        //                 my: '1.625rem'
+        //             },
+        //             button: {
+        //                 width: ['100%', '74.625rem'],
+        //                 height: '5.0625rem',
+        //                 borderRadius: '4px',
+        //                 fontSize: ['1rem', '1.625rem'],
+        //                 fontWeight: '500',
+        //                 lineHeight: ['1.15369rem', '1.75rem'],
 
-                    container: {
-                        border: '2px solid rgba(0, 0, 0, 0.40)',
-                        width: ['98%', '74.625rem'],
-                        borderRadius: '4px',
-                        // boxShadow:'0px 8px 64px 0px rgba(167, 167, 167, 0.24)',
-                        my: '1.625rem'
-                    },
-                    button: {
-                        width: ['100%', '74.625rem'],
-                        height: '5.0625rem',
-                        borderRadius: '4px',
-                        fontSize: ['1rem', '1.625rem'],
-                        fontWeight: '500',
-                        lineHeight: ['1.15369rem', '1.75rem']
+        //             },
+        //             panel: {
+        //                 // width: '67.8125rem',
+        //                 height: ['15.9375rem', '8.625rem'],
+        //                 pl: ['', '2.625rem'],
+        //                 pr: '1.625rem',
+        //                 mb: '2.625rem',
+        //                 textAlign: 'justify',
+        //                 fontSize: ['0.82406rem', '1.25rem'],
+        //                 lineHeight: '1.75rem'
 
-                    },
-                    panel: {
-                        // width: '67.8125rem',
-                        height: ['15.9375rem', '8.625rem'],
-                        pl: ['', '2.625rem'],
-                        pr: '1.625rem',
-                        mb: '2.625rem',
-                        textAlign: 'justify',
-                        fontSize: ['0.82406rem', '1.25rem'],
-                        lineHeight: '1.75rem'
+        //             },
+        //             // icon: {
+        //             //     size:{
+        //             //         height: '2.625rem',
+        //             //         width: '2.625rem',
+        //             //     }
 
-                    },
-                    // icon: {
-                    //     size:{
-                    //         height: '2.625rem',
-                    //         width: '2.625rem',
-                    //     }
+        //             // },
+        //         },
 
-                    // },
-                },
-
-            },
-        },
+        //     },
+        // },
+        // Accordion: accordionTheme,
         Tabs: tabsTheme,
     },
 
