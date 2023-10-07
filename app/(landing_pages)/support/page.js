@@ -331,33 +331,34 @@ export default function Support() {
             Customer Questions and Answers on Support Page:{" "}
           </Text>
 
-          <Accordion allowToggle mb="3rem" variant="custom">
-            <AccordionItem>
+          <Accordion allowToggle mb="3rem" border={'2px solid rgba(0, 0, 0, 0.40)'} width={['98%', '78.625rem', '2xl:90rem']} borderRadius={'4px'}  boxShadow={'0px 8px 64px 0px rgba(167, 167, 167, 0.24)'} my={ '1.625rem'}>
+            <AccordionItem >
               <h2>
-                <AccordionButton className="clashMedium">
+                <AccordionButton className="clashMedium" width={['100%', '78.625rem', '2xl:90rem']} h={'5.0625rem'} borderRadius={'4px'} fontSize={['1rem', '1.625rem']} fontWeight={'500'} lineHeight={['1.15369rem', '1.75rem']}
+               >
                   <Box as="span" flex="1" textAlign="left">
                     Is Monapp safe and secure for transactions?
                   </Box>
-                  <AccordionIcon />
+                  <AccordionIcon  height={'2.625rem'} width={'2.625rem'}/>
                 </AccordionButton>
               </h2>
-              <AccordionPanel>
-                Absolutely. Monapp employs robust security measures, including
-                encryption and authentication protocols, to ensure the safety of
-                your transactions and personal data.
+              <AccordionPanel width={'67.8125rem'}  pl={['', '2.625rem']} pr={'1.625rem'} mb={'2.625rem'}  textAlign={'justify'}  fontSize={['0.82406rem', '1.25rem']} lineHeight={'1.75rem'} >
+                Absolutely. Monapp employs robust security measures, including encryption and authentication protocols, to ensure the safety of your transactions and personal data.
               </AccordionPanel>
             </AccordionItem>
 
+
+
             <AccordionItem>
               <h2>
-                <AccordionButton className="clashMedium">
+                <AccordionButton className="clashMedium" width={['100%', '78.625rem', '2xl:90rem']} h={'5.0625rem'} borderRadius={'4px'} fontSize={['1rem', '1.625rem']} fontWeight={'500'} lineHeight={['1.15369rem', '1.75rem']}>
                   <Box as="span" flex="1" textAlign="left">
                     How do I download and install Monapp on my device?
                   </Box>
-                  <AccordionIcon />
+                  <AccordionIcon  height={'2.625rem'} width={'2.625rem'}/>
                 </AccordionButton>
               </h2>
-              <AccordionPanel>
+              <AccordionPanel width={'67.8125rem'}  pl={['', '2.625rem']} pr={'1.625rem'} mb={'2.625rem'}  textAlign={'justify'}  fontSize={['0.82406rem', '1.25rem']} lineHeight={'1.75rem'} >
                 You can easily download Monapp from the Google Play Store for
                 Android devices or the Apple App Store for iOS devices. Simply
                 search for &quot;Monapp,&quot; click &quot;Install,&quot; and follow the prompts
@@ -366,14 +367,14 @@ export default function Support() {
 
             <AccordionItem>
               <h2>
-                <AccordionButton className="clashMedium">
+                <AccordionButton className="clashMedium" width={['100%', '78.625rem', '2xl:90rem']} h={'5.0625rem'} borderRadius={'4px'} fontSize={['1rem', '1.625rem']} fontWeight={'500'} lineHeight={['1.15369rem', '1.75rem']}>
                   <Box as="span" flex="1" textAlign="left">
                     How do I link my bank account to Monapp?
                   </Box>
-                  <AccordionIcon />
+                  <AccordionIcon  height={'2.625rem'} width={'2.625rem'}/>
                 </AccordionButton>
               </h2>
-              <AccordionPanel>
+              <AccordionPanel width={'67.8125rem'}  pl={['', '2.625rem']} pr={'1.625rem'} mb={'2.625rem'}  textAlign={'justify'}  fontSize={['0.82406rem', '1.25rem']} lineHeight={'1.75rem'} >
                 {" "}
                 Linking your bank account is a breeze. Once you&apos;re signed in,
                 navigate to the &quot;Settings&quot; section, select &quot;Link Bank Account,&quot;
@@ -383,14 +384,14 @@ export default function Support() {
 
             <AccordionItem>
               <h2>
-                <AccordionButton className="clashMedium">
+                <AccordionButton className="clashMedium" width={['100%', '78.625rem', '2xl:90rem']} h={'5.0625rem'} borderRadius={'4px'} fontSize={['1rem', '1.625rem']} fontWeight={'500'} lineHeight={['1.15369rem', '1.75rem']}>
                   <Box as="span" flex="1" textAlign="left">
                     Can I send money internationally using Monapp?
                   </Box>
-                  <AccordionIcon />
+                  <AccordionIcon  height={'2.625rem'} width={'2.625rem'}/>
                 </AccordionButton>
               </h2>
-              <AccordionPanel>
+              <AccordionPanel width={'67.8125rem'}  pl={['', '2.625rem']} pr={'1.625rem'} mb={'2.625rem'}  textAlign={'justify'}  fontSize={['0.82406rem', '1.25rem']} lineHeight={'1.75rem'} >
                 {" "}
                 At the moment, Monapp focuses on local transactions. We&apos;re
                 continually working to expand our services to include
@@ -400,14 +401,14 @@ export default function Support() {
 
             <AccordionItem>
               <h2>
-                <AccordionButton className="clashMedium">
+                <AccordionButton className="clashMedium" width={['100%', '78.625rem', '2xl:90rem']} h={'5.0625rem'} borderRadius={'4px'} fontSize={['1rem', '1.625rem']} fontWeight={'500'} lineHeight={['1.15369rem', '1.75rem']}>
                   <Box as="span" flex="1" textAlign="left">
                     What if I have an issue or need assistance?
                   </Box>
-                  <AccordionIcon />
+                  <AccordionIcon  height={'2.625rem'} width={'2.625rem'}/>
                 </AccordionButton>
               </h2>
-              <AccordionPanel>
+              <AccordionPanel width={'67.8125rem'}  pl={['', '2.625rem']} pr={'1.625rem'} mb={'2.625rem'}  textAlign={'justify'}  fontSize={['0.82406rem', '1.25rem']} lineHeight={'1.75rem'} >
                 {" "}
                 We&apos;re here to help! Visit our Support page for answers to common
                 questions. If you need further assistance, you can reach out to
