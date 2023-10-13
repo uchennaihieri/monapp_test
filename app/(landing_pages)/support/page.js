@@ -84,7 +84,7 @@ export default function Support() {
     setIsloading(true)
     // console.log(process.env.SERVICE_ID);
 
-    emailjs.sendForm('service_ucssj5r', 'template_7snvujc', form.current, 'RvARWQZO-5TWkEZ_9')
+    emailjs.sendForm('service_ucssj5r', 'template_lotz6v4', form.current, 'RvARWQZO-5TWkEZ_9')
       .then((result) => {
           console.log(result.text);
           toast({
