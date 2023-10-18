@@ -1,4 +1,7 @@
 "use client";
+import { collection, addDoc } from 'firebase/firestore';
+import {db} from '../../../services/firebase'
+// import { db } from './firebaseConfig'; // Import your Firebase config
 
 import { Inter, DM_Sans } from "next/font/google";
 
