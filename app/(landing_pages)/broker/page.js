@@ -87,7 +87,7 @@ export default function Workwithus() {
             display={"flex"}
             alignItems={"center"}
             justifyContent={"space-evenly"}
-            // px={'16rem'}
+          // px={'16rem'}
           >
             <Box display={["none", "block"]}>
               <Grid
@@ -272,10 +272,10 @@ export default function Workwithus() {
               className={dmsans.className}
               px
             >
-               Monapp is your
+              Monapp is your
               accessible payment solution in the complexity of modern finance.
               Our platform streamlines transactions, securing every step with
-              innovation. As pioneers in digital payments in Nigeria, we're
+              innovation. As pioneers in digital payments in Nigeria, we&apos;re
               revolutionizing the landscape, one transaction at a time. Embrace
               simplicity, security, and empowerment with Monapp.
             </Text>
@@ -375,7 +375,7 @@ export default function Workwithus() {
                     letterSpacing={["0.00263rem", "-0.00425rem"]}
                     className={dmsans.className}
                   >
-                    Adaptable solutions for your changing needs. Monapp's
+                    Adaptable solutions for your changing needs. Monapp&apos;s
                     flexibility ensures financial ease tailored to you
                   </Text>
                 </Flex>
@@ -528,7 +528,7 @@ export default function Workwithus() {
                     className={dmsans.className}
                   >
                     Collaboration powers our success. At Monapp, every
-                    individual's effort harmonizes for your seamless financial
+                    individual&apos;s effort harmonizes for your seamless financial
                     experience.
                   </Text>
                 </Flex>
@@ -569,8 +569,8 @@ export default function Workwithus() {
               mb={["6rem", "3rem"]}
             >
               Join us on this journey of shaping the future of finance in
-              Nigeria and Africa. At Monapp, we're not just providing a service;
-              we're redefining the way people send and receive money in the
+              Nigeria and Africa. At Monapp, we&apos;re not just providing a service;
+              we&apos;re redefining the way people send and receive money in the
               continent.
             </Text>
 

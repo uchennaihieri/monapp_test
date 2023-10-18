@@ -33,6 +33,7 @@ import {
   FormLabel,
   ButtonGroup,
   Textarea,
+  useToast,
 } from "@chakra-ui/react";
 
 import FooterSection from "@/components/footerSection";
@@ -43,13 +44,75 @@ import NewHero from "@/components/NewHero";
 import { BiSearch, BiSolidPieChartAlt2 } from "react-icons/bi";
 import OurCommunity from "@/components/OurCommunity";
 import EasySteps from "@/components/EasySteps";
+import {useRef, useState} from "react";
 import { IoPricetag, IoRocket } from "react-icons/io5";
 import { FaHandshake } from "react-icons/fa";
+import emailjs from '@emailjs/browser';
+import { useForm } from "react-hook-form";
+import * as yup from 'yup'
+import {yupResolver} from '@hookform/resolvers/yup'
 
 const inter = Inter({ subsets: ["latin"] });
 const dmsans = DM_Sans({ weight: "400", subsets: ["latin"] });
 
+
 export default function Support() {
+
+  const validation = yup.object().shape({
+    firstName : yup.string().required(),
+    lastName : yup.string().required(),
+    email : yup.string().email().required(),
+    phone : yup.number().positive().integer().required(),
+    message : yup.string().required(),
+
+  })
+
+  const [isLoading, setIsloading] = useState(false)
+  const form = useRef();
+    const toast = useToast()
+    const { register, handleSubmit, formState:{errors, isDirty}} = useForm({
+      resolver: yupResolver(validation),
+      defaultValues: {firstName:'', lastName:'', email:'', phone:'', message:''}
+    });
+
+
+
+  
+
+   const sendEmail = (e) => {
+    // e.preventDefault();
+    setIsloading(true)
+    // console.log(process.env.SERVICE_ID);
+
+    emailjs.sendForm('service_ucssj5r', 'template_lotz6v4', form.current, 'RvARWQZO-5TWkEZ_9')
+      .then((result) => {
+          console.log(result.text);
+          toast({
+                title: 'Message sent',
+                description: 'Your message has been sent',
+                status: 'success',
+                duration: 9000,
+                isClosable: true,
+                position: 'top',
+              })
+          setIsloading(false)
+      }, (error) => {
+          console.log(error.text);
+           toast({
+          title: 'Sending error',
+          description: 'your message fails, please try again',
+          status: 'error',
+          duration: 9000,
+          isClosable: true,
+          position: 'top',
+        })
+          setIsloading(false)
+      });
+  };
+
+
+
+
   return (
     <>
       <PageSeo
@@ -331,68 +394,69 @@ export default function Support() {
             Customer Questions and Answers on Support Page:{" "}
           </Text>
 
-          <Accordion allowToggle mb="3rem" variant="custom">
-            <AccordionItem>
+          <Accordion allowToggle mb="3rem" border={'2px solid rgba(0, 0, 0, 0.40)'} width={['98%', '78.625rem', '2xl:90rem']} borderRadius={'4px'}  boxShadow={'0px 8px 64px 0px rgba(167, 167, 167, 0.24)'} my={ '1.625rem'}>
+            <AccordionItem >
               <h2>
-                <AccordionButton className="clashMedium">
+                <AccordionButton className="clashMedium" width={['100%', '78.625rem', '2xl:90rem']} h={'5.0625rem'} borderRadius={'4px'} fontSize={['1rem', '1.625rem']} fontWeight={'500'} lineHeight={['1.15369rem', '1.75rem']}
+               >
                   <Box as="span" flex="1" textAlign="left">
                     Is Monapp safe and secure for transactions?
                   </Box>
-                  <AccordionIcon />
+                  <AccordionIcon  height={'2.625rem'} width={'2.625rem'}/>
                 </AccordionButton>
               </h2>
-              <AccordionPanel>
-                Absolutely. Monapp employs robust security measures, including
-                encryption and authentication protocols, to ensure the safety of
-                your transactions and personal data.
+              <AccordionPanel width={'67.8125rem'}  pl={['', '2.625rem']} pr={'1.625rem'} mb={'2.625rem'}  textAlign={'justify'}  fontSize={['0.82406rem', '1.25rem']} lineHeight={'1.75rem'} >
+                Absolutely. Monapp employs robust security measures, including encryption and authentication protocols, to ensure the safety of your transactions and personal data.
               </AccordionPanel>
             </AccordionItem>
 
+
+
             <AccordionItem>
               <h2>
-                <AccordionButton className="clashMedium">
+                <AccordionButton className="clashMedium" width={['100%', '78.625rem', '2xl:90rem']} h={'5.0625rem'} borderRadius={'4px'} fontSize={['1rem', '1.625rem']} fontWeight={'500'} lineHeight={['1.15369rem', '1.75rem']}>
                   <Box as="span" flex="1" textAlign="left">
                     How do I download and install Monapp on my device?
                   </Box>
-                  <AccordionIcon />
+                  <AccordionIcon  height={'2.625rem'} width={'2.625rem'}/>
                 </AccordionButton>
               </h2>
-              <AccordionPanel>
+              <AccordionPanel width={'67.8125rem'}  pl={['', '2.625rem']} pr={'1.625rem'} mb={'2.625rem'}  textAlign={'justify'}  fontSize={['0.82406rem', '1.25rem']} lineHeight={'1.75rem'} >
                 You can easily download Monapp from the Google Play Store for
                 Android devices or the Apple App Store for iOS devices. Simply
-                search for "Monapp," click "Install," and follow the prompts
+                search for &quot;Monapp,&quot; click &quot;Install,&quot; and follow the prompts
               </AccordionPanel>
             </AccordionItem>
 
             <AccordionItem>
               <h2>
-                <AccordionButton className="clashMedium">
+                <AccordionButton className="clashMedium" width={['100%', '78.625rem', '2xl:90rem']} h={'5.0625rem'} borderRadius={'4px'} fontSize={['1rem', '1.625rem']} fontWeight={'500'} lineHeight={['1.15369rem', '1.75rem']}>
                   <Box as="span" flex="1" textAlign="left">
                     How do I link my bank account to Monapp?
                   </Box>
-                  <AccordionIcon />
+                  <AccordionIcon  height={'2.625rem'} width={'2.625rem'}/>
                 </AccordionButton>
               </h2>
-              <AccordionPanel>
+              <AccordionPanel width={'67.8125rem'}  pl={['', '2.625rem']} pr={'1.625rem'} mb={'2.625rem'}  textAlign={'justify'}  fontSize={['0.82406rem', '1.25rem']} lineHeight={'1.75rem'} >
                 {" "}
-                Linking your bank account is a breeze. Once you're signed in,
-                navigate to the "Settings" section, select "Link Bank Account,"
+                Linking your bank account is a breeze. Once you&apos;re signed in,
+                navigate to the &quot;Settings&quot; section, select &quot;Link Bank Account,&quot;
                 and follow the prompts to securely connect your account.
               </AccordionPanel>
             </AccordionItem>
 
             <AccordionItem>
               <h2>
-                <AccordionButton className="clashMedium">
+                <AccordionButton className="clashMedium" width={['100%', '78.625rem', '2xl:90rem']} h={'5.0625rem'} borderRadius={'4px'} fontSize={['1rem', '1.625rem']} fontWeight={'500'} lineHeight={['1.15369rem', '1.75rem']}>
                   <Box as="span" flex="1" textAlign="left">
                     Can I send money internationally using Monapp?
                   </Box>
-                  <AccordionIcon />
+                  <AccordionIcon  height={'2.625rem'} width={'2.625rem'}/>
                 </AccordionButton>
               </h2>
-              <AccordionPanel>
+              <AccordionPanel width={'67.8125rem'}  pl={['', '2.625rem']} pr={'1.625rem'} mb={'2.625rem'}  textAlign={'justify'}  fontSize={['0.82406rem', '1.25rem']} lineHeight={'1.75rem'} >
                 {" "}
-                At the moment, Monapp focuses on local transactions. We're
+                At the moment, Monapp focuses on local transactions. We&apos;re
                 continually working to expand our services to include
                 international transfers in the future.
               </AccordionPanel>
@@ -400,16 +464,16 @@ export default function Support() {
 
             <AccordionItem>
               <h2>
-                <AccordionButton className="clashMedium">
+                <AccordionButton className="clashMedium" width={['100%', '78.625rem', '2xl:90rem']} h={'5.0625rem'} borderRadius={'4px'} fontSize={['1rem', '1.625rem']} fontWeight={'500'} lineHeight={['1.15369rem', '1.75rem']}>
                   <Box as="span" flex="1" textAlign="left">
                     What if I have an issue or need assistance?
                   </Box>
-                  <AccordionIcon />
+                  <AccordionIcon  height={'2.625rem'} width={'2.625rem'}/>
                 </AccordionButton>
               </h2>
-              <AccordionPanel>
+              <AccordionPanel width={'67.8125rem'}  pl={['', '2.625rem']} pr={'1.625rem'} mb={'2.625rem'}  textAlign={'justify'}  fontSize={['0.82406rem', '1.25rem']} lineHeight={'1.75rem'} >
                 {" "}
-                We're here to help! Visit our Support page for answers to common
+                We&apos;re here to help! Visit our Support page for answers to common
                 questions. If you need further assistance, you can reach out to
                 our dedicated support team via email or phone for personalized
                 help.
@@ -440,11 +504,11 @@ export default function Support() {
 
           </Text>
 
-          <form>
+          <form  ref={form} onSubmit={handleSubmit(sendEmail)}>
             {/* <HStack mb='32px'><IconButton icon={<AiOutlinePicture fontSize={'20px'} />} w='36px' h='36px' isRound /> <Text> Upload New Image</Text></HStack> */}
             <Flex gap={["0", "12"]} flexDirection={["column", "row"]}>
               <Box mb="21.87px">
-                <FormControl id="firstName">
+                <FormControl id="firstName" isInvalid={errors.firstName} >
                   <FormLabel
                     fontSize={["1.25rem", "1.5rem"]}
                     fontWeight={"500"}
@@ -461,11 +525,14 @@ export default function Support() {
                     bg="#ffffff"
                     border={"1.4px solid #000"}
                     type="text"
+                    name='firstName'
+                    {...register("firstName")}
                   />
+                  
                 </FormControl>
               </Box>
               <Box mb="21.87px">
-                <FormControl id="firstName">
+                <FormControl id="lastName" isInvalid={errors.lastName}>
                   <FormLabel
                     fontSize={["1.25rem", "1.5rem"]}
                     fontWeight={"500"}
@@ -482,13 +549,16 @@ export default function Support() {
                     bg="#ffffff"
                     border={"1.4px solid #000"}
                     type="text"
+                    name='lastName'
+                    
+                    {...register("lastName")}
                   />
                 </FormControl>
               </Box>
             </Flex>
             <Flex gap={["0", "12"]} flexDirection={["column", "row"]}>
               <Box mb="21.87px">
-                <FormControl id="firstName">
+                <FormControl id="email" isInvalid={errors.email}>
                   <FormLabel
                     fontSize={["1.25rem", "1.5rem"]}
                     fontWeight={"500"}
@@ -505,11 +575,14 @@ export default function Support() {
                     bg="#ffffff"
                     border={"1.4px solid #000"}
                     type="email"
+                    name='email'
+                    
+                    {...register("email")}
                   />
                 </FormControl>
               </Box>
               <Box mb="21.87px">
-                <FormControl id="firstName">
+                <FormControl id="phone" isInvalid={errors.phone}>
                   <FormLabel
                     fontSize={["1.25rem", "1.5rem"]}
                     fontWeight={"500"}
@@ -526,12 +599,15 @@ export default function Support() {
                     bg="#ffffff"
                     border={"1.4px solid #000"}
                     type="tel"
+                    name='phone'
+                    
+                    {...register("phone")}
                   />
                 </FormControl>
               </Box>
             </Flex>
             <Box mb="21.87px">
-              <FormControl id="firstName">
+              <FormControl id="message" isInvalid={errors.message}>
                 <FormLabel
                   fontSize={["1.25rem", "1.5rem"]}
                   fontWeight={"500"}
@@ -548,6 +624,9 @@ export default function Support() {
                   bg="#ffffff"
                   border={"1.4px solid #000"}
                   type="text"
+                  name='message'
+                  
+                  {...register("message")}
                 />
               </FormControl>
             </Box>
@@ -560,6 +639,10 @@ export default function Support() {
               mt="3rem"
               bgColor="#000"
               borderRadius={["0.25rem", "10px"]}
+              type="submit"
+              // onClick={sendEmail}
+              isLoading={isLoading}
+              loadingText='Submitting'
             >
               <Text
                 fontSize={["1.125rem", "16px"]}

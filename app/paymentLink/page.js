@@ -44,7 +44,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineLeft } from "react-icons/ai";
 import { RiEyeCloseFill, RiEyeFill } from "react-icons/ri";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import {
   auth,
   createUserWithEmailAndPassword,
@@ -54,7 +54,6 @@ import {
   setDoc,
   signInWithEmailAndPassword,
 } from "@/services/firebase";
-import { AuthAction, withAuthUser } from "next-firebase-auth";
 import PageSeo from "@/Seo/pageSeo";
 import { collection, getDocs, query, where } from "firebase/firestore";
 

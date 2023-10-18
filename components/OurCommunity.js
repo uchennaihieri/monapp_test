@@ -24,7 +24,7 @@ function OurCommunity() {
         <Flex flexDir={"column"} alignItems={"center"} justifyContent={'center'} mb={['2rem', '3rem']} gap='5' >
           <Text w={['18.8125rem', '39.125rem']} h={['4.375rem', '2.9375rem']} fontSize={['2rem', '2.625rem']} fontWeight={'700'} textAlign={'center'} className='clashSemiBold' lineHeight={['103%', '124%']}>Why our community love us</Text>
           <Text fontSize={['0.875rem', "1.125rem"]} w={['16.91294rem', '27.5rem']} h={['2.07569rem', '3.375rem']} lineHeight={['1.107rem', '1.8rem']} textAlign={"center"} >
-          Don't just take our word, This is what customers are saying about Monapp
+            Don&apos;t just take our word, This is what customers are saying about Monapp
 
           </Text>
         </Flex>
@@ -69,6 +69,7 @@ function OurCommunity() {
                       h={['1.67838rem', '3.121rem']}
                       src={"/playstorelogo.png"}
                       mr="1rem"
+                      alt=''
                     />
                     <Flex flexDirection={'column'} justify={'center'}>
                       <Text className={interBold.className} fontSize={['0.39338rem', '0.7315rem']} color='#14142B'
@@ -77,7 +78,7 @@ function OurCommunity() {
                         lineHeight={['0.52444rem', '0.97525rem']}>review</Text>
                     </Flex>
                   </Flex>
-                  <Image src="/stars-coin.svg"
+                  <Image src="/stars-coin.svg" alt=''
                     w={['4.22169rem', '5.8125rem']} h={['0.70363rem', '0.7315rem']}
                   />
                 </Flex>
@@ -113,6 +114,7 @@ function OurCommunity() {
                       h={['1.67838rem', '3.121rem']}
                       src={"/appstorelogo.png"}
                       mr="1rem"
+                      alt=''
                     />
                     <Flex flexDirection={'column'} justify={'center'}>
                       <Text className={interBold.className} fontSize={['0.39338rem', '0.7315rem']} color='#14142B'
@@ -123,6 +125,7 @@ function OurCommunity() {
                   </Flex>
                   <Image src="/stars-coin.svg"
                     w={['4.22169rem', '5.8125rem']} h={['0.70363rem', '0.7315rem']}
+                    alt=''
                   />
                 </Flex>
 
@@ -157,6 +160,7 @@ function OurCommunity() {
                       h={['1.67838rem', '3.121rem']}
                       src={"/playstorelogo.png"}
                       mr="1rem"
+                      alt=''
                     />
                     <Flex flexDirection={'column'} justify={'center'}>
 
@@ -167,6 +171,7 @@ function OurCommunity() {
                     </Flex>
                   </Flex>
                   <Image src="/stars-coin.svg"
+                    alt=''
                     w={['4.22169rem', '5.8125rem']} h={['0.70363rem', '0.7315rem']}
                   />
                 </Flex>
