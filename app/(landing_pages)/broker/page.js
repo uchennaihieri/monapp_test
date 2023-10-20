@@ -1,6 +1,6 @@
 "use client";
-import { collection, addDoc } from 'firebase/firestore';
-import {db} from '../../../services/firebase'
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+// import { db } from "../../../services/firebase";
 // import { db } from './firebaseConfig'; // Import your Firebase config
 
 import { Inter, DM_Sans } from "next/font/google";
@@ -10,6 +10,10 @@ import HeroSection from "@/components/heroSection";
 import Features from "@/components/features";
 import DataSection from "@/components/dataSection";
 import CardSection from "@/components/cardSection";
+import { useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import {
   Box,
@@ -36,6 +40,7 @@ import {
   Grid,
   GridItem,
   Image,
+  useToast,
 } from "@chakra-ui/react";
 
 import FooterSection from "@/components/footerSection";
@@ -47,6 +52,7 @@ import { BiSearch } from "react-icons/bi";
 import OurCommunity from "@/components/OurCommunity";
 import EasySteps from "@/components/EasySteps";
 import { TbCircleCheckFilled } from "react-icons/tb";
+import { db } from "@/services/firebase";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -75,6 +81,76 @@ const Feature = ({ text, icon, iconBg }) => {
 };
 
 export default function Workwithus() {
+  const [isLoading, setIsloading] = useState(false)
+  const toast = useToast()
+
+  const schema = yup.object().shape({
+    firstName: yup.string().required(),
+    lastName: yup.string().required(),
+    email: yup.string().email().required(),
+    phone: yup.number().positive().integer().required(),
+    state: yup.string().required(),
+    localGovernment: yup.string().required(),
+    homeAddress: yup.string().required(),
+  });
+  const form = useRef();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      state: "",
+      localGovernment: "",
+      homeAddress: "",
+    },
+  });
+
+  const registerBroker = async (data) => {
+    // console.log(data);
+    setIsloading(true);
+
+    await addDoc(collection(db, "brokerApplication"), {
+      firstName: `${data.firstName}`,
+      lastName: ` ${data.lastName}`,
+      email: `${data.email}`,
+      phoneNumber: ` ${data.phone}`,
+      address: `${data.homeAddress}`,
+      state: `${data.state}`,
+      localGovernment: `${data.localGovernment}`,
+      createdAt: serverTimestamp(),
+    })
+      .then((res) => {
+        console.log("response from firebase", res);
+        toast({
+          title: 'Registration Successful',
+          description: 'Registration Successful',
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+          position: 'top',
+        })
+    setIsloading(false)
+      })
+      .catch(
+        (err) => {
+          console.log("firebase error",err)
+        toast({
+          title: 'Sending error',
+          description: 'Registration failed',
+          status: 'error',
+          duration: 9000,
+          isClosable: true,
+          position: 'top',
+        })
+          setIsloading(false)
+  });
+  };
   return (
     <>
       <PageSeo
@@ -87,7 +163,7 @@ export default function Workwithus() {
             display={"flex"}
             alignItems={"center"}
             justifyContent={"space-evenly"}
-          // px={'16rem'}
+            // px={'16rem'}
           >
             <Box display={["none", "block"]}>
               <Grid
@@ -272,12 +348,12 @@ export default function Workwithus() {
               className={dmsans.className}
               px
             >
-              Monapp is your
-              accessible payment solution in the complexity of modern finance.
-              Our platform streamlines transactions, securing every step with
-              innovation. As pioneers in digital payments in Nigeria, we&apos;re
-              revolutionizing the landscape, one transaction at a time. Embrace
-              simplicity, security, and empowerment with Monapp.
+              Monapp is your accessible payment solution in the complexity of
+              modern finance. Our platform streamlines transactions, securing
+              every step with innovation. As pioneers in digital payments in
+              Nigeria, we&apos;re revolutionizing the landscape, one transaction
+              at a time. Embrace simplicity, security, and empowerment with
+              Monapp.
             </Text>
           </VStack>
 
@@ -528,8 +604,8 @@ export default function Workwithus() {
                     className={dmsans.className}
                   >
                     Collaboration powers our success. At Monapp, every
-                    individual&apos;s effort harmonizes for your seamless financial
-                    experience.
+                    individual&apos;s effort harmonizes for your seamless
+                    financial experience.
                   </Text>
                 </Flex>
               </Flex>
@@ -569,9 +645,9 @@ export default function Workwithus() {
               mb={["6rem", "3rem"]}
             >
               Join us on this journey of shaping the future of finance in
-              Nigeria and Africa. At Monapp, we&apos;re not just providing a service;
-              we&apos;re redefining the way people send and receive money in the
-              continent.
+              Nigeria and Africa. At Monapp, we&apos;re not just providing a
+              service; we&apos;re redefining the way people send and receive
+              money in the continent.
             </Text>
 
             <Flex
@@ -639,11 +715,11 @@ export default function Workwithus() {
             justifyContent={"center"}
             px={["1rem", ""]}
           >
-            <form>
+            <form ref={form} onSubmit={handleSubmit(registerBroker)}>
               {/* <HStack mb='32px'><IconButton icon={<AiOutlinePicture fontSize={'20px'} />} w='36px' h='36px' isRound /> <Text> Upload New Image</Text></HStack> */}
               <Flex gap={["0", "12"]} flexDirection={["column", "row"]}>
                 <Box mb="21.87px">
-                  <FormControl id="firstName">
+                  <FormControl id="firstName" isInvalid={errors.firstName}>
                     <FormLabel
                       fontSize={["1.25rem", "1.5rem"]}
                       fontWeight={"500"}
@@ -660,11 +736,14 @@ export default function Workwithus() {
                       bg="#ffffff"
                       border={"1.4px solid #000"}
                       type="text"
+                      name="firstName"
+                      {...register("firstName")}
                     />
+                    {/* <p>{errors.firstName?.message}</p> */}
                   </FormControl>
                 </Box>
                 <Box mb="21.87px">
-                  <FormControl id="firstName">
+                  <FormControl id="lastName" isInvalid={errors.lastName}>
                     <FormLabel
                       fontSize={["1.25rem", "1.5rem"]}
                       fontWeight={"500"}
@@ -681,13 +760,15 @@ export default function Workwithus() {
                       bg="#ffffff"
                       border={"1.4px solid #000"}
                       type="text"
+                      name="lastName"
+                      {...register("lastName")}
                     />
                   </FormControl>
                 </Box>
               </Flex>
               <Flex gap={["0", "12"]} flexDirection={["column", "row"]}>
                 <Box mb="21.87px">
-                  <FormControl id="firstName">
+                  <FormControl id="email" isInvalid={errors.email}>
                     <FormLabel
                       fontSize={["1.25rem", "1.5rem"]}
                       fontWeight={"500"}
@@ -704,11 +785,13 @@ export default function Workwithus() {
                       bg="#ffffff"
                       border={"1.4px solid #000"}
                       type="email"
+                      name="email"
+                      {...register("email")}
                     />
                   </FormControl>
                 </Box>
                 <Box mb="21.87px">
-                  <FormControl id="firstName">
+                  <FormControl id="phone" isInvalid={errors.phone}>
                     <FormLabel
                       fontSize={["1.25rem", "1.5rem"]}
                       fontWeight={"500"}
@@ -725,13 +808,15 @@ export default function Workwithus() {
                       bg="#ffffff"
                       border={"1.4px solid #000"}
                       type="tel"
+                      name="phone"
+                      {...register("phone")}
                     />
                   </FormControl>
                 </Box>
               </Flex>
               <Flex gap={["0", "12"]} flexDirection={["column", "row"]}>
                 <Box mb="21.87px">
-                  <FormControl id="firstName">
+                  <FormControl id="state" isInvalid={errors.state}>
                     <FormLabel
                       fontSize={["1.25rem", "1.5rem"]}
                       fontWeight={"500"}
@@ -747,12 +832,17 @@ export default function Workwithus() {
                       borderRadius={"2px"}
                       bg="#ffffff"
                       border={"1.4px solid #000"}
-                      type="email"
+                      type="text"
+                      name="state"
+                      {...register("state")}
                     />
                   </FormControl>
                 </Box>
                 <Box mb="21.87px">
-                  <FormControl id="firstName">
+                  <FormControl
+                    id="localGovernment"
+                    isInvalid={errors.localGovernment}
+                  >
                     <FormLabel
                       fontSize={["1.25rem", "1.5rem"]}
                       fontWeight={"500"}
@@ -768,13 +858,15 @@ export default function Workwithus() {
                       borderRadius={"2px"}
                       bg="#ffffff"
                       border={"1.4px solid #000"}
-                      type="tel"
+                      type="text"
+                      name="localGovernment"
+                      {...register("localGovernment")}
                     />
                   </FormControl>
                 </Box>
               </Flex>
               <Box mb="21.87px">
-                <FormControl id="firstName">
+                <FormControl id="homeAddress" isInvalid={errors.homeAddress}>
                   <FormLabel
                     fontSize={["1.25rem", "1.5rem"]}
                     fontWeight={"500"}
@@ -791,6 +883,8 @@ export default function Workwithus() {
                     bg="#ffffff"
                     border={"1.4px solid #000"}
                     type="text"
+                    name="homeAddress"
+                    {...register("homeAddress")}
                   />
                 </FormControl>
               </Box>
@@ -803,6 +897,9 @@ export default function Workwithus() {
                 mt="3rem"
                 bgColor="#000"
                 borderRadius={["0.25rem", "10px"]}
+                type="submit"
+                isLoading={isLoading}
+                loadingText='Submitting'
               >
                 <Text
                   fontSize={["1.125rem", "16px"]}
