@@ -141,7 +141,7 @@ export default function Workwithus() {
           position: 'top',
         })
         setIsloading(false)
-        verifyBroker()
+        VerifyBroker()
 
       })
       .catch(
