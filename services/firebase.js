@@ -1,5 +1,7 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 
+import { getStorage, getDownloadURL, ref } from "firebase/storage"
+
 import { getFirestore, onSnapshot, collection, updateDoc, addDoc, doc, getDoc, getDocs, serverTimestamp, setDoc, deleteDoc, arrayRemove, arrayUnion } from "firebase/firestore"
 
 import { getAnalytics } from "firebase/analytics";
@@ -22,6 +24,7 @@ const config = {
 const app = getApps().length > 0 ? getApp() : initializeApp(config);
 const auth = getAuth(app)
 const db = getFirestore(app)
+const storage = getStorage(app)
 
-export { db, auth, addDoc, serverTimestamp, onSnapshot, isSignInWithEmailLink, signOut, signInWithEmailLink, collection, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateDoc, signInWithRedirect, GoogleAuthProvider, onAuthStateChanged, doc, deleteUser, getDoc, getDocs, setDoc, deleteDoc, sendEmailVerification, arrayRemove, arrayUnion }
+export { db, auth, addDoc, serverTimestamp, onSnapshot, isSignInWithEmailLink, signOut, signInWithEmailLink, collection, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateDoc, signInWithRedirect, GoogleAuthProvider, onAuthStateChanged, doc, deleteUser, getDoc, getDocs, storage, ref, getDownloadURL, setDoc, deleteDoc, sendEmailVerification, arrayRemove, arrayUnion }
 

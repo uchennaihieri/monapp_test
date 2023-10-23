@@ -1,5 +1,9 @@
 import { addDoc, collection, doc, getDocs, limit, onSnapshot, orderBy, query, setDoc, updateDoc, where } from 'firebase/firestore';
 import { db } from './firebase';
+import { useRecoilState } from 'recoil';
+import { personState } from '@/recoil/atoms';
+import useSWR from 'swr';
+import { useState } from 'react';
 
 
 
@@ -76,3 +80,28 @@ export const getTransactions = async (setTransactions,person,lim) => {
 
     }
 }
+
+
+
+
+// export const getUser = async (loggedUser) => {
+
+//     const [fetchData, setFetchData] = useState(false);
+
+//     try {
+//             const fetcher = url => axios.get(url).then(res => res.data)
+//             const { data, error, isLoading } = useSWR(fetchData ? `${baseURL}/api/user/${loggedUser?.uid}` : null, fetcher)
+    
+      
+    
+   
+
+//             return user;
+        
+//     } 
+//     catch (error) {
+//         console.error(error);
+
+//     }
+// }
+

@@ -8,20 +8,12 @@ import { Bree_Serif, DM_Sans } from 'next/font/google'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { AiOutlineLeft } from 'react-icons/ai'
-import { useRecoilState } from 'recoil'
-import useSWR from 'swr'
-import baseURL from '../../services/baseUrl';
 
 const bree = Bree_Serif({ weight: '400', subsets: ['latin'] })
 const dmsansBold = DM_Sans({ weight: '500', subsets: ['latin'] })
 
 function AuthCover({ children }) {
 
-    const [fetchData, setFetchData] = useState(false);
-    const [person, setPerson] = useRecoilState(personState)
-    const [loggedUser, setLoggedUser] = useState(undefined);
-    const fetcher = url => axios.get(url).then(res => res.data)
-    const { data, error, isLoading } = useSWR(fetchData ? `${baseURL}/api/user/${loggedUser?.uid}` : null, fetcher)
 
     const router = useRouter()
     const goSupport = () => {
@@ -32,43 +24,6 @@ function AuthCover({ children }) {
     const goHome = () => {
         router.push('/')
     }
-
-
-
-
-
-
-
-    useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setLoggedUser(user)
-                setFetchData(true)
-            } else {
-                setLoggedUser(false)
-                router.push('/auth')
-            }
-        });
-    }, [loggedUser]);
-
-
-    useEffect(() => {
-        updatePerson()
-    }, [data]);
-
-
-    const updatePerson = () => {
-        setPerson(data)
-    }
-
-
-
-    if (loggedUser == undefined || isLoading) {
-        return <Loading />;
-    }
-
-
-
 
 
 

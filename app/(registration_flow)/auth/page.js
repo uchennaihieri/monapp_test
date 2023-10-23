@@ -34,12 +34,13 @@ import { AiOutlineLeft } from 'react-icons/ai';
 import { RiEyeCloseFill, RiEyeFill } from 'react-icons/ri';
 import { useForm } from "react-hook-form";
 import { useRouter } from 'next/navigation'
-import { auth, createUserWithEmailAndPassword, db, doc, serverTimestamp, setDoc, signInWithEmailAndPassword } from '@/services/firebase';
+import { auth, createUserWithEmailAndPassword, db, doc, getDownloadURL, ref, serverTimestamp, setDoc, signInWithEmailAndPassword, storage } from '@/services/firebase';
 import PageSeo from '@/Seo/pageSeo';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import baseURL from '@/services/baseUrl';
 import { pinID } from '@/recoil/atoms';
 import { useRecoilState } from 'recoil';
+import { signIn } from 'next-auth/react';
 
 const dmsansBold = DM_Sans({ weight: '500', subsets: ['latin'] })
 const bree = Bree_Serif({ weight: '400', subsets: ['latin'] })
@@ -325,6 +326,9 @@ const Auth = () => {
 
 
 
+
+
+
     const goSupport = () => {
         router.push('/broker')
     }
@@ -384,62 +388,71 @@ export const Signin = () => {
     const toast = useToast()
     const router = useRouter()
     const [show, setShow] = useState(false)
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const handleClick = () => setShow(!show)
     const { register, handleSubmit } = useForm();
     const [loadingState, setLoadingState] = useState(false);
+    const [qrImage, setQrimage] = useState('');
 
 
 
 
-    const onSubmit = (data) => {
+
+    const submitSignin = async () => {
         setLoadingState(true)
 
-        signInWithEmailAndPassword(auth, data.email, data.pwd)
-            .then(async (userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                router.push('/Dashboard')
-                setLoadingState(false)
-            })
-            .catch((error) => {
+        await signIn('credentials', {
+            email, password, redirect: true, callbackUrl: '/Dashboard'
+        })
 
-                if (error.code == 'auth/wrong-password') {
-                    toast({
-                        title: 'Sign in failed',
-                        description: 'Incorrect password',
-                        status: 'error',
-                        duration: 9000,
-                        isClosable: true,
-                        position: 'top',
-                    })
-                }
+        // signInWithEmailAndPassword(auth, data.email, data.pwd)
+        //     .then(async (userCredential) => {
 
-                if (error.code == 'auth/user-not-found') {
-                    toast({
-                        title: 'Sign in failed',
-                        description: 'User does not exist',
-                        status: 'error',
-                        duration: 9000,
-                        isClosable: true,
-                        position: 'top',
-                    })
-                }
+        //         const user = userCredential.user;
+        //         router.push('/Dashboard')
+        //         setLoadingState(false)
+        //     })
+        //     .catch((error) => {
+
+        //         if (error.code == 'auth/wrong-password') {
+        //             toast({
+        //                 title: 'Sign in failed',
+        //                 description: 'Incorrect password',
+        //                 status: 'error',
+        //                 duration: 9000,
+        //                 isClosable: true,
+        //                 position: 'top',
+        //             })
+        //         }
+
+        //         if (error.code == 'auth/user-not-found') {
+        //             toast({
+        //                 title: 'Sign in failed',
+        //                 description: 'User does not exist',
+        //                 status: 'error',
+        //                 duration: 9000,
+        //                 isClosable: true,
+        //                 position: 'top',
+        //             })
+        //         }
 
 
-                if (error.code == 'auth/invalid-email') {
-                    toast({
-                        title: 'Sign in failed',
-                        description: 'Invalid email input',
-                        status: 'error',
-                        duration: 9000,
-                        isClosable: true,
-                        position: 'top',
-                    })
-                }
+        //         if (error.code == 'auth/invalid-email') {
+        //             toast({
+        //                 title: 'Sign in failed',
+        //                 description: 'Invalid email input',
+        //                 status: 'error',
+        //                 duration: 9000,
+        //                 isClosable: true,
+        //                 position: 'top',
+        //             })
+        //         }
 
-                // ..
-                setLoadingState(false)
-            });
+        //         // ..
+
+        //     });
+        setLoadingState(false)
     }
 
 
@@ -454,105 +467,109 @@ export const Signin = () => {
             bg={'#F9FAFC'}
             border={'1px solid rgba(0, 0, 0, 0.14);'}
             py={'4.5rem'} px={'4.8rem'}>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <Stack >
-                    <Box mb="1.6rem">
-                        <FormControl id="email" >
-                            <FormLabel className={roboto.className}>Email Address</FormLabel>
-                            <InputGroup>
-                                <InputLeftElement
-                                    h="100%"
-                                    pointerEvents='none'
 
-                                >
 
-                                    <Icon>
-                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <g opacity="0.2" clipPath="url(#clip0_79_265)">
-                                                <path d="M3 3H21C21.2652 3 21.5196 3.10536 21.7071 3.29289C21.8946 3.48043 22 3.73478 22 4V20C22 20.2652 21.8946 20.5196 21.7071 20.7071C21.5196 20.8946 21.2652 21 21 21H3C2.73478 21 2.48043 20.8946 2.29289 20.7071C2.10536 20.5196 2 20.2652 2 20V4C2 3.73478 2.10536 3.48043 2.29289 3.29289C2.48043 3.10536 2.73478 3 3 3ZM12.06 11.683L5.648 6.238L4.353 7.762L12.073 14.317L19.654 7.757L18.346 6.244L12.06 11.683Z" fill="black" />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_79_265">
-                                                    <rect width="24" height="24" fill="white" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
+            <Stack >
+                <Box mb="1.6rem">
+                    <FormControl id="email" >
+                        <FormLabel className={roboto.className}>Email Address</FormLabel>
+                        <InputGroup>
+                            <InputLeftElement
+                                h="100%"
+                                pointerEvents='none'
 
-                                    </Icon>
-                                </InputLeftElement>
-                                <Input h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'} type="email" placeholder='Enter your email' {...register("email")} />
+                            >
 
-                            </InputGroup>
+                                <Icon>
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g opacity="0.2" clipPath="url(#clip0_79_265)">
+                                            <path d="M3 3H21C21.2652 3 21.5196 3.10536 21.7071 3.29289C21.8946 3.48043 22 3.73478 22 4V20C22 20.2652 21.8946 20.5196 21.7071 20.7071C21.5196 20.8946 21.2652 21 21 21H3C2.73478 21 2.48043 20.8946 2.29289 20.7071C2.10536 20.5196 2 20.2652 2 20V4C2 3.73478 2.10536 3.48043 2.29289 3.29289C2.48043 3.10536 2.73478 3 3 3ZM12.06 11.683L5.648 6.238L4.353 7.762L12.073 14.317L19.654 7.757L18.346 6.244L12.06 11.683Z" fill="black" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_79_265">
+                                                <rect width="24" height="24" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
 
-                        </FormControl>
-                    </Box>
+                                </Icon>
+                            </InputLeftElement>
+                            <Input h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'} type="email" placeholder='Enter your email' value={email}
+                                onChange={(e) => setEmail(e.target.value)} />
 
-                    <Box
-                    >
-                        <FormControl id="password" >
-                            <FormLabel className={roboto.className}>Password</FormLabel>
+                        </InputGroup>
 
-                            <InputGroup mb="2.6rem">
-                                <InputLeftElement
-                                    h="100%"
-                                    pointerEvents='none'
-                                >
+                    </FormControl>
+                </Box>
 
-                                    <Icon>
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <g opacity="0.2" clipPath="url(#clip0_79_274)">
-                                                <path d="M18 8H20C20.2652 8 20.5196 8.10536 20.7071 8.29289C20.8946 8.48043 21 8.73478 21 9V21C21 21.2652 20.8946 21.5196 20.7071 21.7071C20.5196 21.8946 20.2652 22 20 22H4C3.73478 22 3.48043 21.8946 3.29289 21.7071C3.10536 21.5196 3 21.2652 3 21V9C3 8.73478 3.10536 8.48043 3.29289 8.29289C3.48043 8.10536 3.73478 8 4 8H6V7C6 5.4087 6.63214 3.88258 7.75736 2.75736C8.88258 1.63214 10.4087 1 12 1C13.5913 1 15.1174 1.63214 16.2426 2.75736C17.3679 3.88258 18 5.4087 18 7V8ZM11 15.732V18H13V15.732C13.3813 15.5119 13.6793 15.1721 13.8478 14.7653C14.0162 14.3586 14.0458 13.9076 13.9319 13.4823C13.8179 13.057 13.5668 12.6813 13.2175 12.4132C12.8682 12.1452 12.4403 11.9999 12 11.9999C11.5597 11.9999 11.1318 12.1452 10.7825 12.4132C10.4332 12.6813 10.1821 13.057 10.0681 13.4823C9.9542 13.9076 9.98376 14.3586 10.1522 14.7653C10.3207 15.1721 10.6187 15.5119 11 15.732ZM16 8V7C16 5.93913 15.5786 4.92172 14.8284 4.17157C14.0783 3.42143 13.0609 3 12 3C10.9391 3 9.92172 3.42143 9.17157 4.17157C8.42143 4.92172 8 5.93913 8 7V8H16Z" fill="black" />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_79_274">
-                                                    <rect width="24" height="24" fill="white" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </Icon>
-                                </InputLeftElement>
+                <Box
+                >
+                    <FormControl id="password" >
+                        <FormLabel className={roboto.className}>Password</FormLabel>
 
-                                <Input h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'}
-                                    type={show ? 'text' : 'password'} placeholder='Enter your password' {...register("pwd")} />
-                                <InputRightElement h="100%" mx="1rem">
-                                    {show ?
-                                        <Icon _hover={{
-                                            cursor: 'pointer'
-                                        }} as={RiEyeFill} fontSize="1.5rem" color="#9A9C9D" onClick={handleClick} /> : <Icon _hover={{
-                                            cursor: 'pointer'
-                                        }} as={RiEyeCloseFill} fontSize="1.5rem" color="#9A9C9D" onClick={handleClick} />}
-                                </InputRightElement>
-                            </InputGroup>
-                        </FormControl>
-                    </Box>
+                        <InputGroup mb="2.6rem">
+                            <InputLeftElement
+                                h="100%"
+                                pointerEvents='none'
+                            >
 
-                    <Button
-                        type='submit'
-                        isLoading={loadingState}
-                        loadingText='Please wait..'
-                        borderRadius={'0.125rem'}
-                        h="4rem"
-                        bg={'#000000'}
-                        color={'white'}
-                        _hover={{
-                            bg: 'black.400',
-                        }}>
-                        <Text
-                            fontSize="1.5rem" className={roboto.className} >
-                            Sign in
-                        </Text>
+                                <Icon>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g opacity="0.2" clipPath="url(#clip0_79_274)">
+                                            <path d="M18 8H20C20.2652 8 20.5196 8.10536 20.7071 8.29289C20.8946 8.48043 21 8.73478 21 9V21C21 21.2652 20.8946 21.5196 20.7071 21.7071C20.5196 21.8946 20.2652 22 20 22H4C3.73478 22 3.48043 21.8946 3.29289 21.7071C3.10536 21.5196 3 21.2652 3 21V9C3 8.73478 3.10536 8.48043 3.29289 8.29289C3.48043 8.10536 3.73478 8 4 8H6V7C6 5.4087 6.63214 3.88258 7.75736 2.75736C8.88258 1.63214 10.4087 1 12 1C13.5913 1 15.1174 1.63214 16.2426 2.75736C17.3679 3.88258 18 5.4087 18 7V8ZM11 15.732V18H13V15.732C13.3813 15.5119 13.6793 15.1721 13.8478 14.7653C14.0162 14.3586 14.0458 13.9076 13.9319 13.4823C13.8179 13.057 13.5668 12.6813 13.2175 12.4132C12.8682 12.1452 12.4403 11.9999 12 11.9999C11.5597 11.9999 11.1318 12.1452 10.7825 12.4132C10.4332 12.6813 10.1821 13.057 10.0681 13.4823C9.9542 13.9076 9.98376 14.3586 10.1522 14.7653C10.3207 15.1721 10.6187 15.5119 11 15.732ZM16 8V7C16 5.93913 15.5786 4.92172 14.8284 4.17157C14.0783 3.42143 13.0609 3 12 3C10.9391 3 9.92172 3.42143 9.17157 4.17157C8.42143 4.92172 8 5.93913 8 7V8H16Z" fill="black" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_79_274">
+                                                <rect width="24" height="24" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </Icon>
+                            </InputLeftElement>
 
-                    </Button>
+                            <Input h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'}
+                                type={show ? 'text' : 'password'} placeholder='Enter your password' value={password}
+                                onChange={(e) => setPassword(e.target.value)} />
+                            <InputRightElement h="100%" mx="1rem">
+                                {show ?
+                                    <Icon _hover={{
+                                        cursor: 'pointer'
+                                    }} as={RiEyeFill} fontSize="1.5rem" color="#9A9C9D" onClick={handleClick} /> : <Icon _hover={{
+                                        cursor: 'pointer'
+                                    }} as={RiEyeCloseFill} fontSize="1.5rem" color="#9A9C9D" onClick={handleClick} />}
+                            </InputRightElement>
+                        </InputGroup>
+                    </FormControl>
+                </Box>
 
-                    <Stack
+                <Button
+                    onClick={submitSignin}
+                    isDisabled={!email || !password}
+                    isLoading={loadingState}
+                    loadingText='Please wait..'
+                    borderRadius={'0.125rem'}
+                    h="4rem"
+                    bg={'#000000'}
+                    color={'white'}
+                    _hover={{
+                        bg: 'black.400',
+                    }}>
+                    <Text
+                        fontSize="1.5rem" className={roboto.className} >
+                        Sign in
+                    </Text>
 
-                        direction={{ base: 'column', sm: 'row' }}
-                        align={'start'}
-                        justify={'center'}>
-                        <Link mt="2rem" className={robotoItalic.className} color={'#000000'}>Forgot password?</Link>
-                    </Stack>
+                </Button>
+
+                <Stack
+
+                    direction={{ base: 'column', sm: 'row' }}
+                    align={'start'}
+                    justify={'center'}>
+                    <Link mt="2rem" className={robotoItalic.className} color={'#000000'}>Forgot password?</Link>
                 </Stack>
-            </form>
+            </Stack>
+
         </Box>
     )
 }
@@ -572,18 +589,18 @@ export const Signup = () => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
-    const [pwd, setPwd] = useState('')
+    const [password, setPassword] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
     const [tag, setTag] = useState('')
     const [city, setCity] = useState('')
     const [address, setAddress] = useState('')
     const [postalCode, setPostalCode] = useState('')
-    const [selectedOption, setSelectedOption] = useState(null);
-    const [isFirstNameValid, setIsFirstNameValid] = useState(null);
-    const [isLastNameValid, setIsLastNameValid] = useState(null);
-    const [isEmailValid, setIsEmailValid] = useState(null);
-    const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(null);
-    const [isTagValid, setIsTagValid] = useState(null);
+    const [selectedOption, setSelectedOption] = useState(true);
+    const [isFirstNameValid, setIsFirstNameValid] = useState(true);
+    const [isLastNameValid, setIsLastNameValid] = useState(true);
+    const [isEmailValid, setIsEmailValid] = useState(true);
+    const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(true);
+    const [isTagValid, setIsTagValid] = useState(true);
     const [firstNameError, setFirstNameError] = useState('')
     const [lastNameError, setLastNameError] = useState('')
     const [emailError, setEmailError] = useState('')
@@ -705,7 +722,7 @@ export const Signup = () => {
 
     const handleSubmit = async () => {
         setLoadingState(true)
-        const q = query(collection(db, "users"), where("phoneNumber", "==", `${data.phoneNumber}`));
+        const q = query(collection(db, "users"), where("phoneNumber", "==", `${phoneNumber}`));
 
 
         const querySnapshot = await getDocs(q);
@@ -723,7 +740,7 @@ export const Signup = () => {
                     "firstName": firstName.toLowerCase(),
                     "lastName": lastName.toLowerCase(),
                     "email": email,
-                    "password": pwd,
+                    "password": password,
                     "tag": tag,
                     "phoneNumber": phoneNumber,
                     "city": city,
@@ -752,7 +769,9 @@ export const Signup = () => {
                     setLoadingState(false)
                 } else {
 
-                    signInWithEmailAndPassword(auth, email, pwd)
+                    signIn('credentials', {
+                        email, password, redirect: false
+                    })
 
                     await fetch(`${baseURL}/api/verifyBvn`, {
 
@@ -845,137 +864,138 @@ export const Signup = () => {
             bg={'#F9FAFC'}
             border={'1px solid rgba(0, 0, 0, 0.14);'}
             py={'4.5rem'} px={'4.8rem'}>
-            <form>
-                <Stack >
-                    <Box mb="1.6rem">
-                        <FormControl isInvalid={!isFirstNameValid} id="first_name" >
-                            <FormLabel className={roboto.className}>First Name</FormLabel>
 
-                            <Input value={firstName}
-                                onChange={(e) => setFirstName(e.target.value)} onBlur={checkFirstNameValidity} h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'} type="text" placeholder='Legal first name' />
-                            <FormErrorMessage ><div>{firstNameError}</div></FormErrorMessage>
-                        </FormControl>
-                    </Box>
+            <Stack >
+                <Box mb="1.6rem">
+                    <FormControl isInvalid={!isFirstNameValid} id="first_name" >
+                        <FormLabel className={roboto.className}>First Name</FormLabel>
 
-                    <Box mb="1.6rem">
-                        <FormControl isInvalid={!isLastNameValid} id="last_name" >
-                            <FormLabel className={roboto.className}>Last Name</FormLabel>
+                        <Input value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)} onBlur={checkFirstNameValidity} h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'} type="text" placeholder='Legal first name' />
+                        <FormErrorMessage ><div>{firstNameError}</div></FormErrorMessage>
+                    </FormControl>
+                </Box>
 
-                            <Input value={lastName}
-                                onChange={(e) => setLastName(e.target.value)} onBlur={checkLastNameValidity} h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'} type="text" placeholder='Legal last name' />
-                            <FormErrorMessage ><div>{lastNameError}</div></FormErrorMessage>
-                        </FormControl>
-                    </Box>
-                    <Box mb="1.6rem" >
-                        <FormControl isInvalid={!isEmailValid} id="email" >
-                            <FormLabel className={roboto.className}>Email</FormLabel>
+                <Box mb="1.6rem">
+                    <FormControl isInvalid={!isLastNameValid} id="last_name" >
+                        <FormLabel className={roboto.className}>Last Name</FormLabel>
 
-                            <Input value={email}
-                                onChange={(e) => setEmail(e.target.value)} onBlur={checkEmailValidity} h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'} type="email" placeholder='Enter your email' />
-                            <FormErrorMessage ><div>{emailError}</div></FormErrorMessage>
-                        </FormControl>
-                    </Box>
-                    <Box mb="1.6rem"  >
-                        <FormControl id="phone_number" isInvalid={!isPhoneNumberValid}  >
-                            <FormLabel className={roboto.className}>Phone Number</FormLabel>
+                        <Input value={lastName}
+                            onChange={(e) => setLastName(e.target.value)} onBlur={checkLastNameValidity} h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'} type="text" placeholder='Legal last name' />
+                        <FormErrorMessage ><div>{lastNameError}</div></FormErrorMessage>
+                    </FormControl>
+                </Box>
+                <Box mb="1.6rem" >
+                    <FormControl isInvalid={!isEmailValid} id="email" >
+                        <FormLabel className={roboto.className}>Email</FormLabel>
 
-                            <Input value={phoneNumber}
-                                onChange={(e) => setPhoneNumber(e.target.value.slice(0, 11))} onBlur={checkPhoneNumberValidity} h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'} type="number" placeholder='Enter your active phone number' />
-                            <FormErrorMessage ><div>{phoneNumberError}</div></FormErrorMessage>
-                        </FormControl>
-                    </Box>
+                        <Input value={email}
+                            onChange={(e) => setEmail(e.target.value)} onBlur={checkEmailValidity} h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'} type="email" placeholder='Enter your email' />
+                        <FormErrorMessage ><div>{emailError}</div></FormErrorMessage>
+                    </FormControl>
+                </Box>
+                <Box mb="1.6rem"  >
+                    <FormControl id="phone_number" isInvalid={!isPhoneNumberValid}  >
+                        <FormLabel className={roboto.className}>Phone Number</FormLabel>
 
-                    <Box mb="1.6rem">
-                        <FormControl isInvalid={!isTagValid} id="tag" >
-                            <FormLabel className={roboto.className}>Tag</FormLabel>
-                            <InputGroup h="3.6rem" >
-                                <InputLeftAddon h='100%'>
-                                    @
-                                </InputLeftAddon>
+                        <Input value={phoneNumber}
+                            onChange={(e) => setPhoneNumber(e.target.value.slice(0, 11))} onBlur={checkPhoneNumberValidity} h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'} type="number" placeholder='Enter your active phone number' />
+                        <FormErrorMessage ><div>{phoneNumberError}</div></FormErrorMessage>
+                    </FormControl>
+                </Box>
 
-                                <Input
+                <Box mb="1.6rem">
+                    <FormControl isInvalid={!isTagValid} id="tag" >
+                        <FormLabel className={roboto.className}>Tag</FormLabel>
+                        <InputGroup h="3.6rem" >
+                            <InputLeftAddon h='100%'>
+                                @
+                            </InputLeftAddon>
 
-                                    value={tag}
-                                    onChange={(e) => setTag(e.target.value)} onBlur={checkTagValidity} h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'} type="text" placeholder='set a unique tag' />
-                            </InputGroup>
-                            <FormErrorMessage ><div>{tagError}</div></FormErrorMessage>
-                        </FormControl>
-                    </Box>
+                            <Input
 
-                    <Box >
-                        <FormControl id="location" >
-                            <FormLabel className={roboto.className}>Location</FormLabel>
+                                value={tag}
+                                onChange={(e) => setTag(e.target.value)} onBlur={checkTagValidity} h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'} type="text" placeholder='set a unique tag' />
+                        </InputGroup>
+                        <FormErrorMessage ><div>{tagError}</div></FormErrorMessage>
+                    </FormControl>
+                </Box>
 
-                            <Select value={selectedOption ? selectedOption.state : ''}
-                                onChange={handleSelectChange}
-                                placeholder="Select State"
-                                variant='outline' mb="1.6rem" h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'}>
-                                {locations?.map((loc, index) => <option key={index} value={loc.state}>{loc.state}</option>)}
+                <Box >
+                    <FormControl id="location" >
+                        <FormLabel className={roboto.className}>Location</FormLabel>
 
-                            </Select>
+                        <Select value={selectedOption ? selectedOption.state : ''}
+                            onChange={handleSelectChange}
+                            placeholder="Select State"
+                            variant='outline' mb="1.6rem" h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'}>
+                            {locations?.map((loc, index) => <option key={index} value={loc.state}>{loc.state}</option>)}
 
-                        </FormControl>
-                    </Box>
+                        </Select>
 
-                    <Box
-                    >
-                        <FormControl id="password" >
-                            <FormLabel className={roboto.className}>Password</FormLabel>
+                    </FormControl>
+                </Box>
 
-                            <InputGroup mb="2.6rem">
-                                <InputLeftElement
-                                    h="100%"
-                                    pointerEvents='none'
-                                >
-                                    <Icon>
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <g opacity="0.2" clipPath="url(#clip0_79_274)">
-                                                <path d="M18 8H20C20.2652 8 20.5196 8.10536 20.7071 8.29289C20.8946 8.48043 21 8.73478 21 9V21C21 21.2652 20.8946 21.5196 20.7071 21.7071C20.5196 21.8946 20.2652 22 20 22H4C3.73478 22 3.48043 21.8946 3.29289 21.7071C3.10536 21.5196 3 21.2652 3 21V9C3 8.73478 3.10536 8.48043 3.29289 8.29289C3.48043 8.10536 3.73478 8 4 8H6V7C6 5.4087 6.63214 3.88258 7.75736 2.75736C8.88258 1.63214 10.4087 1 12 1C13.5913 1 15.1174 1.63214 16.2426 2.75736C17.3679 3.88258 18 5.4087 18 7V8ZM11 15.732V18H13V15.732C13.3813 15.5119 13.6793 15.1721 13.8478 14.7653C14.0162 14.3586 14.0458 13.9076 13.9319 13.4823C13.8179 13.057 13.5668 12.6813 13.2175 12.4132C12.8682 12.1452 12.4403 11.9999 12 11.9999C11.5597 11.9999 11.1318 12.1452 10.7825 12.4132C10.4332 12.6813 10.1821 13.057 10.0681 13.4823C9.9542 13.9076 9.98376 14.3586 10.1522 14.7653C10.3207 15.1721 10.6187 15.5119 11 15.732ZM16 8V7C16 5.93913 15.5786 4.92172 14.8284 4.17157C14.0783 3.42143 13.0609 3 12 3C10.9391 3 9.92172 3.42143 9.17157 4.17157C8.42143 4.92172 8 5.93913 8 7V8H16Z" fill="black" />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_79_274">
-                                                    <rect width="24" height="24" fill="white" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </Icon>
+                <Box
+                >
+                    <FormControl id="password" >
+                        <FormLabel className={roboto.className}>Password</FormLabel>
 
-                                </InputLeftElement>
+                        <InputGroup mb="2.6rem">
+                            <InputLeftElement
+                                h="100%"
+                                pointerEvents='none'
+                            >
+                                <Icon>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g opacity="0.2" clipPath="url(#clip0_79_274)">
+                                            <path d="M18 8H20C20.2652 8 20.5196 8.10536 20.7071 8.29289C20.8946 8.48043 21 8.73478 21 9V21C21 21.2652 20.8946 21.5196 20.7071 21.7071C20.5196 21.8946 20.2652 22 20 22H4C3.73478 22 3.48043 21.8946 3.29289 21.7071C3.10536 21.5196 3 21.2652 3 21V9C3 8.73478 3.10536 8.48043 3.29289 8.29289C3.48043 8.10536 3.73478 8 4 8H6V7C6 5.4087 6.63214 3.88258 7.75736 2.75736C8.88258 1.63214 10.4087 1 12 1C13.5913 1 15.1174 1.63214 16.2426 2.75736C17.3679 3.88258 18 5.4087 18 7V8ZM11 15.732V18H13V15.732C13.3813 15.5119 13.6793 15.1721 13.8478 14.7653C14.0162 14.3586 14.0458 13.9076 13.9319 13.4823C13.8179 13.057 13.5668 12.6813 13.2175 12.4132C12.8682 12.1452 12.4403 11.9999 12 11.9999C11.5597 11.9999 11.1318 12.1452 10.7825 12.4132C10.4332 12.6813 10.1821 13.057 10.0681 13.4823C9.9542 13.9076 9.98376 14.3586 10.1522 14.7653C10.3207 15.1721 10.6187 15.5119 11 15.732ZM16 8V7C16 5.93913 15.5786 4.92172 14.8284 4.17157C14.0783 3.42143 13.0609 3 12 3C10.9391 3 9.92172 3.42143 9.17157 4.17157C8.42143 4.92172 8 5.93913 8 7V8H16Z" fill="black" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_79_274">
+                                                <rect width="24" height="24" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </Icon>
 
-                                <Input value={pwd}
-                                    onChange={(e) => setPwd(e.target.value)} h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'}
-                                    type={show ? 'text' : 'password'} placeholder='Enter your password' />
-                                <InputRightElement h="100%" mx="1rem">
-                                    {show ?
-                                        <Icon _hover={{
-                                            cursor: 'pointer'
-                                        }} as={RiEyeFill} fontSize="1.5rem" color="#9A9C9D" onClick={handleClick} /> : <Icon _hover={{
-                                            cursor: 'pointer'
-                                        }} as={RiEyeCloseFill} fontSize="1.5rem" color="#9A9C9D" onClick={handleClick} />}
-                                </InputRightElement>
-                            </InputGroup>
-                        </FormControl>
-                    </Box>
+                            </InputLeftElement>
 
-                    <Button
-                        onSubmit={handleSubmit}
-                        isLoading={loadingState}
-                        loadingText='Please wait..'
-                        borderRadius={'0.125rem'}
-                        h="4rem"
-                        bg={'#000000'}
-                        color={'white'}
-                        _hover={{
-                            bg: 'black.400',
-                        }}>
-                        <Text
-                            fontSize="1.5rem" className={roboto.className} >
-                            Register
-                        </Text>
+                            <Input value={password}
+                                onChange={(e) => setPassword(e.target.value)} h="3.6rem" borderRadius={'0.125rem'} bg="#ffffff" border={'1px solid #D5D6D6'}
+                                type={show ? 'text' : 'password'} placeholder='Enter your password' />
+                            <InputRightElement h="100%" mx="1rem">
+                                {show ?
+                                    <Icon _hover={{
+                                        cursor: 'pointer'
+                                    }} as={RiEyeFill} fontSize="1.5rem" color="#9A9C9D" onClick={handleClick} /> : <Icon _hover={{
+                                        cursor: 'pointer'
+                                    }} as={RiEyeCloseFill} fontSize="1.5rem" color="#9A9C9D" onClick={handleClick} />}
+                            </InputRightElement>
+                        </InputGroup>
+                    </FormControl>
+                </Box>
 
-                    </Button>
-                </Stack>
-            </form>
+                <Button
+                    onClick={handleSubmit}
+                    isDisabled={!email || !password || !phoneNumber || !tag || !firstName || !lastName || !location}
+                    isLoading={loadingState}
+                    loadingText='Please wait..'
+                    borderRadius={'0.125rem'}
+                    h="4rem"
+                    bg={'#000000'}
+                    color={'white'}
+                    _hover={{
+                        bg: 'black.400',
+                    }}>
+                    <Text
+                        fontSize="1.5rem" className={roboto.className} >
+                        Register
+                    </Text>
+
+                </Button>
+            </Stack>
+
         </Box>
     )
 }
