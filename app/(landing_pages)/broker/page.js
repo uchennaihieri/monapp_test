@@ -53,6 +53,7 @@ import OurCommunity from "@/components/OurCommunity";
 import EasySteps from "@/components/EasySteps";
 import { TbCircleCheckFilled } from "react-icons/tb";
 import { db } from "@/services/firebase";
+import useIdentityPayKYC from "react-identity-kyc";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -84,6 +85,9 @@ export default function Workwithus() {
   const [isLoading, setIsloading] = useState(false)
   const toast = useToast()
 
+
+
+
   const schema = yup.object().shape({
     firstName: yup.string().required(),
     lastName: yup.string().required(),
@@ -93,6 +97,7 @@ export default function Workwithus() {
     localGovernment: yup.string().required(),
     homeAddress: yup.string().required(),
   });
+
   const form = useRef();
   const {
     register,
@@ -115,7 +120,7 @@ export default function Workwithus() {
     // console.log(data);
     setIsloading(true);
 
-    await addDoc(collection(db, "brokerApplication"), {
+    await addDoc(collection(db, "broker"), {
       firstName: `${data.firstName}`,
       lastName: ` ${data.lastName}`,
       email: `${data.email}`,
@@ -126,7 +131,7 @@ export default function Workwithus() {
       createdAt: serverTimestamp(),
     })
       .then((res) => {
-        console.log("response from firebase", res);
+
         toast({
           title: 'Registration Successful',
           description: 'Registration Successful',
@@ -135,22 +140,55 @@ export default function Workwithus() {
           isClosable: true,
           position: 'top',
         })
-    setIsloading(false)
+        setIsloading(false)
+        const config = {
+          first_name: `${data.firstName}`,
+          last_name: ` ${data.lastName}`,
+          email: `${data.email}`,
+          merchant_key: `${process.env.NEXT_PUBLIC_PREMBLY_KEY}`,
+          user_ref: `${data.email}`,
+          is_test: false,
+          config_id: "19048a1c-5636-4f71-bced-89a7c38e3759",
+          callback: (response) => {
+            console.log(response)
+            if (response.status = "success") {
+              console.log(response)
+
+            } else {
+              toast({
+                title: 'Verification error',
+                description: 'Verification failed, Please try again',
+                status: 'error',
+                duration: 9000,
+                isClosable: true,
+                position: 'top',
+              })
+            }
+          }
+        }
+        const verifyWithIdentity = useIdentityPayKYC(config)
+        verifyWithIdentity()
+
       })
       .catch(
         (err) => {
-          console.log("firebase error",err)
-        toast({
-          title: 'Sending error',
-          description: 'Registration failed',
-          status: 'error',
-          duration: 9000,
-          isClosable: true,
-          position: 'top',
-        })
+          toast({
+            title: 'Sending error',
+            description: 'Registration failed',
+            status: 'error',
+            duration: 9000,
+            isClosable: true,
+            position: 'top',
+          })
           setIsloading(false)
-  });
+        });
   };
+
+
+
+
+
+
   return (
     <>
       <PageSeo
@@ -163,7 +201,7 @@ export default function Workwithus() {
             display={"flex"}
             alignItems={"center"}
             justifyContent={"space-evenly"}
-            // px={'16rem'}
+          // px={'16rem'}
           >
             <Box display={["none", "block"]}>
               <Grid
