@@ -141,7 +141,7 @@ export default function Workwithus() {
           position: 'top',
         })
         setIsloading(false)
-        VerifyBroker()
+        VerifyBroker(data)
 
       })
       .catch(
@@ -160,7 +160,7 @@ export default function Workwithus() {
 
 
 
-  const VerifyBroker = () => {
+  const VerifyBroker = async (data) => {
     const config = {
       first_name: `${data.firstName}`,
       last_name: ` ${data.lastName}`,
