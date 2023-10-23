@@ -160,7 +160,7 @@ export default function Workwithus() {
 
 
 
-  const verifyBroker = () => {
+  const VerifyBroker = () => {
     const config = {
       first_name: `${data.firstName}`,
       last_name: ` ${data.lastName}`,
