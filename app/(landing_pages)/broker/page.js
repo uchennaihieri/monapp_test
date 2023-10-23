@@ -141,33 +141,7 @@ export default function Workwithus() {
           position: 'top',
         })
         setIsloading(false)
-        const config = {
-          first_name: `${data.firstName}`,
-          last_name: ` ${data.lastName}`,
-          email: `${data.email}`,
-          merchant_key: `${process.env.NEXT_PUBLIC_PREMBLY_KEY}`,
-          user_ref: `${data.email}`,
-          is_test: false,
-          config_id: "19048a1c-5636-4f71-bced-89a7c38e3759",
-          callback: (response) => {
-            console.log(response)
-            if (response.status = "success") {
-              console.log(response)
-
-            } else {
-              toast({
-                title: 'Verification error',
-                description: 'Verification failed, Please try again',
-                status: 'error',
-                duration: 9000,
-                isClosable: true,
-                position: 'top',
-              })
-            }
-          }
-        }
-        const verifyWithIdentity = useIdentityPayKYC(config)
-        verifyWithIdentity()
+        verifyBroker()
 
       })
       .catch(
@@ -186,7 +160,35 @@ export default function Workwithus() {
 
 
 
+  const verifyBroker = () => {
+    const config = {
+      first_name: `${data.firstName}`,
+      last_name: ` ${data.lastName}`,
+      email: `${data.email}`,
+      merchant_key: `${process.env.NEXT_PUBLIC_PREMBLY_KEY}`,
+      user_ref: `${data.email}`,
+      is_test: false,
+      config_id: "19048a1c-5636-4f71-bced-89a7c38e3759",
+      callback: (response) => {
+        console.log(response)
+        if (response.status = "success") {
+          console.log(response)
 
+        } else {
+          toast({
+            title: 'Verification error',
+            description: 'Verification failed, Please try again',
+            status: 'error',
+            duration: 9000,
+            isClosable: true,
+            position: 'top',
+          })
+        }
+      }
+    }
+    const verifyWithIdentity = useIdentityPayKYC(config)
+    verifyWithIdentity()
+  }
 
 
   return (
