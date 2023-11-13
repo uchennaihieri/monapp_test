@@ -26,6 +26,13 @@ import { useSession } from 'next-auth/react';
 
 function ConfirmOtp() {
 
+    const session = useSession({
+        required: true,
+        onUnauthenticated() {
+            redirect('/auth');
+        },
+    });
+
 
     const router = useRouter()
     const { register, handleSubmit } = useForm();
@@ -53,14 +60,7 @@ function ConfirmOtp() {
     const [isCountdownFinished, setIsCountdownFinished] = useRecoilState(countDown);
     const person = useRecoilValue(personState)
 
-    const session = useSession({
-        required: true,
-        onUnauthenticated() {
-            redirect('/auth');
-        },
-    });
 
-    console.log(session)
 
     const handleRestart = () => {
         verifyUser()

@@ -10,7 +10,7 @@ const CountdownTimer = ({ targetTime }) => {
 
     const calculateTimeLeft = () => {
         const difference = targetTime - +new Date();
-        let timeLeft = {};
+        let timeLeft = { minutes: 0, seconds: 0 };
 
         if (difference > 0) {
             timeLeft = {

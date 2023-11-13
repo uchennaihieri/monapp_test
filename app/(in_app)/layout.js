@@ -75,6 +75,7 @@ import settingIcon from '@/components/Icons/settingIcon';
 import LogoutIcon from '@/components/Icons/logoutIcon';
 import { auth, signOut, db, onAuthStateChanged } from '@/services/firebase';
 import axios from 'axios';
+import { useSession } from 'next-auth/react';
 
 
 const dmsans = DM_Sans({ weight: '400', subsets: ['latin'] })
@@ -99,78 +100,31 @@ const LinkItems = [
 export default function NewDash({
     children,
 }) {
+
+
+    const session = useSession({
+        required: true,
+        onUnauthenticated() {
+            redirect('/auth');
+        },
+    });
+
+
+
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [currentPage, setCurrentPage] = useRecoilState(activePage)
     const [fetchData, setFetchData] = useState(false);
-    const [person, setPerson] = useRecoilState(personState)
+    const { firstName, lastName, verified } = useRecoilValue(personState);
     const router = useRouter()
-    const [loggedUser, setLoggedUser] = useState(null);
-    const fetcher = url => axios.get(url).then(res => res.data)
-    const { data, error, isLoading } = useSWR(fetchData ? `${baseURL}/api/user/${loggedUser?.uid}` : null, fetcher)
 
 
 
 
-    useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            console.log(user)
 
-            if (user == null) {
-                setLoggedUser(null)
-                router.push('/auth')
-
-            } else {
-                console.log(user)
-                setLoggedUser(user)
-                setFetchData(true)
-            }
-        });
-
-    })
-
-    useEffect(() => {
-        updatePerson()
-    }, [data]);
-
-
-    const updatePerson = () => {
-
-        setPerson(data)
-    }
-
-
-    if (loggedUser == null || isLoading) {
-        return <Loading />;
-    }
-
-
-    if (error) {
-        return <p>Error: {error.message}</p>;
-    }
-
-
-
-    if (loggedUser == null) {
-        router.push('/auth')
-    }
-
-    if (!data?.verified) {
-        router.push('/verifyUser')
-        return <Loading />;
-    }
-
-    if (data?.verified == "submitted") {
+    if (!verified) {
         router.push('/confirmOtp')
         return <Loading />;
     }
-
-
-
-
-
-
-
-
 
 
     return (

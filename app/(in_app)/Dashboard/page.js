@@ -73,12 +73,12 @@ function Dashboard() {
   const d = new Date(Date.now())
   const person = useRecoilValue(personState)
 
-  console.log(person)
+
 
   const { lastName, firstName } = person
 
 
-  console.log(person)
+
 
   useEffect(() => {
 
@@ -1484,47 +1484,6 @@ function Dashboard() {
   );
 }
 
-// export const getServerSideProps = withAuthUserTokenSSR({
-//   whenUnauthed: AuthAction.REDIRECT_TO_LOGIN,
-// })(async ({ AuthUser }) => {
-//   // Optionally, get other props.
-//   const token = await AuthUser.getIdToken(true);
 
-//   const UID = AuthUser.id;
-//   const response = await fetch(
-//     `${baseURL}/api/user/${UID}`,
-//     {
-//       method: "GET",
-//       headers: {
-//         Authorization: token,
-//       },
-//     }
-//   );
-//   const data = await response.json();
-
-//   if (!data.verified) {
-//     return {
-//       redirect: {
-//         destination: "/verifyUser",
-//         permanent: false,
-//       },
-//     };
-//   }
-
-//   if (data.verified == "submitted") {
-//     return {
-//       redirect: {
-//         destination: "/confirmOtp",
-//         permanent: false,
-//       },
-//     };
-//   }
-
-//   return {
-//     props: {
-//       person: data,
-//     },
-//   };
-// });
 
 export default Dashboard;

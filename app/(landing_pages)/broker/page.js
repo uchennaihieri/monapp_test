@@ -1,5 +1,5 @@
 "use client";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp, query, getDocs, where } from "firebase/firestore";
 // import { db } from "../../../services/firebase";
 // import { db } from './firebaseConfig'; // Import your Firebase config
 
@@ -54,6 +54,10 @@ import EasySteps from "@/components/EasySteps";
 import { TbCircleCheckFilled } from "react-icons/tb";
 import { db } from "@/services/firebase";
 import useIdentityPayKYC from "react-identity-kyc";
+import axios from "axios";
+import baseURL from "@/services/baseUrl";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -83,19 +87,22 @@ const Feature = ({ text, icon, iconBg }) => {
 
 export default function Workwithus() {
   const [isLoading, setIsloading] = useState(false)
+  const [userId, setUserId] = useState('')
   const toast = useToast()
+  const router = useRouter()
+  function closeAll() {
+
+    toast.closeAll()
+  }
 
 
-
+  const handleToast = () => {
+    closeAll()
+    router.push('/auth')
+  }
 
   const schema = yup.object().shape({
-    firstName: yup.string().required(),
-    lastName: yup.string().required(),
     email: yup.string().email().required(),
-    phone: yup.number().positive().integer().required(),
-    state: yup.string().required(),
-    localGovernment: yup.string().required(),
-    homeAddress: yup.string().required(),
   });
 
   const form = useRef();
@@ -106,89 +113,59 @@ export default function Workwithus() {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
       email: "",
-      phone: "",
-      state: "",
-      localGovernment: "",
-      homeAddress: "",
+
     },
   });
 
   const registerBroker = async (data) => {
     // console.log(data);
     setIsloading(true);
+    const q = query(collection(db, "users"), where("email", "==", `${data.email}`));
 
-    await addDoc(collection(db, "broker"), {
-      firstName: `${data.firstName}`,
-      lastName: ` ${data.lastName}`,
-      email: `${data.email}`,
-      phoneNumber: ` ${data.phone}`,
-      address: `${data.homeAddress}`,
-      state: `${data.state}`,
-      localGovernment: `${data.localGovernment}`,
-      createdAt: serverTimestamp(),
-    })
-      .then((res) => {
+    const querySnapshot = await getDocs(q);
 
+    if (querySnapshot.empty) {
+      toast({
+        title: 'You are not a registered user',
+        description: <Button color='white' variant='link' onClick={handleToast}>Click here to sign up</Button>,
+        status: 'error',
+        duration: null,
+        isClosable: true,
+        position: 'top',
+      })
+      setIsloading(false)
+    } else {
+
+      const doc = querySnapshot.docs[0];
+      const userId = doc.id
+
+      addDoc(collection(db, "broker"), {
+        userId: userId,
+        brokerVerification: false,
+        clients: [],
+        createdAt: serverTimestamp(),
+      }).then((res) => {
         toast({
           title: 'Registration Successful',
-          description: 'Registration Successful',
+          description: 'Check your email to begin onboarding',
           status: 'success',
           duration: 9000,
           isClosable: true,
           position: 'top',
         })
         setIsloading(false)
-        VerifyBroker(data)
+      });
 
-      })
-      .catch(
-        (err) => {
-          toast({
-            title: 'Sending error',
-            description: 'Registration failed',
-            status: 'error',
-            duration: 9000,
-            isClosable: true,
-            position: 'top',
-          })
-          setIsloading(false)
-        });
-  };
-
-
-
-  const VerifyBroker = (data) => {
-    const config = {
-      first_name: `${data.firstName}`,
-      last_name: ` ${data.lastName}`,
-      email: `${data.email}`,
-      merchant_key: `${process.env.NEXT_PUBLIC_PREMBLY_KEY}`,
-      user_ref: `${data.email}`,
-      is_test: false,
-      config_id: "19048a1c-5636-4f71-bced-89a7c38e3759",
-      callback: (response) => {
-        console.log(response)
-        if (response.status = "success") {
-          console.log(response)
-
-        } else {
-          toast({
-            title: 'Verification error',
-            description: 'Verification failed, Please try again',
-            status: 'error',
-            duration: 9000,
-            isClosable: true,
-            position: 'top',
-          })
-        }
-      }
     }
-    const verifyWithIdentity = useIdentityPayKYC(config)
-    verifyWithIdentity()
+    setIsloading(false)
+
   }
+
+
+
+
+
 
 
   return (
@@ -757,156 +734,10 @@ export default function Workwithus() {
           >
             <form ref={form} onSubmit={handleSubmit(registerBroker)}>
               {/* <HStack mb='32px'><IconButton icon={<AiOutlinePicture fontSize={'20px'} />} w='36px' h='36px' isRound /> <Text> Upload New Image</Text></HStack> */}
-              <Flex gap={["0", "12"]} flexDirection={["column", "row"]}>
-                <Box mb="21.87px">
-                  <FormControl id="firstName" isInvalid={errors.firstName}>
-                    <FormLabel
-                      fontSize={["1.25rem", "1.5rem"]}
-                      fontWeight={"500"}
-                      lineHeight={"200%"}
-                      letterSpacing={"0.03rem"}
-                      color={"#000"}
-                    >
-                      First Name
-                    </FormLabel>
-                    <Input
-                      h={["3.5rem", "5.5625rem"]}
-                      w={["95%", "42rem"]}
-                      borderRadius={"2px"}
-                      bg="#ffffff"
-                      border={"1.4px solid #000"}
-                      type="text"
-                      name="firstName"
-                      {...register("firstName")}
-                    />
-                    {/* <p>{errors.firstName?.message}</p> */}
-                  </FormControl>
-                </Box>
-                <Box mb="21.87px">
-                  <FormControl id="lastName" isInvalid={errors.lastName}>
-                    <FormLabel
-                      fontSize={["1.25rem", "1.5rem"]}
-                      fontWeight={"500"}
-                      lineHeight={"200%"}
-                      letterSpacing={"0.03rem"}
-                      color={"#000"}
-                    >
-                      Last Name
-                    </FormLabel>
-                    <Input
-                      h={["3.5rem", "5.5625rem"]}
-                      w={["95%", "42rem"]}
-                      borderRadius={"2px"}
-                      bg="#ffffff"
-                      border={"1.4px solid #000"}
-                      type="text"
-                      name="lastName"
-                      {...register("lastName")}
-                    />
-                  </FormControl>
-                </Box>
-              </Flex>
-              <Flex gap={["0", "12"]} flexDirection={["column", "row"]}>
-                <Box mb="21.87px">
-                  <FormControl id="email" isInvalid={errors.email}>
-                    <FormLabel
-                      fontSize={["1.25rem", "1.5rem"]}
-                      fontWeight={"500"}
-                      lineHeight={"200%"}
-                      letterSpacing={"0.03rem"}
-                      color={"#000"}
-                    >
-                      Email
-                    </FormLabel>
-                    <Input
-                      h={["3.5rem", "5.5625rem"]}
-                      w={["95%", "42rem"]}
-                      borderRadius={"2px"}
-                      bg="#ffffff"
-                      border={"1.4px solid #000"}
-                      type="email"
-                      name="email"
-                      {...register("email")}
-                    />
-                  </FormControl>
-                </Box>
-                <Box mb="21.87px">
-                  <FormControl id="phone" isInvalid={errors.phone}>
-                    <FormLabel
-                      fontSize={["1.25rem", "1.5rem"]}
-                      fontWeight={"500"}
-                      lineHeight={"200%"}
-                      letterSpacing={"0.03rem"}
-                      color={"#000"}
-                    >
-                      Phone Number
-                    </FormLabel>
-                    <Input
-                      h={["3.5rem", "5.5625rem"]}
-                      w={["95%", "42rem"]}
-                      borderRadius={"2px"}
-                      bg="#ffffff"
-                      border={"1.4px solid #000"}
-                      type="tel"
-                      name="phone"
-                      {...register("phone")}
-                    />
-                  </FormControl>
-                </Box>
-              </Flex>
-              <Flex gap={["0", "12"]} flexDirection={["column", "row"]}>
-                <Box mb="21.87px">
-                  <FormControl id="state" isInvalid={errors.state}>
-                    <FormLabel
-                      fontSize={["1.25rem", "1.5rem"]}
-                      fontWeight={"500"}
-                      lineHeight={"200%"}
-                      letterSpacing={"0.03rem"}
-                      color={"#000"}
-                    >
-                      State
-                    </FormLabel>
-                    <Input
-                      h={["3.5rem", "5.5625rem"]}
-                      w={["95%", "42rem"]}
-                      borderRadius={"2px"}
-                      bg="#ffffff"
-                      border={"1.4px solid #000"}
-                      type="text"
-                      name="state"
-                      {...register("state")}
-                    />
-                  </FormControl>
-                </Box>
-                <Box mb="21.87px">
-                  <FormControl
-                    id="localGovernment"
-                    isInvalid={errors.localGovernment}
-                  >
-                    <FormLabel
-                      fontSize={["1.25rem", "1.5rem"]}
-                      fontWeight={"500"}
-                      lineHeight={"200%"}
-                      letterSpacing={"0.03rem"}
-                      color={"#000"}
-                    >
-                      Local Government{" "}
-                    </FormLabel>
-                    <Input
-                      h={["3.5rem", "5.5625rem"]}
-                      w={["95%", "42rem"]}
-                      borderRadius={"2px"}
-                      bg="#ffffff"
-                      border={"1.4px solid #000"}
-                      type="text"
-                      name="localGovernment"
-                      {...register("localGovernment")}
-                    />
-                  </FormControl>
-                </Box>
-              </Flex>
+
+
               <Box mb="21.87px">
-                <FormControl id="homeAddress" isInvalid={errors.homeAddress}>
+                <FormControl id="email" isInvalid={errors.email}>
                   <FormLabel
                     fontSize={["1.25rem", "1.5rem"]}
                     fontWeight={"500"}
@@ -914,17 +745,17 @@ export default function Workwithus() {
                     letterSpacing={"0.03rem"}
                     color={"#000"}
                   >
-                    Home Address
+                    Email
                   </FormLabel>
-                  <Textarea
-                    h="5.5625rem"
+                  <Input
+                    h={["3.5rem", "5.5625rem"]}
                     w={["95%", "87.375rem"]}
                     borderRadius={"2px"}
                     bg="#ffffff"
                     border={"1.4px solid #000"}
-                    type="text"
-                    name="homeAddress"
-                    {...register("homeAddress")}
+                    type="email"
+                    name="email"
+                    {...register("email")}
                   />
                 </FormControl>
               </Box>

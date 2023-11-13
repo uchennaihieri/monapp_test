@@ -2,6 +2,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import { Providers } from "./providers";
 import SessionProvider from './sessionProvider';
+import UserProvider from './userProvider';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,7 +18,9 @@ export default function RootLayout({ children }) {
 
         <Providers>
           <SessionProvider>
-            {children}
+            <UserProvider>
+              {children}
+            </UserProvider>
           </SessionProvider>
         </Providers>
 

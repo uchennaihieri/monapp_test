@@ -1,9 +1,12 @@
 'use client'
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { motion, useAnimation } from 'framer-motion';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Loading() {
+
+
+    const [unmounted, setUnmounted] = useState(false)
     const controls = useAnimation();
 
     const startHeartbeat = () => {
@@ -18,7 +21,12 @@ export default function Loading() {
     };
 
     useEffect(() => {
+
         startHeartbeat();
+        return () => {
+            controls.stop();
+            setUnmounted(true)
+        };
     }, []);
 
 
