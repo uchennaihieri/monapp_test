@@ -139,10 +139,12 @@ export default function Workwithus() {
 
       const doc = querySnapshot.docs[0];
       const userId = doc.id
+      const userData = doc.data()
 
       addDoc(collection(db, "broker"), {
         userId: userId,
         brokerVerification: false,
+        phoneNumber: userData?.phoneNumber,
         clients: [],
         createdAt: serverTimestamp(),
       }).then((res) => {
