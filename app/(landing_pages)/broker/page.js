@@ -144,8 +144,10 @@ export default function Workwithus() {
       addDoc(collection(db, "broker"), {
         userId: userId,
         brokerVerification: false,
-        phoneNumber: userData?.phoneNumber,
+        phoneNumber: `${userData?.countryCode + userData?.phoneNumber}`,
         clients: [],
+        brokerCustomerCount: 0,
+        subscriptionDate: null,
         createdAt: serverTimestamp(),
       }).then((res) => {
         toast({
