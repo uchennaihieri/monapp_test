@@ -56,7 +56,7 @@ const New_password = ({searchParams}) => {
                   }
                 );
 
-                if (response.response.status === 200) {
+                if (response.error === false) {
                     setResult('verified')
                   } else {
                     setResult('failed')
