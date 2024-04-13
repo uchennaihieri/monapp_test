@@ -38,9 +38,7 @@ import { useEffect, useRef, useState } from 'react';
 import { AiOutlineLeft } from 'react-icons/ai';
 import { RiEyeCloseFill, RiEyeFill } from 'react-icons/ri';
 import { useRouter } from 'next/navigation'
-import { auth, createUserWithEmailAndPassword, db, doc, getDownloadURL, ref, serverTimestamp, setDoc, signInWithEmailAndPassword, storage } from '@/services/firebase';
 import PageSeo from '@/Seo/pageSeo';
-import { collection, getDocs, query, where } from 'firebase/firestore';
 import baseURL from '@/services/baseUrl';
 import { pinID } from '@/recoil/atoms';
 import { useRecoilState } from 'recoil';
@@ -88,9 +86,6 @@ export const Signin = () => {
     const submitSignin = async () => {
         setLoadingState(true)
 
-        await signIn('credentials', {
-            email, password, redirect: true, callbackUrl: '/Dashboard'
-        })
         setLoadingState(false)
     }
 

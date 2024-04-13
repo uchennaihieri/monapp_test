@@ -58,7 +58,7 @@ import { DM_Sans, Rubik, Poppins } from "next/font/google";
 import { BsChevronDown, BsChevronUp, BsDot } from 'react-icons/bs';
 import { GoPrimitiveDot } from 'react-icons/go';
 import MyChart from '@/components/myChart';
-import NewDash from '../layout';
+import NewDash from '../../layout';
 import MerchantHorizontalCard from '@/components/merchantHorizontalCard';
 import { IoRadioButtonOn } from 'react-icons/io5';
 import { ArrowForwardIcon } from '@chakra-ui/icons';

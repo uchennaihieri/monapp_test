@@ -1,65 +1,20 @@
 'use client'
-import React, { ReactNode, useState } from "react";
+import React from "react";
 import {
-    IconButton,
-    Avatar,
     Box,
-    CloseButton,
     Flex,
-    HStack,
-    VStack,
-    Icon,
-    useColorModeValue,
-    Link,
-    Drawer,
-    DrawerContent,
     Text,
-    useDisclosure,
-    BoxProps,
-    FlexProps,
-    Menu,
-    MenuButton,
-    MenuDivider,
-    MenuItem,
-    MenuList,
-    Image,
-    InputGroup,
-    InputLeftElement,
-    Input,
-    Spacer,
     Button,
-    Table,
-    Thead,
-    Tr,
-    Th,
-    Tbody,
-    Td,
-    Heading,
-    Divider,
 } from "@chakra-ui/react";
-import {
-    FiHome,
-    FiTrendingUp,
-    FiCompass,
-    FiStar,
-    FiSettings,
-    FiMenu,
-    FiBell,
-    FiChevronDown,
-} from "react-icons/fi";
-import { IconType } from "react-icons";
-import { ReactText } from "react";
 import { DM_Sans, Rubik } from "next/font/google";
-import { BsChevronDown, BsDot } from "react-icons/bs";
-import { GoPrimitiveDot } from "react-icons/go";
-import NewDash from "../layout";
+import { BsChevronDown } from "react-icons/bs";
 import MerchantBoxCard from "@/components/merchantBoxCard";
 
 const dmsans = DM_Sans({ weight: "400", subsets: ["latin"] });
 const dmsansbold = DM_Sans({ weight: "500", subsets: ["latin"] });
 const rubik = Rubik({ weight: ["300", "400"], subsets: ["latin"] });
 
-function merchants() {
+const Merchants = () => {
     return (
 
         <div>
@@ -115,4 +70,4 @@ function merchants() {
     )
 }
 
-export default merchants;
+export default Merchants;

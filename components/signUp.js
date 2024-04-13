@@ -39,13 +39,10 @@ import { useEffect, useRef, useState } from 'react';
 import { AiOutlineLeft } from 'react-icons/ai';
 import { RiEyeCloseFill, RiEyeFill } from 'react-icons/ri';
 import { useRouter } from 'next/navigation'
-import { auth, createUserWithEmailAndPassword, db, doc, getDownloadURL, ref, serverTimestamp, setDoc, signInWithEmailAndPassword, storage } from '@/services/firebase';
 import PageSeo from '@/Seo/pageSeo';
-import { collection, getDocs, query, where } from 'firebase/firestore';
 import baseURL from '@/services/baseUrl';
 import { pinID } from '@/recoil/atoms';
 import { useRecoilState } from 'recoil';
-import { signIn } from 'next-auth/react';
 import { AsYouType, getCountries, getCountryCallingCode, isValidPhoneNumber, validatePhoneNumberLength } from 'libphonenumber-js'
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import { useForm, Controller } from 'react-hook-form';

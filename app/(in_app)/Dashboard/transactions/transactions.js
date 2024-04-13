@@ -1,60 +1,19 @@
 'use client'
-import React, { ReactNode, useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
-  IconButton,
-  Avatar,
   Box,
-  CloseButton,
   Flex,
-  HStack,
-  VStack,
-  Icon,
-  useColorModeValue,
-  Link,
-  Drawer,
-  DrawerContent,
   Text,
-  useDisclosure,
-  BoxProps,
-  FlexProps,
-  Menu,
-  MenuButton,
-  MenuDivider,
-  MenuItem,
-  MenuList,
-  Image,
-  InputGroup,
-  InputLeftElement,
-  Input,
-  Spacer,
   Button,
   Table,
   Thead,
   Tr,
   Th,
   Tbody,
-  Td,
-  Heading,
-  Divider,
 } from "@chakra-ui/react";
-import {
-  FiHome,
-  FiTrendingUp,
-  FiCompass,
-  FiStar,
-  FiSettings,
-  FiMenu,
-  FiBell,
-  FiChevronDown,
-} from "react-icons/fi";
-import { IconType } from "react-icons";
-import { ReactText } from "react";
 import { DM_Sans, Rubik } from "next/font/google";
-import { BsChevronDown, BsDot } from "react-icons/bs";
-import { GoPrimitiveDot } from "react-icons/go";
+import { BsChevronDown } from "react-icons/bs";
 import AllTransactions from "@/components/AllTransactions";
-import { getTransactions } from "@/services/request";
-import NewDash from "../layout";
 import { useRecoilValue } from "recoil";
 import { personState } from "@/recoil/atoms";
 import dayjs from "dayjs";
@@ -69,9 +28,7 @@ function Transactions() {
   const person = useRecoilValue(personState)
   console.log("person", person)
 
-  useEffect(() => {
-    getTransactions(setTransactions, person, 10);
-  }, [person])
+
   console.log("i want to see transactions", transactions)
 
   return (

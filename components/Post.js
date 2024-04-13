@@ -1,15 +1,9 @@
 
-import React, { useEffect, useRef, useState } from 'react'
-import { Avatar, Badge, Box, Button, Flex, HStack, Icon, IconButton, Image, Input, InputGroup, InputLeftElement, InputRightElement, ListItem, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, Textarea, Tooltip, UnorderedList, useDisclosure } from '@chakra-ui/react'
-import { AiOutlineUser, AiOutlineTag, AiOutlinePicture, AiFillCloseCircle, AiOutlineSearch, AiOutlineControl } from 'react-icons/ai'
-import { BsEmojiSmile } from 'react-icons/bs'
+import React, { useRef, useState } from 'react'
+import { Box, Button, Flex, HStack, Icon, IconButton, Image, Input, Textarea, useDisclosure } from '@chakra-ui/react'
+import { AiOutlinePicture, AiFillCloseCircle } from 'react-icons/ai'
 import _ from 'lodash'
-import { useRecoilState } from 'recoil'
-import { RiSendPlaneFill } from 'react-icons/ri'
 import { BsPlus } from 'react-icons/bs'
-import { ImAttachment } from 'react-icons/im'
-import { addDoc, collection, doc, serverTimestamp, updateDoc } from 'firebase/firestore'
-import { db } from '@/services/firebase'
 
 const Post = () => {
 
@@ -58,34 +52,6 @@ const Post = () => {
   }
 
 
-
-  const submitPost = async (event) => {
-
-    const formData = new FormData();
-    formData.append('file', selectedFile)
-    formData.append('upload_preset', 'creatorh_posts')
-
-
-    handleModalClose()
-    const postRef = await addDoc(collection(db, "issues"), { content: content, status: "Opened", timestamp: serverTimestamp() });
-
-    if (selectedFile) {
-
-      const data = await fetch('https://api.cloudinary.com/v1_1/nuledge/image/upload', {
-        method: 'POST',
-        body: formData
-      }).then(r => r.json())
-
-      await updateDoc(doc(db, 'issues', postRef.id), {
-        image: data.secure_url
-      })
-    }
-
-    setContentCount(0)
-    setSelectedFile(null)
-    setChosenLabel("")
-
-  }
 
   return (
     <Box d='flex' alignItems={["flex-start", "flex-start", "center", "flex-start", "flex-start"]} pt='2rem' pb='4px' justifyContent='space-between' my={['20px']} px={['8px', '8px', '20px']} w={['100%', '100%', '100%', '100%', '100%']} borderRadius={['12px']} bg="white">

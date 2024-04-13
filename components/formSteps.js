@@ -1,28 +1,18 @@
 import React, { useState } from 'react';
 import {
-    Progress,
     Box,
-    ButtonGroup,
     Button,
-    Heading,
     Flex,
     FormControl,
-    GridItem,
     FormLabel,
     Input,
     Select,
-    SimpleGrid,
     InputLeftAddon,
     InputGroup,
-    Textarea,
-    FormHelperText,
-    InputRightElement,
     useColorModeValue,
 } from '@chakra-ui/react';
 
 import { useToast } from '@chakra-ui/react';
-import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
-import { db } from '@/services/firebase';
 
 
 
@@ -79,43 +69,6 @@ export default function FormSteps() {
 
 
 
-    const Submit = async () => {
-        setLoadingState(true)
-
-
-
-        await addDoc(collection(db, "brokerApplication"), {
-
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            phoneNumber: phoneNumber,
-            address: address,
-            state: location,
-            createdAt: serverTimestamp()
-        }).then(() => {
-            setLoadingState(false)
-            setFirstName('')
-            setLastName('')
-            setEmail('')
-            setPhoneNumber('')
-            setAddress('')
-            setLocation('')
-            toast({
-                title: 'Submitted Successfully',
-                description: "We will reach out to you soon.",
-                status: 'success',
-                duration: 9000,
-                isClosable: true,
-            })
-        }).catch((err) => {
-            setLoadingState(false)
-            console.log(err)
-
-        })
-        setLoadingState(false)
-
-    }
 
     return (
         <>

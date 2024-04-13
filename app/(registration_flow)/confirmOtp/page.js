@@ -1,37 +1,25 @@
 'use client'
-import { Box, Center, Heading, Image, Link } from '@chakra-ui/react';
+import { Center, Heading } from '@chakra-ui/react';
 import {
     Button,
     FormControl,
-    Flex,
-    Input,
     useToast,
     Stack,
     useColorModeValue,
     HStack,
 } from '@chakra-ui/react';
 import { PinInput, PinInputField } from '@chakra-ui/react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { businessCat, businessReg, bvnN, myAddress, myPostalCode, myCity, myLocation, pinID, seller, sellerType, countDown, personState } from '@/recoil/atoms';
-import QRCode from 'qrcode'
-import { addDoc, collection, doc, getDocs, limit, onSnapshot, orderBy, query, setDoc, updateDoc, where } from 'firebase/firestore';
-import { getDownloadURL, getStorage, ref, uploadString } from "firebase/storage";
-import { db } from '@/services/firebase';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import CountdownTimer from '@/components/countDownTimer';
 import baseURL from '@/services/baseUrl';
-import { useSession } from 'next-auth/react';
 
 function ConfirmOtp() {
 
-    const session = useSession({
-        required: true,
-        onUnauthenticated() {
-            redirect('/auth');
-        },
-    });
+  
 
 
     const router = useRouter()
@@ -95,16 +83,6 @@ function ConfirmOtp() {
             .then(async function (res) {
 
                 if (res.verified == true) {
-
-
-                    await setDoc(doc(db, "onboarding", `${person.userID}`), {
-                        onboardingStep: 1
-                    });
-
-                    await updateDoc(doc(db, "users", `${person.userID}`), {
-                        verified: true,
-                    });
-
 
                     router.push('/Dashboard')
 

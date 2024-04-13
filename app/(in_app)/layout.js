@@ -1,6 +1,5 @@
 'use client'
-import React, { ReactNode, useEffect, useState } from 'react';
-import useSWR from 'swr'
+import React, { useState } from 'react';
 import {
     IconButton,
     Avatar,
@@ -8,63 +7,31 @@ import {
     CloseButton,
     Flex,
     HStack,
-    VStack,
     Icon, ButtonGroup,
-    useColorModeValue,
     Drawer,
     DrawerContent,
     Text,
     useDisclosure,
-    BoxProps,
-    FlexProps,
-    Menu,
-    MenuButton,
-    MenuDivider,
-    MenuItem,
-    MenuList,
     Image,
     InputGroup,
     Modal,
     ModalOverlay,
     ModalContent,
-    ModalHeader,
-    ModalFooter,
     ModalBody,
     ModalCloseButton,
-    InputLeftElement,
     Input,
     Spacer,
     Button,
-    Table,
-    Thead,
-    Tr,
-    Th,
-    Tbody,
-    Td,
-    Heading,
-    Divider,
-    Alert,
 } from '@chakra-ui/react';
 import {
-    FiHome,
-    FiTrendingUp,
-    FiCompass,
-    FiStar,
-    FiSettings,
     FiMenu,
     FiBell,
-    FiChevronDown,
 } from 'react-icons/fi';
-import { ReactText } from 'react';
 import { DM_Sans, Rubik, } from "next/font/google";
-import { BsChevronDown, BsDot } from 'react-icons/bs';
-import { GoPrimitiveDot } from 'react-icons/go';
-import MyChart from '@/components/myChart';
 import { activePage, personState } from '@/recoil/atoms';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import Link from 'next/link';
 import Loading from '@/components/loading';
-import baseURL from '../../services/baseUrl';
 
 import { useRouter } from 'next/navigation';
 import DashboardIcon from '@/components/Icons/dashboardIcon';
@@ -73,9 +40,6 @@ import TransactionIcon from '@/components/Icons/transactionIcon';
 import MerchantsIcon from '@/components/Icons/merchantsIcon';
 import settingIcon from '@/components/Icons/settingIcon';
 import LogoutIcon from '@/components/Icons/logoutIcon';
-import { auth, signOut, db, onAuthStateChanged } from '@/services/firebase';
-import axios from 'axios';
-import { useSession } from 'next-auth/react';
 
 
 const dmsans = DM_Sans({ weight: '400', subsets: ['latin'] })
@@ -83,11 +47,11 @@ const dmsansbold = DM_Sans({ weight: '500', subsets: ['latin'] })
 const rubik = Rubik({ weight: ['300', '400'], subsets: ['latin'] })
 
 const LinkItems = [
-    { name: 'Dashboard', icon: DashboardIcon, pathname: '/Dashboard' },
-    { name: 'My Cards', icon: MyCardsIcon, pathname: '/my_cards' },
-    { name: 'Transaction', icon: TransactionIcon, pathname: '/transactions' },
-    { name: 'Merchants', icon: MerchantsIcon, pathname: '/merchants' },
-    { name: 'Setting', icon: settingIcon, pathname: '/settings' },
+    { name: 'Home', icon: DashboardIcon, pathname: '/Dashboard/home' },
+    { name: 'My Cards', icon: MyCardsIcon, pathname: '/Dashboard/my_cards' },
+    { name: 'Transaction', icon: TransactionIcon, pathname: '/Dashboard/transactions' },
+    { name: 'Merchants', icon: MerchantsIcon, pathname: '/Dashboard/merchants' },
+    { name: 'Setting', icon: settingIcon, pathname: '/Dashboard/settings' },
     { name: 'Logout', icon: LogoutIcon, pathname: '#' },
 ];
 
@@ -97,17 +61,12 @@ const LinkItems = [
 
 
 
-export default function NewDash({
+export default function Dashboard({
     children,
 }) {
 
 
-    const session = useSession({
-        required: true,
-        onUnauthenticated() {
-            redirect('/auth');
-        },
-    });
+    
 
 
 
@@ -275,7 +234,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
 
     const router = useRouter();
     const routeNames = {
-        '/Dashboard': 'Dashboard',
+        '/home': 'Home',
         '/my_cards': 'My Cards',
         '/transactions': 'Transaction',
         '/merchants': 'Merchants',

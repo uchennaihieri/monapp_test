@@ -1,59 +1,37 @@
 'use client'
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
-  IconButton, Avatar, Box, CloseButton, Flex, HStack, VStack, Icon, useColorModeValue, Link, Drawer, DrawerContent, Text,
-  useDisclosure, BoxProps, FlexProps, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Image, InputGroup, InputLeftElement,
-  Input, Spacer, Button, Table, Thead, Tr, Th, Tbody, Td, Heading, Divider, useToast,
+  Box, Flex, HStack, VStack, Icon, useColorModeValue, Drawer, DrawerContent, Text,
+  useDisclosure, Menu, MenuButton, MenuItem, MenuList, Image, InputGroup, 
+  Input, Spacer, Button, Table, Thead, Tr, Th, Tbody, useToast,
   DrawerBody,
-  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
-  DrawerCloseButton,
   PinInputField,
   PinInput,
-  Tooltip,
   FormControl,
   FormLabel,
   RadioGroup,
   Stack,
   Radio,
 } from "@chakra-ui/react";
-import {
-  FiHome,
-  FiTrendingUp,
-  FiCompass,
-  FiStar,
-  FiSettings,
-  FiMenu,
-  FiBell,
-  FiChevronDown,
-} from "react-icons/fi";
 // import { PiCopyFill } from "react-icons/pi";
 
 
-import { IconType } from "react-icons";
-import { ReactText } from "react";
 import { DM_Sans, Rubik } from "next/font/google";
-import { BsChevronDown, BsDot, BsInfoCircleFill } from "react-icons/bs";
-import { GoPrimitiveDot } from "react-icons/go";
+import { BsChevronDown } from "react-icons/bs";
 import MyChart from "@/components/myChart";
-import NewDash from "../layout";
 import AllTransactions from "@/components/AllTransactions";
-import { db, doc, onSnapshot, updateDoc } from "@/services/firebase";
-import { getWallet, getCard, getTransactions } from "@/services/request";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { personState } from "@/recoil/atoms";
-import { HiOutlineX } from "react-icons/hi";
 import CancelIcon from "@/components/Icons/cancelIcon";
-import axios from "axios";
-import baseURL from "@/services/baseUrl";
 const dayjs = require("dayjs");
 
 const dmsans = DM_Sans({ weight: "400", subsets: ["latin"] });
 const dmsansbold = DM_Sans({ weight: "500", subsets: ["latin"] });
 const rubik = Rubik({ weight: ["300", "400"], subsets: ["latin"] });
 
-function Dashboard() {
+function Home() {
 
   const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -80,325 +58,6 @@ function Dashboard() {
 
 
 
-  useEffect(() => {
-
-    checkOnboarding()
-    getWallet(setWallet, person);
-    getCard(setCard, person);
-    getTransactions(setTransactions, person, 3);
-
-
-
-  }, [person]);
-
-
-  const checkOnboarding = () => {
-
-    const unsub = onSnapshot(doc(db, "onboarding", `${person.userID}`), (doc) => {
-      const onboardingData = doc.data()
-
-
-      if (!onboardingData || onboardingData.onboardingStep == 1) {
-        setDrawerContent('setPin')
-        onOpen()
-      } else if (onboardingData.onboardingStep == 2) {
-        setDrawerContent('selectBroker')
-        onOpen()
-      } else if (onboardingData.onboardingStep == 3) {
-        setDrawerContent('verifyAccount')
-        onOpen()
-      }
-
-    });
-
-
-  }
-  const createPin = () => {
-    setLoadingState(true)
-
-    if (pin.length === 4) {
-
-      if (pin != confirmPin) {
-        setLoadingState(false)
-        toast({
-          title: 'Pin creation error',
-          description: 'Your pin does not match',
-          status: 'error',
-          duration: 9000,
-          isClosable: true,
-          position: 'top',
-        })
-      } else {
-        axios.post(`${baseURL}/api/pin/create`, {
-          pin: pin,
-          userId: person.userID
-        })
-          .then(async function ({ data }) {
-
-
-            if (data.error == false) {
-              await updateDoc(doc(db, "onboarding", `${person.userID}`), {
-                onboardingStep: 2
-              });
-
-              toast({
-                title: 'Pin creation successful',
-                description: 'Your pin has been created',
-                status: 'success',
-                duration: 9000,
-                isClosable: true,
-                position: 'top',
-              })
-              setLoadingState(false)
-            } else {
-              setLoadingState(false)
-              toast({
-                title: 'Pin creation error',
-                description: data.message,
-                status: 'error',
-                duration: 9000,
-                isClosable: true,
-                position: 'top',
-              })
-            }
-          })
-          .catch(function (error) {
-            setLoadingState(false)
-            toast({
-              title: 'Pin creation error',
-              description: error.message,
-              status: 'error',
-              duration: 9000,
-              isClosable: true,
-              position: 'top',
-            })
-          })
-
-        // fetch("http://127.0.0.1:5001/monapp-33057/us-central1/app/api/pin/create", {
-
-        //   // Adding method type
-        //   method: "POST",
-        //   body: JSON.stringify({
-        //     pin: pin,
-        //     userId: person.userID
-        //   })
-        // }).then(function (res) {
-        //   return res.json();
-        // })
-        //   // Converting to JSON
-        //   .then(function (data) {
-        //     console.log(data)
-
-        //     if (data.successful) {
-        //       setLoadingState(false)
-        //       toast({
-        //         title: 'Pin creation successful',
-        //         description: 'Your pin has been created',
-        //         status: 'success',
-        //         duration: 9000,
-        //         isClosable: true,
-        //         position: 'top',
-        //       })
-        //     } else {
-        //       setLoadingState(false)
-        //       toast({
-        //         title: 'Pin creation error',
-        //         description: data.message,
-        //         status: 'error',
-        //         duration: 9000,
-        //         isClosable: true,
-        //         position: 'top',
-        //       })
-        //     }
-        //   })
-        //   .catch(function (error) {
-        //     setLoadingState(false)
-        //     toast({
-        //       title: 'Pin creation error',
-        //       description: error.message,
-        //       status: 'error',
-        //       duration: 9000,
-        //       isClosable: true,
-        //       position: 'top',
-        //     })
-        //   })
-      }
-
-    } else {
-      setLoadingState(false)
-      toast({
-        title: 'Pin creation error',
-        description: 'Complete the pin field',
-        status: 'error',
-        duration: 9000,
-        isClosable: true,
-        position: 'top',
-      })
-    }
-
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  const handleSetBroker = () => {
-    setLoadingState(true)
-
-    axios.post(`${baseURL}/api/set/broker`, {
-      broker: broker,
-      userId: person.userID,
-      brokerNumber: brokerNum
-    })
-      .then(async function ({ data }) {
-
-
-        if (data.error == false) {
-          await updateDoc(doc(db, "onboarding", `${person.userID}`), {
-            onboardingStep: 3
-          });
-
-          toast({
-            title: 'Broker added successfully',
-            description: 'Your broker has been added',
-            status: 'success',
-            duration: 9000,
-            isClosable: true,
-            position: 'top',
-          })
-          setLoadingState(false)
-        } else {
-          setLoadingState(false)
-          toast({
-            title: 'Broker error',
-            description: data.message,
-            status: 'error',
-            duration: 9000,
-            isClosable: true,
-            position: 'top',
-          })
-        }
-      })
-      .catch(function (error) {
-        setLoadingState(false)
-
-        toast({
-          title: 'Broker error',
-          description: error.response.data.message,
-          status: 'error',
-          duration: 9000,
-          isClosable: true,
-          position: 'top',
-        })
-      })
-
-  }
-
-
-
-
-
-
-
-
-
-
-  const handleVerifyAccount = () => {
-    setLoadingState(true)
-
-    axios.post(`${baseURL}/api/anchor/tier_two/verify-customer`, {
-      customerId: person.anchor_customerId,
-      dateOfBirth: dOB,
-      gender: gender,
-      bvn: bvn
-    })
-      .then(async function ({ data }) {
-
-
-        if (data.error == false) {
-          await updateDoc(doc(db, "onboarding", `${person.userID}`), {
-            onboardingStep: "completed"
-          });
-
-          toast({
-            title: 'Onboarding Completed',
-            description: 'You have completed the onboarding steps',
-            status: 'success',
-            duration: 9000,
-            isClosable: true,
-            position: 'top',
-          })
-          onClose()
-          setLoadingState(false)
-        } else {
-          setLoadingState(false)
-          toast({
-            title: 'Verification error',
-            description: data.message,
-            status: 'error',
-            duration: 9000,
-            isClosable: true,
-            position: 'top',
-          })
-        }
-      })
-      .catch(function (error) {
-        setLoadingState(false)
-
-        toast({
-          title: 'Verification error',
-          description: error.response.data.message,
-          status: 'error',
-          duration: 9000,
-          isClosable: true,
-          position: 'top',
-        })
-      })
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   const handleTopupwallet = () => {
     setDrawerContent('topupwallet')
@@ -411,19 +70,9 @@ function Dashboard() {
   }
 
 
-  const handleDeliverCard = () => {
-    setDrawerContent('deliverCard')
-    onOpen()
-  }
-
   const handleSettlementAccount = () => {
     setDrawerContent('settlementAccount')
     onOpen()
-  }
-
-  const handleSuccess = () => {
-    setDrawerContent('successView')
-
   }
 
 
@@ -1486,4 +1135,4 @@ function Dashboard() {
 
 
 
-export default Dashboard;
+export default Home;

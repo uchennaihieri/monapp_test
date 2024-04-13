@@ -57,7 +57,7 @@ import { ReactText } from 'react';
 import { DM_Sans, Rubik, } from "next/font/google";
 import { BsChevronDown, BsDot } from 'react-icons/bs';
 import { GoPrimitiveDot } from 'react-icons/go';
-import NewDash from '../layout';
+import NewDash from '../../layout';
 import { activePage } from '@/recoil/atoms';
 import { useRecoilState } from 'recoil';
 import BillingSetting from '@/components/billingSetting';
@@ -75,7 +75,7 @@ const dmsans = DM_Sans({ weight: '400', subsets: ['latin'] })
 const dmsansbold = DM_Sans({ weight: '500', subsets: ['latin'] })
 const rubik = Rubik({ weight: ['300', '400'], subsets: ['latin'] })
 
-function Setting() {
+const Settings = () => {
 
     const [currentPage, setCurrentPage] = useRecoilState(activePage)
 
@@ -273,4 +273,4 @@ function Setting() {
     )
 }
 
-export default Setting
+export default Settings

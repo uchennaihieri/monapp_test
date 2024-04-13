@@ -1,55 +1,17 @@
 'use client'
 import {
-    Flex,
-    Box,
-    FormControl,
-    FormLabel,
-    Input,
-    Checkbox,
-    Stack,
-    Link,
-    Button,
-    Heading,
-    Icon,
     Text,
-    Image,
-    useColorModeValue,
     Tabs,
     TabList,
     Tab,
     TabPanels,
     TabPanel,
-    HStack,
-    InputGroup,
-    InputLeftElement,
-    InputRightElement,
-    useToast,
-    Select,
-    InputLeftAddon,
-    FormErrorMessage,
-    MenuList,
-    MenuButton,
-    MenuItem,
-    Menu,
-    Divider,
 } from '@chakra-ui/react';
 import { Bree_Serif, DM_Sans, Roboto_Slab } from "next/font/google";
-import { useEffect, useRef, useState } from 'react';
-import { AiOutlineLeft } from 'react-icons/ai';
-import { RiEyeCloseFill, RiEyeFill } from 'react-icons/ri';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation'
-import { auth, createUserWithEmailAndPassword, db, doc, getDownloadURL, ref, serverTimestamp, setDoc, signInWithEmailAndPassword, storage } from '@/services/firebase';
-import PageSeo from '@/Seo/pageSeo';
-import { collection, getDocs, query, where } from 'firebase/firestore';
-import baseURL from '@/services/baseUrl';
-import { pinID } from '@/recoil/atoms';
-import { useRecoilState } from 'recoil';
-import { signIn } from 'next-auth/react';
-import { AsYouType, getCountries, getCountryCallingCode, isValidPhoneNumber, validatePhoneNumberLength } from 'libphonenumber-js'
-import { ChevronDownIcon } from '@chakra-ui/icons';
-import { useForm, Controller } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { getCountries } from 'libphonenumber-js'
+import { useForm } from 'react-hook-form';
 import { Signin } from '@/components/signIn';
 import { Signup } from '@/components/signUp';
 

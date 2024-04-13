@@ -1,15 +1,9 @@
 "use client";
-import { collection, addDoc, serverTimestamp, query, getDocs, where } from "firebase/firestore";
 // import { db } from "../../../services/firebase";
 // import { db } from './firebaseConfig'; // Import your Firebase config
 
 import { Inter, DM_Sans } from "next/font/google";
 
-import Navbar from "@/components/navbar";
-import HeroSection from "@/components/heroSection";
-import Features from "@/components/features";
-import DataSection from "@/components/dataSection";
-import CardSection from "@/components/cardSection";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -18,25 +12,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Box,
   Center,
-  InputGroup,
   Input,
-  HStack,
   Stack,
   Button,
   Text,
-  InputLeftElement,
   Flex,
   VStack,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionIcon,
-  AccordionPanel,
-  IconButton,
   FormControl,
   FormLabel,
-  ButtonGroup,
-  Textarea,
   Grid,
   GridItem,
   Image,
@@ -44,19 +27,11 @@ import {
 } from "@chakra-ui/react";
 
 import FooterSection from "@/components/footerSection";
-import BlackSection from "@/components/blackSection";
 import PageSeo from "@/Seo/pageSeo";
 import NewHero from "@/components/NewHero";
 
-import { BiSearch } from "react-icons/bi";
 import OurCommunity from "@/components/OurCommunity";
 import EasySteps from "@/components/EasySteps";
-import { TbCircleCheckFilled } from "react-icons/tb";
-import { db } from "@/services/firebase";
-import useIdentityPayKYC from "react-identity-kyc";
-import axios from "axios";
-import baseURL from "@/services/baseUrl";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -118,53 +93,7 @@ export default function Workwithus() {
     },
   });
 
-  const registerBroker = async (data) => {
-    // console.log(data);
-    setIsloading(true);
-    const q = query(collection(db, "users"), where("email", "==", `${data.email}`));
 
-    const querySnapshot = await getDocs(q);
-
-    if (querySnapshot.empty) {
-      toast({
-        title: 'You are not a registered user',
-        description: <Button color='white' variant='link' onClick={handleToast}>Click here to sign up</Button>,
-        status: 'error',
-        duration: null,
-        isClosable: true,
-        position: 'top',
-      })
-      setIsloading(false)
-    } else {
-
-      const doc = querySnapshot.docs[0];
-      const userId = doc.id
-      const userData = doc.data()
-
-      addDoc(collection(db, "broker"), {
-        userId: userId,
-        brokerVerification: false,
-        phoneNumber: `${userData?.countryCode + userData?.phoneNumber}`,
-        clients: [],
-        brokerCustomerCount: 0,
-        subscriptionDate: null,
-        createdAt: serverTimestamp(),
-      }).then((res) => {
-        toast({
-          title: 'Registration Successful',
-          description: 'Check your email to begin onboarding',
-          status: 'success',
-          duration: 9000,
-          isClosable: true,
-          position: 'top',
-        })
-        setIsloading(false)
-      });
-
-    }
-    setIsloading(false)
-
-  }
 
 
 
@@ -736,7 +665,7 @@ export default function Workwithus() {
             justifyContent={"center"}
             px={["1rem", ""]}
           >
-            <form ref={form} onSubmit={handleSubmit(registerBroker)}>
+            <form ref={form} >
               {/* <HStack mb='32px'><IconButton icon={<AiOutlinePicture fontSize={'20px'} />} w='36px' h='36px' isRound /> <Text> Upload New Image</Text></HStack> */}
 
 

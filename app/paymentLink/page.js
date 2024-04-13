@@ -5,21 +5,10 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Checkbox,
   Stack,
-  Link,
   Button,
-  Heading,
-  Icon,
   Text,
   Image,
-  useColorModeValue,
-  Tabs,
-  TabList,
-  Tab,
-  TabPanels,
-  TabPanel,
-  HStack,
   InputGroup,
   InputLeftElement,
   InputRightElement,
@@ -36,26 +25,13 @@ import {
   ModalOverlay,
   ModalContent,
   ModalBody,
-  ModalHeader,
 } from "@chakra-ui/react";
 
 import { Bree_Serif, DM_Sans, Roboto_Slab } from "next/font/google";
 import { useEffect, useState } from "react";
-import { AiOutlineLeft } from "react-icons/ai";
-import { RiEyeCloseFill, RiEyeFill } from "react-icons/ri";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import {
-  auth,
-  createUserWithEmailAndPassword,
-  db,
-  doc,
-  serverTimestamp,
-  setDoc,
-  signInWithEmailAndPassword,
-} from "@/services/firebase";
 import PageSeo from "@/Seo/pageSeo";
-import { collection, getDocs, query, where } from "firebase/firestore";
 
 const dmsans = DM_Sans({ weight: "400", subsets: ["latin"] });
 const bree = Bree_Serif({ weight: "400", subsets: ["latin"] });
@@ -187,49 +163,6 @@ export const Signin = () => {
     setShowModal(false);
   };
 
-  const onSubmit = async (data) => {
-    setLoadingState(true);
-
-    try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        data.email,
-        data.pwd
-      );
-      const user = userCredential.user;
-    } catch (error) {
-      if (error.code === "auth/wrong-password") {
-        toast({
-          title: "Sign in failed",
-          description: "Incorrect password",
-          status: "error",
-          duration: 9000,
-          isClosable: true,
-          position: "top",
-        });
-      } else if (error.code === "auth/user-not-found") {
-        toast({
-          title: "Sign in failed",
-          description: "User does not exist",
-          status: "error",
-          duration: 9000,
-          isClosable: true,
-          position: "top",
-        });
-      } else if (error.code === "auth/invalid-email") {
-        toast({
-          title: "Sign in failed",
-          description: "Invalid email input",
-          status: "error",
-          duration: 9000,
-          isClosable: true,
-          position: "top",
-        });
-      }
-    }
-
-    setLoadingState(false);
-  };
 
   return (
     <Box
