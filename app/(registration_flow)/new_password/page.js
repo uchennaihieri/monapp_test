@@ -60,6 +60,12 @@ const New_password = ({searchParams}) => {
                   }
                 );
 
+console.log(response)
+
+console.log(response.error)
+
+console.log(response.data.error)
+
                 if (response.error === false) {
                     setResult('verified')
                   } else {
