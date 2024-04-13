@@ -56,7 +56,7 @@ const token = searchParams.token
                   token: token
                 }
               );
-            if (response.error === false) {
+            if (response.data.error === false) {
                 setResult('verified')
               } else {
                 setResult('failed')
