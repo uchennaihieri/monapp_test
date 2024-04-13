@@ -39,12 +39,12 @@ const Verify_user = ({searchParams}) => {
     const [loadingState, setLoadingState] = useState(false);
     const [qrImage, setQrimage] = useState('');
 
-
+    const email = searchParams.email
+    const token = searchParams.token
+    
 
     useEffect(() => {
 
-        const email = searchParams.email
-const token = searchParams.token
 
         const fetchData = async () => {
 
