@@ -18,7 +18,7 @@ import { useState } from 'react';
 import { RiEyeCloseFill, RiEyeFill } from 'react-icons/ri';
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form';
-import { Axios } from 'axios';
+import axios from 'axios';
 import Feedback from '@/components/feedback';
 
 
@@ -47,7 +47,7 @@ const New_password = ({searchParams}) => {
 
         if (newPassword === confirmPassword){
             try {
-                const response = await Axios.post(
+                const response = await axios.post(
                   'https://us-central1-monapp-production.cloudfunctions.net/app/api/auth/resetPassword',
                   {
                     email: searchParams.email,
@@ -55,7 +55,8 @@ const New_password = ({searchParams}) => {
                     password: newPassword
                   }
                 );
-                if (response.status === 200) {
+
+                if (response.response.status === 200) {
                     setResult('verified')
                   } else {
                     setResult('failed')

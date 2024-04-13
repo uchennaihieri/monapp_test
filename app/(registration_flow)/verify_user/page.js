@@ -52,7 +52,7 @@ const Verify_user = ({searchParams}) => {
                   token: searchParams.token
                 }
               );
-            if (response.status === 200) {
+            if (response.response.status === 200) {
                 setResult('verified')
               } else {
                 setResult('failed')
