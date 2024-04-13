@@ -39,7 +39,8 @@ const New_password = ({searchParams}) => {
     const [qrImage, setQrimage] = useState('');
 
 
-    console.log(searchParams)
+    const email = searchParams.email;
+    const token = searchParams.token
 
     console.log(searchParams.email)
 
@@ -53,8 +54,8 @@ const New_password = ({searchParams}) => {
                 const response = await axios.post(
                   'https://us-central1-monapp-production.cloudfunctions.net/app/api/auth/resetPassword',
                   {
-                    email: searchParams.email,
-                    token: searchParams.token,
+                    email: email,
+                    token: token,
                     password: newPassword
                   }
                 );

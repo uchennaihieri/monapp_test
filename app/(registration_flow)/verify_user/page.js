@@ -42,14 +42,18 @@ const Verify_user = ({searchParams}) => {
 
 
     useEffect(() => {
+
+        const email = searchParams.email
+const token = searchParams.token
+
         const fetchData = async () => {
 
           try {
             const response = await axios.post(
                 'https://us-central1-monapp-production.cloudfunctions.net/app/api/auth/verify-email',
                 {
-                  email: searchParams.email,
-                  token: searchParams.token
+                  email: email,
+                  token: token
                 }
               );
             if (response.error === false) {
