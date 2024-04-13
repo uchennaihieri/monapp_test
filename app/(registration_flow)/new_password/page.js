@@ -39,6 +39,9 @@ const New_password = ({searchParams}) => {
     const [qrImage, setQrimage] = useState('');
 
 
+    console.log(searchParams)
+
+    console.log(searchParams.email)
 
     const submitSignin = async (e) => {
         e.preventDefault();
