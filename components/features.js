@@ -60,13 +60,13 @@ const Feature = ({ title, text, icon }) => {
 export default function Features() {
   return (
     <Flex
-      borderRightRadius="0.67575rem"
+      borderRadius="0.736rem"
       background="#fff"
       boxShadow="2px 8px 24px -0.5px rgba(0, 0, 0, 0.08)"
       flexDirection={{ base: "column-reverse", md: "row" }}
-      w={{ base: "24.375rem", md: "82rem" }}
+      w={{ base: "24.375rem", md: "93rem" }}
       h={{ base: "", md: "33.9375rem" }}
-      m={["-3.1275rem auto auto","-8.1275rem auto auto"]}
+      m={["-3.1275rem auto auto", "-3.1275rem auto"]}
       position={"absolute"}
     >
       <Box
@@ -74,6 +74,7 @@ export default function Features() {
         h={{ base: "23.5rem", md: "33.9375rem" }}
         bg="#F2F2F2"
         position={"relative"}
+        borderRadius={"0.736rem"}
       >
         <Image
           src={"/broker.png"}
@@ -89,11 +90,12 @@ export default function Features() {
       <Box
         pt={{ base: "2.88rem", md: "3.5rem" }}
         pl={{ base: "0", md: "4rem" }}
+        gap={"3.125rem"}
       >
         <Text
           w={{ base: "21.24419rem", md: "32.625rem" }}
           m={{ base: "auto", md: "0" }}
-          lineHeight={{ base: "1.93975rem", md: "2.97894rem" }}
+          lineHeight={{ base: "1.93975rem", md: "2.97875rem" }}
           fontWeight={600}
           color="#000"
           fontSize={{ base: "1.5rem", md: "2.25rem" }}
@@ -101,7 +103,7 @@ export default function Features() {
           textAlign={{ base: "center", md: "left" }}
           mb={{ base: "1.31rem", md: "1.38rem" }}
         >
-          The future-proof way to financial inclusion
+          Dedicated Support Services for Each Customer
         </Text>
         <Text
           w={{ base: "21.5rem", md: "41.0625rem" }}
@@ -114,61 +116,75 @@ export default function Features() {
           mb="2.5rem"
           textAlign={{ base: "center", md: "left" }}
         >
-          Our payment brokers will give you the necessary training and support
-          to make easy transactions from anywhere in Nigeria.
+          Whether you are new to digital payments or not, we have a growing
+          community of dedicated payment brokers who will give you the necessary
+          training and support you need every step of the way.
         </Text>
 
         <Flex
-          w={{ base: "13.5rem", md: "41.0625rem" }}
+          w={{ base: "13.5rem", md: "full" }}
           flexDirection={{ base: "column", md: "row" }}
           justify={"space-between"}
-          gap={{base:"2.38rem"}}
+          gap={{ base: "2.38rem" }}
           m={{ base: " 4rem auto", md: " 0" }}
         >
-          <Flex>
+          <Flex
+            color={"#FFFFFF66"}
+            shadow={"5px 5px 30px 0px rgba(0, 0, 0, 0.08)"}
+            borderRadius={"0.625rem"}
+            p={"1.25rem 0.9375rem 2.5rem 0.9375rem"}
+            gap={"1rem"}
+          >
             <CheckIcon boxSize={"1.75rem"} color="#000000" mr="0.75rem" />
             <Box>
               <Text
                 color="#000"
                 lineHeight={{ base: "normal" }}
                 fontWeight={600}
-                fontSize={{ base: "0.7rem", md: "1.125rem" }}
+                fontSize={{ base: "0.7rem", md: "1.465rem" }}
                 className={dmsans.className}
                 mb="0.75rem"
               >
-                Personalized support 24/7
+                In-app support 24/7
               </Text>
               <Text
                 maxW="16.625rem"
                 color="#000"
-                lineHeight={{ base: "1.16775rem", md:"1.5rem"}}
+                lineHeight={{ base: "1.16775rem", md: "1.325rem" }}
                 fontWeight={400}
-                fontSize={{ base: "0.7rem", md: "1rem" }}
+                fontSize={{ base: "0.7rem", md: "0.9025rem" }}
                 className={dmsans.className}
               >
-                To address any query or concern you may have and ensure you
-                receive prompt and tailored assistance.
+                With our app, help is just a tap away, day or night. Simply hit
+                the 'Broker' button to instantly connect with your dedicated
+                broker.
               </Text>
             </Box>
           </Flex>
 
-          <Flex>
+          <Flex
+            color={"#FFFFFF66"}
+            shadow={"5px 5px 30px 0px rgba(0, 0, 0, 0.08)"}
+            borderRadius={"0.625rem"}
+            p={"1.25rem 0.9375rem 2.5rem 0.9375rem"}
+            gap={"1rem"}
+          >
             <CheckIcon boxSize={"1.75rem"} color="#000000" mr="0.75rem" />
             <Box>
               <Text
                 color="#000"
                 lineHeight={{ base: "normal" }}
                 fontWeight={600}
-                fontSize={{ base: "0.7rem", md: "1.125rem" }}
+                fontSize={{ base: "0.7rem", md: "1.465rem" }}
                 className={dmsans.className}
                 mb="0.75rem"
               >
-                Comprehensive training
+                Tailored Support, Just for You
               </Text>
               <Text
                 maxW="16.625rem"
                 color="#000"
-                lineHeight={{ base: "1.16775rem", md:"1.5rem"}}
+                lineHeight={{ base: "1.16775rem", md: "1.5rem" }}
                 fontWeight={400}
                 fontSize={{ base: "0.7rem", md: "1rem" }}
                 className={dmsans.className}

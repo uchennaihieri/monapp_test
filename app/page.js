@@ -1,40 +1,60 @@
-'use client'
+"use client";
 
-import HeroSection from '@/components/heroSection'
-import Features from '@/components/features'
-import DataSection from '@/components/dataSection'
-import CardSection from '@/components/cardSection'
-import { Box, Flex } from '@chakra-ui/react'
-import FooterSection from '@/components/footerSection'
-import BlackSection from '@/components/blackSection'
-import PageSeo from '@/Seo/pageSeo'
-import NewHero from '@/components/NewHero'
-import OurCommunity from '@/components/OurCommunity'
-import WhiteEasySteps from '@/components/WhiteEasySteps'
+import { Flex } from "@chakra-ui/react";
 
-
+import PageSeo from "@/Seo/pageSeo";
+import HeroSection from "@/components/heroSection";
+import Features from "@/components/features";
+import DataSection from "@/components/dataSection";
+import CardSection from "@/components/cardSection";
+import FooterSection from "@/components/footerSection";
+import BlackSection from "@/components/blackSection";
+import NewHero from "@/components/NewHero";
+import OurCommunity from "@/components/OurCommunity";
+import WhiteEasySteps from "@/components/WhiteEasySteps";
+import TryOut from "@/components/tryOut";
+import PreOrder from "@/components/preOrder";
+import DowloadApp from "@/components/DowloadApp";
 
 export default function Home() {
   return (
     <>
       {/* <PageSeo title="Super fast payments for the next gen - Monapp" description="" /> */}
       <main bg="#FFFFFF">
-
         <NewHero>
-          <div><HeroSection /></div>
-
+          <div>
+            <HeroSection />
+          </div>
         </NewHero>
 
-        <Flex bg="#FFFFFF" flexDirection={'row'} justify={'center'} ><Features /></Flex>
+        <Flex bg="#FFFFFF" flexDirection={"row"} justify={"center"}>
+          <Features />
+        </Flex>
 
-        <div><CardSection /></div>
-        <div><BlackSection /></div>
-        <div><DataSection /></div>
-        <div><WhiteEasySteps /></div>
-        <div><OurCommunity /></div>
-        <div><FooterSection /></div>
+        <div>
+          <CardSection />
+        </div>
+
+        <div>
+          <TryOut />
+        </div>
+
+        <div>
+          <PreOrder />
+        </div>
+
+        <div>
+          <WhiteEasySteps />
+        </div>
+
+        <div>
+          <DowloadApp />
+        </div>
+
+        <div>
+          <FooterSection />
+        </div>
       </main>
-
     </>
-  )
+  );
 }
