@@ -14,7 +14,7 @@ import {
   Button,
   Divider,
   useToast,
-  Link
+  Link,
 } from "@chakra-ui/react";
 import { BsFacebook, BsTwitter } from "react-icons/bs";
 import { AiFillInstagram, AiFillLinkedin } from "react-icons/ai";
@@ -55,14 +55,10 @@ export default function FooterSection() {
 
   return (
     <Box
-
       bgColor="#000000"
       bgImg="url('/footerbg.svg')"
       color="#ffffff"
-
-      mt='20rem'
-
-
+      mt="20rem"
     >
       {/* blue part */}
       <Center>
@@ -73,14 +69,14 @@ export default function FooterSection() {
           display={{ base: "flex", md: "block" }}
           borderRadius={"1rem"}
           justifyContent={"center"}
-          bgColor={"#183656"}
+          bgColor={"#000000"}
+          overflow={"hidden"}
         >
           <Flex
             flexDirection={"column"}
-            ml={['0', '7rem']}
-            mt={'3.5rem'}
-            gap={'2rem'}
-
+            ml={["0", "7rem"]}
+            mt={"3.5rem"}
+            gap={"2rem"}
           >
             {/* <Box
               textAlign={{ base: "center", md: "start" }}
@@ -89,27 +85,34 @@ export default function FooterSection() {
               
             > */}
             <Text
-              // letterSpacing={{ base: "-0.26px", md: "0" }}
-              lineHeight={{ base: "1.8rem", md: "2.65625rem" }}
-
-              fontWeight={'600'}
-              fontSize={{ base: "1.625rem", md: "2.375rem" }}
+              lineHeight={{ base: "1.8rem", md: "3.3125rem" }}
+              fontWeight={"600"}
+              fontSize={{ base: "1.625rem", md: "3rem" }}
               color={"#fff"}
-              className='clashSemiBold'
-              w={['20rem', '33.5625rem']}
-              textAlign={['center','left']}
-            // pr={["0","11rem"]}
+              className="clashSemiBold"
+              w={["20rem", "33.5625rem"]}
+              textAlign={["center", "left"]}
+              // pr={["0","11rem"]}
             >
-              Join our community of  users start making payment today.
+              Join community of 137k+ users start making payment today.
             </Text>
-            <Text color="#ffffff" w={['19.75rem', '34.0625rem']} h={['4.6875rem', '4.6875rem']} fontSize={['0.875rem', '1.125rem']} justifyContent={'center'} lineHeight={['1.25rem', '1.78125rem']} letterSpacing={['0.0175rem', '-0.0225rem']} >
-            Join our user community today and embark on a seamless financial journey with Monapp. Simplify your payments and take control.
-            </Text>
+            {/* <Text
+              color="#ffffff"
+              w={["19.75rem", "34.0625rem"]}
+              h={["4.6875rem", "4.6875rem"]}
+              fontSize={["0.875rem", "1.125rem"]}
+              justifyContent={"center"}
+              lineHeight={["1.25rem", "1.78125rem"]}
+              letterSpacing={["0.0175rem", "-0.0225rem"]}
+            >
+              Join our user community today and embark on a seamless financial
+              journey with Monapp. Simplify your payments and take control.
+            </Text> */}
             {/* </Box> */}
 
             <HStack
               // mt={["0","2rem"]}
-              gap={'1.5rem'}
+              gap={"1.5rem"}
             >
               <Image
                 src={"/app-store.svg"}
@@ -126,7 +129,6 @@ export default function FooterSection() {
                 onClick={getApp}
                 _hover={{ cursor: "pointer" }}
                 alt="app store"
-
               />
             </HStack>
           </Flex>
@@ -135,28 +137,18 @@ export default function FooterSection() {
 
       {/* phone short */}
       <Flex
-        position={'Absolute'}
-        bottom={'23rem'}
-        right={{ md: '25rem', '2xl': '50rem' }}
-        display={{ base: 'none', md: 'flex' }}
+        position={"Absolute"}
+        bottom={"15rem"}
+        right={{ md: "25rem", "2xl": "50rem" }}
+        display={{ base: "none", md: "flex" }}
       >
         <Image
-          width={'18.0185rem'}
-          // height={'34.15163rem'}
+          width={"30rem"}
+          height={"53.0094rem"}
           alt="mobile dashboard"
-          src={'/mobileDash.png'}
-        />
-
-        <Image
-          src="mobilePayment.png"
-          width={'16.51756rem'}
-          // height={'30.76281rem'}
-          alt="mobile Payment"
-          ml='-4.2rem'
-          mt='4.7rem'
+          src={"/monapp-phone.svg"}
         />
       </Flex>
-
 
       {/* lower part */}
 
@@ -167,7 +159,6 @@ export default function FooterSection() {
         gap={["10px", "40px"]}
         flexDirection={["column", "row"]}
       >
-
         {/* monapp logo */}
         <Flex
           flexDirection={"column"}
@@ -176,118 +167,107 @@ export default function FooterSection() {
           justifyContent={"center"}
           alignItems={["center", "start"]}
         >
-          <Image
-            src={"/logo.png"}
-            width={'14.42756rem'}
-            height={'2.625rem'}
-          />
-          <HStack display={"flex"} gap={'1rem'}>
+          <Image src={"/logo.png"} width={"14.42756rem"} height={"2.625rem"} />
+          <HStack display={"flex"} gap={"1rem"}>
             <Icon as={BsFacebook} fontSize="1.38rem" color="#ffffff" />
             <Icon as={BsTwitter} fontSize="1.38rem" color="#ffffff" />
             <Icon as={AiFillInstagram} fontSize="1.38rem" color="#ffffff" />
             <Icon as={AiFillLinkedin} fontSize="1.38rem" color="#ffffff" />
           </HStack>
-
-          <Text
-            display={{ base: 'none', md: 'flex' }}
-            textAlign={{ base: "center", md: "start" }}
-            mt={{ base: "0rem", md: "0rem" }}
-            mb={{ base: "4rem", md: "0rem" }}
-            color="#ffffff"
-            opacity={"0.6"}
-            lineHeight={{ base: "1.12rem", md: "2.18rem" }}
-            fontWeight={400}
-            fontSize={{ base: "0.875rem" }}
-            className={dmsans.className}
-          >
-            Copyright @ MONAPP {new Date().getFullYear()}. All Rights Reserved.
-          </Text>
-
         </Flex>
 
-
-
         {/* feat and com */}
-        <Flex
-          flexDirection={"row"}
-          gap={"10rem"}
-          mb={['4rem', '0rem']}
-        >
-          <VStack
-            fontSize="1rem"
-            gap={'.5rem'}
-            alignItems={"start"}
-          >
-            <Text fontSize="1.125rem" lineHeight={'0.9375rem'}>Features</Text>
-            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>QR Code </Link>
-            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>QR Code</Link>
-            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>QR Code</Link>
-            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>QR Code</Link>
-            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>QR Code</Link>
+        <Flex flexDirection={"row"} gap={"10rem"} mb={["4rem", "0rem"]}>
+          <VStack fontSize="1rem" gap={".5rem"} alignItems={"start"}>
+            <Text fontSize="1.125rem" lineHeight={"0.9375rem"}>
+              Features
+            </Text>
+            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>
+              QR Code{" "}
+            </Link>
+            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>
+              Escrow Service
+            </Link>
+            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>
+              Buy Now, Pay Later (BNPL)
+            </Link>
+            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>
+              Saving Options
+            </Link>
+            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>
+              Access To Loans
+            </Link>
           </VStack>
-
 
           <VStack
             // textAlign={["center","start"]}
             alignItems={"start"}
-            gap={'0.5rem'}
+            gap={"0.5rem"}
           >
-            <Text fontSize="1.125rem" lineHeight={'0.9375rem'}>Company</Text>
-            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>About us</Link>
-            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>Career</Link>
-            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>Press</Link>
-            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>Blog</Link>
-            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>Contact</Link>
-
+            <Text fontSize="1.125rem" lineHeight={"0.9375rem"}>
+              Company
+            </Text>
+            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>
+              About us
+            </Link>
+            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>
+              Career
+            </Link>
+            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>
+              Press
+            </Link>
+            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>
+              Blog
+            </Link>
+            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>
+              Contact
+            </Link>
           </VStack>
         </Flex>
 
-
         {/* legal and app */}
-        <Flex
-          flexDirection={"row"}
-          gap={"6rem"}
-          mb={['4rem', '0rem']}  >
-
-          <VStack
-            alignItems={"start"}
-            gap={'1rem'}
-          >
-            <Text fontSize="1.125rem" lineHeight={'0.9375rem'}>Legal</Text>
-            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>Privacy</Link>
-            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>Terms & Condition</Link>
+        <Flex flexDirection={"row"} gap={"6rem"} mb={["4rem", "0rem"]}>
+          <VStack alignItems={"start"} gap={"1rem"}>
+            <Text fontSize="1.125rem" lineHeight={"0.9375rem"}>
+              Legal
+            </Text>
+            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>
+              Privacy
+            </Link>
+            <Link bg="none" _hover={"none"} fontSize={"0.75rem"}>
+              Terms & Condition
+            </Link>
           </VStack>
 
           <VStack
             // textAlign={["center","start"]}
             alignItems={["center", "start"]}
-            gap={'1rem'}
-
+            gap={"1rem"}
           >
-            <Text fontSize="1.125rem" lineHeight={'0.9375rem'}>Get the app</Text>
-            <Image
-              src={"/qr.png"}
-              _hover={{ cursor: "pointer" }}></Image>
+            <Text fontSize="1.125rem" lineHeight={"0.9375rem"}>
+              Get the app
+            </Text>
+            <Image src={"/qr.png"} _hover={{ cursor: "pointer" }}></Image>
           </VStack>
         </Flex>
-        <Text
-          display={{ base: 'flex', md: 'none' }}
-          textAlign={{ base: "center", md: "start" }}
-          mt={{ base: "0rem", md: "0rem" }}
-          mb={{ base: "4rem", md: "0rem" }}
-          color="#ffffff"
-          opacity={"0.6"}
-          lineHeight={{ base: "1.12rem", md: "2.18rem" }}
-          fontWeight={400}
-          fontSize={{ base: "0.875rem" }}
-          className={dmsans.className}
-        >
-          Copyright @ MONAPP {new Date().getFullYear()}. All Rights Reserved.
-        </Text>
-
-
       </Flex>
 
+      <Text
+        display={{ base: "none", md: "flex" }}
+        textAlign={{ base: "center", md: "center" }}
+        justifyContent={"center"}
+        mt={{ base: "0rem", md: "0rem" }}
+        mb={{ base: "4rem", md: "0rem" }}
+        color="#ffffff"
+        opacity={"0.6"}
+        lineHeight={{ base: "1.12rem", md: "1.9531rem" }}
+        fontWeight={400}
+        fontSize={{ base: "0.875rem", md: "1.5rem" }}
+        className={dmsans.className}
+        pb={"10"}
+      >
+        Copyright @ MONAPP {new Date().getFullYear()}. All Rights Reserved.
+      </Text>
     </Box>
   );
 }

@@ -56,12 +56,12 @@ function WhiteEasySteps() {
             flexDirection="column"
             alignItems="center"
             w={"20rem"}
+            h={"25rem"}
           >
             <Box
-              width="73px"
-              height="73px"
+              width="4.5625rem"
+              height="4.5625rem"
               backgroundColor="#1E1E1E"
-              needed
               borderRadius="50%"
               display="flex"
               alignItems="center"
@@ -106,12 +106,12 @@ function WhiteEasySteps() {
             flexDirection="column"
             alignItems="center"
             w={"20rem"}
+            h={"25rem"}
           >
             <Box
-              width="73px"
-              height="73px"
+              width="4.5625rem"
+              height="4.5625rem"
               backgroundColor="#1E1E1E"
-              needed
               borderRadius="50%"
               display="flex"
               alignItems="center"
@@ -156,12 +156,12 @@ function WhiteEasySteps() {
             flexDirection="column"
             alignItems="center"
             w={"20rem"}
+            h={"25rem"}
           >
             <Box
-              width="73px"
-              height="73px"
+              width="4.5625rem"
+              height="4.5625rem"
               backgroundColor="#1E1E1E"
-              needed
               borderRadius="50%"
               display="flex"
               alignItems="center"
@@ -187,6 +187,7 @@ function WhiteEasySteps() {
             >
               Start Rolling!
             </Text>
+
             <Text
               fontSize={["0.56994rem", "1rem"]}
               w={["11.39894rem", "20rem"]}

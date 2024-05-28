@@ -14,6 +14,7 @@ import OurCommunity from "@/components/OurCommunity";
 import WhiteEasySteps from "@/components/WhiteEasySteps";
 import TryOut from "@/components/tryOut";
 import PreOrder from "@/components/preOrder";
+import DowloadApp from "@/components/DowloadApp";
 
 export default function Home() {
   return (
@@ -47,7 +48,7 @@ export default function Home() {
         </div>
 
         <div>
-          <OurCommunity />
+          <DowloadApp />
         </div>
 
         <div>
