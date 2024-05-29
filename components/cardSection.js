@@ -1,25 +1,14 @@
-import { Container, Image, Flex, Text, Box, useToast } from "@chakra-ui/react";
+import { Container, Image, Flex, Text, Box } from "@chakra-ui/react";
+import localFont from "@next/font/local";
 
-import {
-  Bree_Serif,
-  DM_Sans,
-  Plus_Jakarta_Sans,
-  Covered_By_Your_Grace,
-} from "next/font/google";
-
-const plus = Plus_Jakarta_Sans({ weight: ["500", "700"], subsets: ["latin"] });
-const dmsansBold = DM_Sans({ weight: "500", subsets: ["latin"] });
-const dmsansExtreBold = DM_Sans({ weight: "700", subsets: ["latin"] });
-const dmsans = DM_Sans({ weight: "400", subsets: ["latin"] });
-const bree = Bree_Serif({ weight: "400", subsets: ["latin"] });
-const grace = Covered_By_Your_Grace({ weight: "400", subsets: ["latin"] });
+const jost = localFont({ src: "../public/fonts/jost.ttf" });
 
 const Feature = ({ title, text, icon }) => {
   return (
     <Flex
       justify={"left"}
       w={{ base: "22.25rem", md: "26.6825rem" }}
-      h="24.27875rem"
+      h={{ base: "17.375rem", md: "24.27875rem" }}
       borderRadius={" 1.36375rem"}
       p={"1.36375rem"}
       border={" 2px solid #FFF"}
@@ -31,7 +20,7 @@ const Feature = ({ title, text, icon }) => {
       <Image src={icon} w="2rem" h="2rem" />
 
       <Text
-        className="clashMedium"
+        className={jost.className}
         lineHeight={{ base: "1rem", md: "1.803125rem" }}
         fontSize={{ base: "1.01rem", md: "1.4425rem" }}
         fontWeight={600}
@@ -40,7 +29,7 @@ const Feature = ({ title, text, icon }) => {
       </Text>
       <Text
         fontWeight={400}
-        className={dmsans.className}
+        className={jost.className}
         fontSize={{ base: "0.90rem", md: "1.4425rem" }}
         lineHeight={{ base: "1.37rem", md: "1.8031rem" }}
       >
@@ -51,27 +40,13 @@ const Feature = ({ title, text, icon }) => {
 };
 
 export default function CardSection() {
-  const toast = useToast();
-
-  const getApp = () => {
-    toast({
-      title: "Sorry, you cannot get the app at this time.",
-      description:
-        'This app is only available to pilot users for now. We still have open slots in our pilot which you can join by filling the form on our "work with us" page or simply sign up to be notified when we are available for public use',
-      status: "error",
-      duration: 9000,
-      isClosable: true,
-      position: "top",
-    });
-  };
-
   return (
     <Box bg="#FFFFFF">
       <Container
         maxW="79.81em"
         centerContent
-        pt={{ base: "55.875rem", md: "35.25rem" }}
-        pb={["6rem", "15.25rem"]}
+        pt={{ base: "69.875rem", md: "35.25rem" }}
+        pb={{base: "0", md:"5.25rem"}}
       >
         <Text
           mt={"3.12rem"}
@@ -80,8 +55,8 @@ export default function CardSection() {
           lineHeight={{ base: "2.37rem", md: "4.168125rem" }}
           fontWeight={600}
           fontSize={{ base: "1.75rem", md: "2.884375rem" }}
-          justifyItems={"center"}
-          className="clashSemiBold"
+          textAlign={"center"}
+          className={jost.className}
         >
           Our Features That Transform How You Pay
         </Text>

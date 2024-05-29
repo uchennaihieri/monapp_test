@@ -1,4 +1,7 @@
 import { Box, Button, Container, Flex, Image, Text } from "@chakra-ui/react";
+import localFont from "@next/font/local";
+
+const jost = localFont({ src: "../public/fonts/jost.ttf" });
 
 const PreOrder = () => {
   return (
@@ -9,14 +12,19 @@ const PreOrder = () => {
       bgImage="url('/herobg.png')"
       backgroundPosition="center"
       backgroundSize="cover"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      className={jost.className}
+      py={"16"}
     >
       <Container maxW="79.81em" centerContent>
         <Flex
           direction={{ base: "column", md: "row" }}
           align="center"
-          justify="space-between"
-          pt={"20"}
+          justify="space-center"
           color={"white"}
+          gap={"1.5rem"}
         >
           <Box w={"50%"}>
             <Image
@@ -24,8 +32,10 @@ const PreOrder = () => {
               src="/pos.png"
               alt="pos-image"
               objectFit="cover"
-              w="100%"
-              h="auto"
+              // w="100%"
+              // h="auto"
+              w={{ base: "20.36125rem", md: "41.41rem" }}
+              h={{ base: "16.963125rem", md: "34.5rem" }}
             />
           </Box>
 
@@ -34,10 +44,14 @@ const PreOrder = () => {
             flexDirection={"column"}
             ml={{ base: "0", md: "4" }}
             mt={{ base: "4", md: "0" }}
-            textAlign={{ base: "center", md: "left" }}
             gap={"1.346875rem"}
           >
-            <Text fontSize="3rem" fontWeight={600} lineHeight={"3.75rem"}>
+            <Text
+              fontSize={{ base: "2rem", md: "3rem" }}
+              fontWeight={600}
+              lineHeight={{ base: "2.26rem", md: "3.75rem" }}
+              textAlign={{ base: "center", md: "left" }}
+            >
               Introducing Monapp E-Teller: The Future of POS
             </Text>
 
@@ -45,19 +59,21 @@ const PreOrder = () => {
               justifyContent={"space-between"}
               flexDirection={"column"}
               gap={"1.2rem"}
+              textAlign={"left"}
+              letterSpacing={"-0.16px"}
             >
               <Box>
                 <Text
-                  fontSize={"1.4375rem"}
-                  lineHeight={"1.875rem"}
+                  fontSize={{ base: "1rem", md: "1.4375rem" }}
+                  lineHeight={{ base: "1.738125rem", md: "1.875rem" }}
                   fontWeight={600}
                 >
                   Contactless Payments Anywhere
                 </Text>
                 <Text
-                  fontSize={"1.4375rem"}
+                  fontSize={{ base: "1rem", md: "1.4375rem" }}
                   fontWeight={400}
-                  lineHeight={"1.875rem"}
+                  lineHeight={{ base: "1.25rem", md: "1.875rem" }}
                 >
                   Experience seamless transactions without the need for an
                   internet connection.
@@ -66,16 +82,16 @@ const PreOrder = () => {
 
               <Box>
                 <Text
-                  fontSize={"1.4375rem"}
-                  lineHeight={"1.875rem"}
+                  fontSize={{ base: "1rem", md: "1.4375rem" }}
+                  lineHeight={{ base: "1.738125rem", md: "1.875rem" }}
                   fontWeight={600}
                 >
                   Contactless Payments Anywhere
                 </Text>
                 <Text
-                  fontSize={"1.4375rem"}
+                  fontSize={{ base: "1rem", md: "1.4375rem" }}
                   fontWeight={400}
-                  lineHeight={"1.875rem"}
+                  lineHeight={{ base: "1.25rem", md: "1.875rem" }}
                 >
                   Experience seamless transactions without the need for an
                   internet connection.
@@ -84,16 +100,16 @@ const PreOrder = () => {
 
               <Box>
                 <Text
-                  fontSize={"1.4375rem"}
-                  lineHeight={"1.875rem"}
+                  fontSize={{ base: "1rem", md: "1.4375rem" }}
+                  lineHeight={{ base: "1.738125rem", md: "1.875rem" }}
                   fontWeight={600}
                 >
                   Contactless Payments Anywhere
                 </Text>
                 <Text
-                  fontSize={"1.4375rem"}
+                  fontSize={{ base: "1rem", md: "1.4375rem" }}
                   fontWeight={400}
-                  lineHeight={"1.875rem"}
+                  lineHeight={{ base: "1.25rem", md: "1.875rem" }}
                 >
                   Experience seamless transactions without the need for an
                   internet connection.
@@ -112,7 +128,10 @@ const PreOrder = () => {
               fontSize={"1.561875rem"}
               lineHeight={"2.93rem"}
               variant={"link"}
-              p={"0.488125rem 2.076875rem 0.488125rem 2.075rem"}
+              p={{
+                base: "0.288125rem, 1.22625rem, 0.288125rem, 1.225rem",
+                md: "0.488125rem 2.076875rem 0.488125rem 2.075rem",
+              }}
             >
               Pre-Order Now
             </Button>

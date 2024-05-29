@@ -1,29 +1,22 @@
-import { ReactElement } from "react";
 import {
   Box,
-  SimpleGrid,
   Icon,
   Text,
-  Stack,
   Flex,
   VStack,
-  StackDivider,
   HStack,
   Image,
   Center,
-  Button,
-  Divider,
   useToast,
   Link,
 } from "@chakra-ui/react";
 import { BsFacebook, BsTwitter } from "react-icons/bs";
 import { AiFillInstagram, AiFillLinkedin } from "react-icons/ai";
-import { FcAssistant, FcDonate, FcInTransit } from "react-icons/fc";
-import { Bree_Serif, DM_Sans, Poppins } from "next/font/google";
 import { useRouter } from "next/navigation";
+import localFont from "@next/font/local";
 
-const bree = Bree_Serif({ weight: "400", subsets: ["latin"] });
-const dmsans = DM_Sans({ weight: "400", subsets: ["latin"] });
+const dmsans = localFont({ src: "../public/fonts/dm-sans.ttf" });
+const jost = localFont({ src: "../public/fonts/jost.ttf" });
 
 export default function FooterSection() {
   const toast = useToast();
@@ -64,13 +57,14 @@ export default function FooterSection() {
       <Center>
         <Box
           h={{ base: "23.6875rem", md: "24.8125rem" }}
-          w={{ base: "27.375rem", md: "83.75rem" }}
+          w={{ base: "24.375rem", md: "83.75rem" }}
           mt={{ base: "-18.46rem", md: "-15.25rem" }}
           display={{ base: "flex", md: "block" }}
           borderRadius={"1rem"}
           justifyContent={"center"}
           bgColor={"#000000"}
           overflow={"hidden"}
+          position={"relative"}
         >
           <Flex
             flexDirection={"column"}
@@ -78,42 +72,19 @@ export default function FooterSection() {
             mt={"3.5rem"}
             gap={"2rem"}
           >
-            {/* <Box
-              textAlign={{ base: "center", md: "start" }}
-              mb={{ base: "1.79rem", md: "0rem" }}
-              w={{ base: "15.68em", md: "29.87em" }}
-              
-            > */}
             <Text
               lineHeight={{ base: "1.8rem", md: "3.3125rem" }}
               fontWeight={"600"}
               fontSize={{ base: "1.625rem", md: "3rem" }}
               color={"#fff"}
-              className="clashSemiBold"
+              className={jost.className}
               w={["20rem", "33.5625rem"]}
               textAlign={["center", "left"]}
-              // pr={["0","11rem"]}
             >
               Join community of 137k+ users start making payment today.
             </Text>
-            {/* <Text
-              color="#ffffff"
-              w={["19.75rem", "34.0625rem"]}
-              h={["4.6875rem", "4.6875rem"]}
-              fontSize={["0.875rem", "1.125rem"]}
-              justifyContent={"center"}
-              lineHeight={["1.25rem", "1.78125rem"]}
-              letterSpacing={["0.0175rem", "-0.0225rem"]}
-            >
-              Join our user community today and embark on a seamless financial
-              journey with Monapp. Simplify your payments and take control.
-            </Text> */}
-            {/* </Box> */}
 
-            <HStack
-              // mt={["0","2rem"]}
-              gap={"1.5rem"}
-            >
+            <HStack gap={"1.5rem"}>
               <Image
                 src={"/app-store.svg"}
                 w={{ base: "8rem", md: "10.81rem" }}
@@ -132,23 +103,24 @@ export default function FooterSection() {
               />
             </HStack>
           </Flex>
+          {/* phone short */}
+          <Flex
+            position={"Absolute"}
+            top={{ base: "10rem", md: "-15rem" }}
+            right={{ base: "0", md: "-2rem", "2xl": "50rem" }}
+            overflow={"hidden"}
+          >
+            <Image
+              overflow={"hidden"}
+              width={{ base: "10.2875rem", md: "35.46875rem" }}
+              height={{ base: "17.146875rem", md: "53.009375rem" }}
+              alt="mobile-phone-image"
+              src={"/monapp-phone.svg"}
+              className="object-center object-cover"
+            />
+          </Flex>
         </Box>
       </Center>
-
-      {/* phone short */}
-      <Flex
-        position={"Absolute"}
-        bottom={"15rem"}
-        right={{ md: "25rem", "2xl": "50rem" }}
-        display={{ base: "none", md: "flex" }}
-      >
-        <Image
-          width={"30rem"}
-          height={"53.0094rem"}
-          alt="mobile dashboard"
-          src={"/monapp-phone.svg"}
-        />
-      </Flex>
 
       {/* lower part */}
 
@@ -199,11 +171,7 @@ export default function FooterSection() {
             </Link>
           </VStack>
 
-          <VStack
-            // textAlign={["center","start"]}
-            alignItems={"start"}
-            gap={"0.5rem"}
-          >
+          <VStack alignItems={"start"} gap={"0.5rem"}>
             <Text fontSize="1.125rem" lineHeight={"0.9375rem"}>
               Company
             </Text>
@@ -239,11 +207,7 @@ export default function FooterSection() {
             </Link>
           </VStack>
 
-          <VStack
-            // textAlign={["center","start"]}
-            alignItems={["center", "start"]}
-            gap={"1rem"}
-          >
+          <VStack alignItems={["center", "start"]} gap={"1rem"}>
             <Text fontSize="1.125rem" lineHeight={"0.9375rem"}>
               Get the app
             </Text>
@@ -253,11 +217,9 @@ export default function FooterSection() {
       </Flex>
 
       <Text
-        display={{ base: "none", md: "flex" }}
+        display={"flex"}
         textAlign={{ base: "center", md: "center" }}
         justifyContent={"center"}
-        mt={{ base: "0rem", md: "0rem" }}
-        mb={{ base: "4rem", md: "0rem" }}
         color="#ffffff"
         opacity={"0.6"}
         lineHeight={{ base: "1.12rem", md: "1.9531rem" }}
