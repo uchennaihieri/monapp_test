@@ -1,61 +1,10 @@
-import { ReactElement } from "react";
-import {
-  Box,
-  SimpleGrid,
-  Icon,
-  Text,
-  Stack,
-  Flex,
-  Image,
-  Container,
-} from "@chakra-ui/react";
-import { FcAssistant, FcDonate, FcInTransit } from "react-icons/fc";
-import { Bree_Serif, Inter, DM_Sans } from "next/font/google";
+import localFont from "@next/font/local";
+import { Box, Text, Flex, Image } from "@chakra-ui/react";
 import CheckIcon from "./Icons/checkIcon";
 
-const dmsans = DM_Sans({ weight: "400", subsets: ["latin"] });
-
-const dmsansBold = DM_Sans({ weight: "500", subsets: ["latin"] });
-const bree = Bree_Serif({ weight: "400", subsets: ["latin"] });
-
-const Feature = ({ title, text, icon }) => {
-  return (
-    <Flex
-      justify={{ base: "center", md: "left" }}
-      align={{ base: "center", md: "start" }}
-      flexDirection={{ base: "column", md: "row" }}
-    >
-      <Box
-        p="0"
-        mb={{ base: "1.55rem", md: "0px" }}
-        mr={{ base: "0px", md: "1.9rem" }}
-      >
-        {icon}
-      </Box>
-      <Box
-        textAlign={{ base: "center", md: "start" }}
-        w={{ base: "16.75rem", md: "auto" }}
-      >
-        <Text
-          color={"#000000"}
-          className={dmsansBold.className}
-          fontSize={{ base: "1.01rem", md: "1.125rem" }}
-          mb={{ base: "0.91rem", md: "0.9375rem" }}
-        >
-          {title}
-        </Text>
-        <Text
-          fontWeight={400}
-          className={dmsans.className}
-          fontSize={{ base: "0.90rem", md: "1rem" }}
-          lineHeight={{ base: "1.37rem", md: "1.875rem" }}
-        >
-          {text}
-        </Text>
-      </Box>
-    </Flex>
-  );
-};
+const dmsans = localFont({ src: "../public/fonts/dm-sans.ttf" });
+const jost = localFont({ src: "../public/fonts/jost.ttf" });
+const heebo = localFont({ src: "../public/fonts/heebo.ttf" });
 
 export default function Features() {
   return (
@@ -95,11 +44,11 @@ export default function Features() {
         <Text
           w={{ base: "21.24419rem", md: "32.625rem" }}
           m={{ base: "auto", md: "0" }}
-          lineHeight={{ base: "1.93975rem", md: "2.97875rem" }}
+          lineHeight={{ base: "1.875rem", md: "2.97875rem" }}
           fontWeight={600}
           color="#000"
           fontSize={{ base: "1.5rem", md: "2.25rem" }}
-          className="clashSemiBold"
+          className={jost.className}
           textAlign={{ base: "center", md: "left" }}
           mb={{ base: "1.31rem", md: "1.38rem" }}
         >
@@ -109,7 +58,7 @@ export default function Features() {
           w={{ base: "21.5rem", md: "41.0625rem" }}
           mx={"auto"}
           color="#000"
-          lineHeight={{ base: " 1.15988rem", md: "1.78125rem" }}
+          lineHeight={{ base: "1.25rem", md: "1.78125rem" }}
           fontWeight={400}
           fontSize={{ base: "1rem", md: "1.5rem" }}
           className={dmsans.className}
@@ -126,6 +75,7 @@ export default function Features() {
           flexDirection={{ base: "column", md: "row" }}
           justify={"space-between"}
           gap={{ base: "2.38rem" }}
+          alignItems={"center"}
           m={{ base: " 4rem auto", md: " 0" }}
         >
           <Flex
@@ -133,15 +83,16 @@ export default function Features() {
             shadow={"5px 5px 30px 0px rgba(0, 0, 0, 0.08)"}
             borderRadius={"0.625rem"}
             p={"1.25rem 0.9375rem 2.5rem 0.9375rem"}
-            gap={"1rem"}
+            w={{ base: "21.5rem" }}
+            h={{ base: "9.6875rem" }}
           >
             <CheckIcon boxSize={"1.75rem"} color="#000000" mr="0.75rem" />
             <Box>
               <Text
                 color="#000"
-                lineHeight={{ base: "normal" }}
-                fontWeight={600}
-                fontSize={{ base: "0.7rem", md: "1.465rem" }}
+                lineHeight={{ base: "1.465rem", md: "1.465rem" }}
+                fontWeight={500}
+                fontSize={{ base: "1.125rem", md: "1.125rem" }}
                 className={dmsans.className}
                 mb="0.75rem"
               >
@@ -150,10 +101,10 @@ export default function Features() {
               <Text
                 maxW="16.625rem"
                 color="#000"
-                lineHeight={{ base: "1.16775rem", md: "1.325rem" }}
+                lineHeight={{ base: "1.32625rem", md: "1.32625rem" }}
                 fontWeight={400}
-                fontSize={{ base: "0.7rem", md: "0.9025rem" }}
-                className={dmsans.className}
+                fontSize={{ base: "0.9025rem", md: "0.9025rem" }}
+                className={heebo.className}
               >
                 With our app, help is just a tap away, day or night. Simply hit
                 the 'Broker' button to instantly connect with your dedicated
@@ -167,15 +118,16 @@ export default function Features() {
             shadow={"5px 5px 30px 0px rgba(0, 0, 0, 0.08)"}
             borderRadius={"0.625rem"}
             p={"1.25rem 0.9375rem 2.5rem 0.9375rem"}
-            gap={"1rem"}
+            w={{ base: "21.5rem" }}
+            h={{ base: "9.6875rem" }}
           >
             <CheckIcon boxSize={"1.75rem"} color="#000000" mr="0.75rem" />
             <Box>
               <Text
                 color="#000"
-                lineHeight={{ base: "normal" }}
-                fontWeight={600}
-                fontSize={{ base: "0.7rem", md: "1.465rem" }}
+                lineHeight={{ base: "1.465rem", md: "1.465rem" }}
+                fontWeight={500}
+                fontSize={{ base: "1.125rem", md: "1.125rem" }}
                 className={dmsans.className}
                 mb="0.75rem"
               >
@@ -184,10 +136,10 @@ export default function Features() {
               <Text
                 maxW="16.625rem"
                 color="#000"
-                lineHeight={{ base: "1.16775rem", md: "1.5rem" }}
+                lineHeight={{ base: "1.32625rem", md: "1.32625rem" }}
                 fontWeight={400}
-                fontSize={{ base: "0.7rem", md: "1rem" }}
-                className={dmsans.className}
+                fontSize={{ base: "0.9025rem", md: "0.9025rem" }}
+                className={heebo.className}
               >
                 To equip you with the knowledge and skills to navigate your
                 payment process effectively.
@@ -199,64 +151,3 @@ export default function Features() {
     </Flex>
   );
 }
-
-// <Box w={{ base: '21.62em', md: "36.43em" }} mt={{ base: '4.81rem', md: "9.06rem" }} mb={{ base: '3.25rem', md: "8.75rem" }} align="center">
-//                 <Text
-//                     mb={{ base: '0.5rem', md: '1rem' }}
-//                     letterSpacing={{ base: '-0.35px', md: '-0.5px' }}
-//                     lineHeight={{ base: '2.2rem', md: '3.125rem' }}
-//                     fontWeight={400}
-//                     fontSize={{ base: '1.32rem', md: '1.87rem' }}
-//                     className={bree.className}
-
-//                 >Go Beyond slow payments</Text>
-//                 <Text
-//                     lineHeight={{ base: '1.25rem', md: '2.18rem' }}
-//                     fontWeight={400}
-//                     fontSize={{ base: '0.7rem', md: '1rem' }}
-//                     className={dmsans.className}
-
-//                 >Focus only on your business, we take care of the payments. You can pay and get paid within seconds with zero hitches.</Text>
-//             </Box>
-
-//             <Box maxW={{ base: '21.62em', md: "36.43em" }} mt={{ base: '4.81rem', md: "9.06rem" }} mb={{ base: '3.25rem', md: "8.75rem" }} align="center">
-//                 <Text
-//                     mb={{ base: '0.5rem', md: '1rem' }}
-//                     letterSpacing={{ base: '-0.35px', md: '-0.5px' }}
-//                     lineHeight={{ base: '2.2rem', md: '3.125rem' }}
-//                     fontWeight={400}
-//                     fontSize={{ base: '1.32rem', md: '1.87rem' }}
-//                     className={bree.className}
-
-//                 >Go Beyond slow payments</Text>
-//                 <Text
-//                     lineHeight={{ base: '1.25rem', md: '2.18rem' }}
-//                     fontWeight={400}
-//                     fontSize={{ base: '0.7rem', md: '1rem' }}
-//                     className={dmsans.className}
-
-//                 >Focus only on your business, we take care of the payments. You can pay and get paid within seconds with zero hitches.</Text>
-//             </Box>
-//             <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
-//                 <Feature
-//                     icon={<Image src='/store.svg' w={{ base: 10, md: 36 }} h={'auto'} />}
-//                     title={'Receive payment for your business'}
-//                     text={
-//                         "You get instant feedback on payments and can customize payment flows to fit your use case. It's all in your hands..."
-//                     }
-//                 />
-//                 <Feature
-//                     icon={<Image src='/gift.svg' w={{ base: 10, md: 36 }} h={'auto'} />}
-//                     title={'Pay swiftly for purchases'}
-//                     text={
-//                         'Join the Monapp community and enjoy life without cash. End-to-end payments without transaction failure...'
-//                     }
-//                 />
-//                 <Feature
-//                     icon={<Image src='/cup.svg' w={{ base: 10, md: 36 }} h={'auto'} />}
-//                     title={'Grow your business'}
-//                     text={
-//                         'Businesses that use monapp save time and delight their customers. Giving them the best payment option locally...'
-//                     }
-//                 />
-//             </SimpleGrid>

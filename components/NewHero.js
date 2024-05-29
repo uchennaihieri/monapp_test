@@ -7,7 +7,7 @@ function NewHero({ children }) {
   return (
     <Box
       bg="#000000"
-      h={{ md: "56.5rem", "2xl": "56.5rem" }}
+      h={{ base: "66.85rem", md: "56.5rem", "2xl": "56.5rem" }}
       w="100%"
       bgImage="url('/herobg.png')"
       backgroundPosition="center"
