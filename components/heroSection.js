@@ -83,8 +83,8 @@ export default function HeroSection() {
               lineHeight={{ base: "1.25rem", md: "2.408125rem" }}
             >
               Flexible payment services at your fingertips! Online, offline, or
-              in between, we've got you covered with Escrow, BNPL, Save to Buy,
-              and an E-Teller for contactless payments on the go.
+              in between, we&apos;ve got you covered with Escrow, BNPL, Save to
+              Buy, and an E-Teller for contactless payments on the go.
             </Text>
           </Box>
           <HStack spacing={{ base: "0.85rem", md: "2.3rem" }}>

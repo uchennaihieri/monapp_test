@@ -57,7 +57,7 @@ export default function FooterSection() {
       <Center>
         <Box
           h={{ base: "23.6875rem", md: "24.8125rem" }}
-          w={{ base: "24.375rem", md: "83.75rem" }}
+          w={{ base: "24.375rem", sm: "83.75rem" }}
           mt={{ base: "-18.46rem", md: "-15.25rem" }}
           display={{ base: "flex", md: "block" }}
           borderRadius={"1rem"}
@@ -139,7 +139,7 @@ export default function FooterSection() {
           justifyContent={"center"}
           alignItems={["center", "start"]}
         >
-          <Image src={"/logo.png"} width={"14.42756rem"} height={"2.625rem"} />
+          <Image src={"/logo.png"} width={"14.42756rem"} height={"2.625rem"} alt="logo-image"/>
           <HStack display={"flex"} gap={"1rem"}>
             <Icon as={BsFacebook} fontSize="1.38rem" color="#ffffff" />
             <Icon as={BsTwitter} fontSize="1.38rem" color="#ffffff" />
@@ -211,7 +211,7 @@ export default function FooterSection() {
             <Text fontSize="1.125rem" lineHeight={"0.9375rem"}>
               Get the app
             </Text>
-            <Image src={"/qr.png"} _hover={{ cursor: "pointer" }}></Image>
+            <Image src={"/qr.png"} _hover={{ cursor: "pointer" }} alt="qr-code"></Image>
           </VStack>
         </Flex>
       </Flex>

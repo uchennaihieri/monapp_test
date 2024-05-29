@@ -38,18 +38,20 @@ function WhiteEasySteps() {
         alignItems={"center"}
         justify={"center"}
         maxWidth={"80%"}
-        // m={"auto"}
         pt={"2.88rem"}
         position={"relative"}
         gap={["4.5rem", "5rem"]}
         className={jost.className}
+        bgImage={["", "url('/map.png')"]}
+        backgroundPosition="center"
+        backgroundSize={["cover", "contain"]}
       >
         <Box
           display="flex"
           flexDirection="column"
           alignItems="center"
           width={{ base: "15.8125rem", md: "20rem" }}
-          height={{ base: "auto", md: "15rem" }}
+          height={{ base: "auto", md: "20rem" }}
         >
           <Box
             width="4.5625rem"
@@ -72,23 +74,25 @@ function WhiteEasySteps() {
           </Box>
 
           <Text
-            fontSize={["1rem", "1.5rem"]}
+            fontSize={["1rem", "1.3125rem"]}
             fontWeight={"400"}
             mt={["1.9rem", "3.375rem"]}
             mb={["0.4rem", "0.88rem"]}
             lineHeight={["2rem"]}
             className={jost.className}
+            letterSpacing={"-0.5px"}
           >
             Install the App
           </Text>
           <Text
-            fontSize={["1rem", "1rem"]}
+            fontSize={["1rem", "1.4425rem"]}
             w={["11.39894rem", "20rem"]}
-            lineHeight={["1.5rem", "2rem"]}
-            letterSpacing={["-0.01138rem", "-0.02rem"]}
+            lineHeight={["1.125rem", "1.8125rem"]}
+            letterSpacing={["-0.01138rem", "-0.2px"]}
             textAlign={"center"}
-            fontWeight={"200"}
+            fontWeight={"400"}
             className={jost.className}
+            opacity={"0.6"}
           >
             Download Monapp from Play Store or App Store, register, and unlock
             seamless financial transactions.
@@ -100,7 +104,7 @@ function WhiteEasySteps() {
           flexDirection="column"
           alignItems="center"
           width={{ base: "15.8125rem", md: "20rem" }}
-          height={{ base: "auto", md: "15rem" }}
+          height={{ base: "auto", md: "20rem" }}
         >
           <Box
             width="4.5625rem"
@@ -123,22 +127,25 @@ function WhiteEasySteps() {
           </Box>
 
           <Text
-             fontSize={["1rem", "1.5rem"]}
-             fontWeight={"400"}
-             mt={["1.9rem", "3.375rem"]}
-             mb={["0.4rem", "0.88rem"]}
-             lineHeight={["2rem"]}
-             className={jost.className}
+            fontSize={["1rem", "1.3125rem"]}
+            fontWeight={"400"}
+            mt={["1.9rem", "3.375rem"]}
+            mb={["0.4rem", "0.88rem"]}
+            lineHeight={["2rem"]}
+            className={jost.className}
+            letterSpacing={"-0.5px"}
           >
             Submit Your Request
           </Text>
           <Text
-            fontSize={["0.56994rem", "1rem"]}
+            fontSize={["1rem", "1.4425rem"]}
             w={["11.39894rem", "20rem"]}
-            lineHeight={["1.13988rem", "2rem"]}
-            letterSpacing={["-0.01138rem", "-0.02rem"]}
+            lineHeight={["1.125rem", "1.8125rem"]}
+            letterSpacing={["-0.01138rem", "-0.2px"]}
             textAlign={"center"}
-            fontWeight={"200"}
+            fontWeight={"400"}
+            className={jost.className}
+            opacity={"0.6"}
           >
             Contact your broker and submit your requirements for a tailored
             experience.
@@ -150,7 +157,7 @@ function WhiteEasySteps() {
           flexDirection="column"
           alignItems="center"
           width={{ base: "15.8125rem", md: "20rem" }}
-          height={{ base: "auto", md: "15rem" }}
+          height={{ base: "auto", md: "20rem" }}
         >
           <Box
             width="4.5625rem"
@@ -173,24 +180,29 @@ function WhiteEasySteps() {
           </Box>
 
           <Text
-            fontSize={["0.85494rem", "1.5rem"]}
-            fontWeight={"500"}
+            fontSize={["1rem", "1.3125rem"]}
+            fontWeight={"400"}
             mt={["1.9rem", "3.375rem"]}
             mb={["0.4rem", "0.88rem"]}
+            lineHeight={["2rem"]}
+            className={jost.className}
+            letterSpacing={"-0.5px"}
           >
             Start Rolling!
           </Text>
 
           <Text
-            fontSize={["0.56994rem", "1rem"]}
+            fontSize={["1rem", "1.4425rem"]}
             w={["11.39894rem", "20rem"]}
-            lineHeight={["1.13988rem", "2rem"]}
-            letterSpacing={["-0.01138rem", "-0.02rem"]}
+            lineHeight={["1.125rem", "1.8125rem"]}
+            letterSpacing={["-0.01138rem", "-0.2px"]}
             textAlign={"center"}
-            fontWeight={"200"}
+            fontWeight={"400"}
+            className={jost.className}
+            opacity={"0.6"}
           >
-            We will implement your custom flow and you'll be notified to start
-            using it.
+            We will implement your custom flow and you&apos;ll be notified to
+            start using it.
           </Text>
         </Box>
       </Flex>

@@ -33,6 +33,7 @@ export default function Features() {
           bottom="0"
           left="50%"
           transform="translate(-50%, -0%)"
+          alt="broker-image"
         />
       </Box>
 
@@ -40,6 +41,10 @@ export default function Features() {
         pt={{ base: "2.88rem", md: "3.5rem" }}
         pl={{ base: "0", md: "4rem" }}
         gap={"3.125rem"}
+        bgImage="url('/map.png')"
+        backgroundPosition="center"
+        backgroundSize="contain"
+        backgroundRepeat={"no-repeat"}
       >
         <Text
           w={{ base: "21.24419rem", md: "32.625rem" }}
@@ -107,7 +112,7 @@ export default function Features() {
                 className={heebo.className}
               >
                 With our app, help is just a tap away, day or night. Simply hit
-                the 'Broker' button to instantly connect with your dedicated
+                the &apos;Broker&apos; button to instantly connect with your dedicated
                 broker.
               </Text>
             </Box>
