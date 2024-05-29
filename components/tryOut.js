@@ -13,6 +13,10 @@ const TryOut = () => {
           align="center"
           justify="space-between"
           gap={"6"}
+          bgImage="url('/map.png')"
+          backgroundPosition="center"
+          backgroundSize={["cover", "contain"]}
+          backgroundRepeat={"no-repeat"}
         >
           <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
             <Image
@@ -47,10 +51,10 @@ const TryOut = () => {
               lineHeight={"2.02rem"}
               className={jost.className}
             >
-              Whether you're saving solo or with a group, this feature empowers
-              you to achieve your goals faster. Dream of a new laptop, a dream
-              vacation, or your first car? With Save to Buy, you're one step
-              closer. Start saving smarter today!"
+              Whether you&apos;re saving solo or with a group, this feature
+              empowers you to achieve your goals faster. Dream of a new laptop,
+              a dream vacation, or your first car? With Save to Buy, you&apos;re
+              one step closer. Start saving smarter today!&apos;
             </Text>
             <Button
               borderRadius={"0.669375rem"}

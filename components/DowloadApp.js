@@ -21,11 +21,14 @@ const DowloadApp = () => {
           justify="space-between"
           pt={"20"}
           className={jost.className}
+          bgImage="url('/map.png')"
+          backgroundPosition="center"
+          backgroundSize="contain"
         >
-          <Box w={"50%"}>
+          <Box w={["100%", "50%"]}>
             <Image
               flex="1"
-              src="/pos.png"
+              src="/group.svg"
               alt="pos-image"
               objectFit="cover"
               w="100%"
