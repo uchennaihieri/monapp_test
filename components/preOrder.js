@@ -17,6 +17,7 @@ const PreOrder = () => {
       justifyContent="center"
       className={jost.className}
       py={"16"}
+      position={"relative"}
     >
       <Container maxW="79.81em" centerContent>
         <Flex
@@ -122,11 +123,11 @@ const PreOrder = () => {
               color={"white"}
               border={"2px"}
               borderColor={"white"}
-              w={"13.467rem"}
-              h={"3.786rem"}
+              w={{ base: "8.74375rem", md: "13.467rem" }}
+              h={{ base: "2.4775rem", md: "3.786rem" }}
               fontWeight={500}
-              fontSize={"1.561875rem"}
-              lineHeight={"2.93rem"}
+              fontSize={{ base: "0.921875rem", md: "1.561875rem" }}
+              lineHeight={{ base: "1.729375rem", md: "2.93rem" }}
               variant={"link"}
               p={{
                 base: "0.288125rem, 1.22625rem, 0.288125rem, 1.225rem",
@@ -137,6 +138,24 @@ const PreOrder = () => {
             </Button>
           </Flex>
         </Flex>
+
+        <Image
+          src="/Ellipse.svg"
+          pos={"absolute"}
+          top={{ base: "0", md: "20rem" }}
+          left={{ base: "15%", md: "-5rem" }}
+          transform={{ md: "rotate(270deg)" }}
+          w={{ md: "27.976875rem" }}
+          h={{ md: "27.976875rem" }}
+        />
+
+        <Image
+          src="/Spiral.png"
+          pos={"absolute"}
+          bottom={"0"}
+          right={"0"}
+          display={["block", "none"]}
+        />
       </Container>
     </Box>
   );

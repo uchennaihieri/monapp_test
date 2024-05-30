@@ -13,9 +13,13 @@ export default function Features() {
       background="#fff"
       boxShadow="2px 8px 24px -0.5px rgba(0, 0, 0, 0.08)"
       flexDirection={{ base: "column-reverse", md: "row" }}
-      w={{ base: "24.375rem", md: "93rem" }}
+      w={{ base: "24.375rem", md: "70rem", lg: "93rem" }}
       h={{ base: "", md: "33.9375rem" }}
-      m={["-3.1275rem auto auto", "-3.1275rem auto"]}
+      m={{
+        base: "-3.1275rem auto auto",
+        md: "2rem auto",
+        lg: "-3.1275rem auto",
+      }}
       position={"absolute"}
     >
       <Box
@@ -112,8 +116,8 @@ export default function Features() {
                 className={heebo.className}
               >
                 With our app, help is just a tap away, day or night. Simply hit
-                the &apos;Broker&apos; button to instantly connect with your dedicated
-                broker.
+                the &apos;Broker&apos; button to instantly connect with your
+                dedicated broker.
               </Text>
             </Box>
           </Flex>

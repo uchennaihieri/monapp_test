@@ -1,12 +1,12 @@
 import React from "react";
 import localFont from "@next/font/local";
-import { Box, Flex, Text, VStack } from "@chakra-ui/react";
+import { Box, Flex, Image, Text, VStack } from "@chakra-ui/react";
 
 const jost = localFont({ src: "../public/fonts/jost.ttf" });
 
 function WhiteEasySteps() {
   return (
-    <VStack bg={"#ffff"} py="16" h={["58.9375rem", "38rem"]}>
+    <VStack bg={"#ffff"} py="16" h={{ base: "58.9375rem", md: "38rem" }}>
       <Text
         fontSize={{ base: "2rem", md: "2.5rem" }}
         fontStyle={"normal"}
@@ -33,7 +33,7 @@ function WhiteEasySteps() {
       </Text>
       <Flex
         align="center"
-        flexDir={["column", "row"]}
+        flexDir={{ base: "column", md: "row" }}
         textAlign={"center"}
         alignItems={"center"}
         justify={"center"}
@@ -52,6 +52,7 @@ function WhiteEasySteps() {
           alignItems="center"
           width={{ base: "15.8125rem", md: "20rem" }}
           height={{ base: "auto", md: "20rem" }}
+          zIndex={"10"}
         >
           <Box
             width="4.5625rem"
@@ -99,12 +100,30 @@ function WhiteEasySteps() {
           </Text>
         </Box>
 
+        <Image
+          src="/line.png"
+          position={"absolute"}
+          top={"5rem"}
+          left={"11.5rem"}
+          w={"21.6875rem"}
+          display={{ base: "none", md: "flex" }}
+        />
+
+        <Image
+          src="/line2.png"
+          position={"absolute"}
+          top={"18rem"}
+          left={"7.8rem"}
+          display={{ base: "flex", md: "none" }}
+        />
+
         <Box
           display="flex"
           flexDirection="column"
           alignItems="center"
           width={{ base: "15.8125rem", md: "20rem" }}
           height={{ base: "auto", md: "20rem" }}
+          zIndex={"10"}
         >
           <Box
             width="4.5625rem"
@@ -152,12 +171,30 @@ function WhiteEasySteps() {
           </Text>
         </Box>
 
+        <Image
+          src="/line.png"
+          position={"absolute"}
+          top={"5rem"}
+          right={"11.5rem"}
+          w={"21.6875rem"}
+          display={{ base: "none", md: "flex" }}
+        />
+
+        <Image
+          src="/line2.png"
+          position={"absolute"}
+          top={"35rem"}
+          left={"7.8rem"}
+          display={{ base: "flex", md: "none" }}
+        />
+
         <Box
           display="flex"
           flexDirection="column"
           alignItems="center"
           width={{ base: "15.8125rem", md: "20rem" }}
           height={{ base: "auto", md: "20rem" }}
+          zIndex={"10"}
         >
           <Box
             width="4.5625rem"
