@@ -3,7 +3,7 @@ import localFont from "@next/font/local";
 
 const jost = localFont({ src: "../public/fonts/jost.ttf" });
 
-const Feature = ({ title, text, icon, bgColour }) => {
+const Feature = ({ title, text, icon }) => {
   return (
     <Flex
       justify={"left"}
@@ -11,15 +11,19 @@ const Feature = ({ title, text, icon, bgColour }) => {
       h={{ base: "17.375rem", md: "24.27875rem" }}
       borderRadius={" 1.36375rem"}
       p={"1.36375rem"}
-      border={bgColour ? "2px solid #00000014" : "2px solid #FFF"}
-      background={bgColour ? bgColour : "#FFFFFF"}
-      boxShadow={
-        bgColour
-          ? "5.46px 5.46px 32.73px 0px #00000014"
-          : "22.12px 41.35px 88.46px 0px #0000001A"
-      }
+      border={"2px solid #FFF"}
+      background={"#FFFFFF"}
+      boxShadow={"22.12px 41.35px 88.46px 0px #0000001A"}
       flexDirection={"column"}
+      transition="all 0.3s ease-in-out"
       gap={"0.88625rem"}
+      _hover={{
+        transform: "translateY(-10px)",
+        border: "2px solid #00000014",
+        bg: "#0000001A",
+        boxShadow: "5.46px 5.46px 32.73px 0px #00000014",
+        cursor: "pointer",
+      }}
     >
       <Image src={icon} w="2rem" h="2rem" />
 
@@ -116,7 +120,6 @@ export default function CardSection() {
                 text={
                   "With Monapp, you can make the purchases you need today and pay at your own pace. Whether you're paying for goods or services, our flexible payment option allows you to spread the cost over time."
                 }
-                bgColour={"#0000001A"}
               />
               <Feature
                 icon={"/moneys.svg"}

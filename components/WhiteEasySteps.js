@@ -100,13 +100,14 @@ function WhiteEasySteps() {
           </Text>
         </Box>
 
-        <Image
+        {/* <Image
           src="/line.png"
           position={"absolute"}
           top={"5rem"}
           left={"11.5rem"}
           w={"21.6875rem"}
           display={{ base: "none", md: "flex" }}
+          alt="Line"
         />
 
         <Image
@@ -115,7 +116,8 @@ function WhiteEasySteps() {
           top={"18rem"}
           left={"7.8rem"}
           display={{ base: "flex", md: "none" }}
-        />
+          alt="Line"
+        /> */}
 
         <Box
           display="flex"
@@ -170,7 +172,8 @@ function WhiteEasySteps() {
             experience.
           </Text>
         </Box>
-
+        
+        {/* 
         <Image
           src="/line.png"
           position={"absolute"}
@@ -178,6 +181,7 @@ function WhiteEasySteps() {
           right={"11.5rem"}
           w={"21.6875rem"}
           display={{ base: "none", md: "flex" }}
+          alt="Line"
         />
 
         <Image
@@ -186,7 +190,8 @@ function WhiteEasySteps() {
           top={"35rem"}
           left={"7.8rem"}
           display={{ base: "flex", md: "none" }}
-        />
+          alt="Line"
+        /> */}
 
         <Box
           display="flex"

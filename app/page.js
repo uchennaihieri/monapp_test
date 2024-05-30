@@ -2,15 +2,11 @@
 
 import { Flex } from "@chakra-ui/react";
 
-import PageSeo from "@/Seo/pageSeo";
 import HeroSection from "@/components/heroSection";
 import Features from "@/components/features";
-import DataSection from "@/components/dataSection";
 import CardSection from "@/components/cardSection";
 import FooterSection from "@/components/footerSection";
-import BlackSection from "@/components/blackSection";
 import NewHero from "@/components/NewHero";
-import OurCommunity from "@/components/OurCommunity";
 import WhiteEasySteps from "@/components/WhiteEasySteps";
 import TryOut from "@/components/tryOut";
 import PreOrder from "@/components/preOrder";

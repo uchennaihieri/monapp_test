@@ -139,7 +139,12 @@ export default function FooterSection() {
           justifyContent={"center"}
           alignItems={["center", "start"]}
         >
-          <Image src={"/logo.png"} width={"14.42756rem"} height={"2.625rem"} alt="logo-image"/>
+          <Image
+            src={"/logo.png"}
+            width={"14.42756rem"}
+            height={"2.625rem"}
+            alt="logo-image"
+          />
           <HStack display={"flex"} gap={"1rem"}>
             <Icon as={BsFacebook} fontSize="1.38rem" color="#ffffff" />
             <Icon as={BsTwitter} fontSize="1.38rem" color="#ffffff" />
@@ -211,7 +216,11 @@ export default function FooterSection() {
             <Text fontSize="1.125rem" lineHeight={"0.9375rem"}>
               Get the app
             </Text>
-            <Image src={"/qr.png"} _hover={{ cursor: "pointer" }} alt="qr-code"></Image>
+            <Image
+              src={"/qr.png"}
+              _hover={{ cursor: "pointer" }}
+              alt="qr-code"
+            ></Image>
           </VStack>
         </Flex>
       </Flex>
