@@ -5,7 +5,6 @@ import {
   Flex,
   VStack,
   HStack,
-  Image,
   Center,
   useToast,
   Link,
@@ -14,6 +13,7 @@ import { BsFacebook, BsTwitter } from "react-icons/bs";
 import { AiFillInstagram, AiFillLinkedin } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 import localFont from "@next/font/local";
+import Image from "next/image";
 
 const dmsans = localFont({ src: "../public/fonts/dm-sans.ttf" });
 const jost = localFont({ src: "../public/fonts/jost.ttf" });
@@ -87,19 +87,19 @@ export default function FooterSection() {
             <HStack gap={"1.5rem"}>
               <Image
                 src={"/app-store.svg"}
-                w={{ base: "8rem", md: "10.81rem" }}
-                h={{ base: "2.61rem", md: "3.18rem" }}
+                class="w-[8rem] h-[2.61rem] md:w-[10.81rem] md:h-[3.18rem] cursor-pointer"
                 onClick={getApp}
-                _hover={{ cursor: "pointer" }}
                 alt="app store"
+                width={500}
+                height={500}
               />
               <Image
                 src={"/play-store.svg"}
-                w={{ base: "8.06rem", md: "10.81rem" }}
-                h={{ base: "2.67rem", md: "3.18rem" }}
+                class="w-[8rem] h-[2.61rem] md:w-[10.81rem] md:h-[3.18rem] cursor-pointer"
                 onClick={getApp}
-                _hover={{ cursor: "pointer" }}
                 alt="app store"
+                width={500}
+                height={500}
               />
             </HStack>
           </Flex>
@@ -107,15 +107,15 @@ export default function FooterSection() {
           <Flex
             position={"Absolute"}
             top={{ base: "17rem", md: "0rem" }}
-            right={{ base: "10", md: "-2rem", "2xl": "50rem" }}
-            // overflow={"hidden"}
+            right={{ base: "10", md: "-2rem" }}
           >
             <Image
-              width={{ md: "30.46875rem" }}
-              height={{ md: "full" }}
+              width={500}
+              height={500}
               alt="mobile-phone-image"
               src={"/monapp-phone.png"}
-              className="object-center object-cover"
+              className="object-center object-cover md:w-[30.46875rem] md:h-[full]"
+              loading="lazy"
             />
           </Flex>
         </Box>
@@ -140,9 +140,10 @@ export default function FooterSection() {
         >
           <Image
             src={"/logo.png"}
-            width={"14.42756rem"}
-            height={"2.625rem"}
+            className="w-[14.42756rem] h-[2.625rem]"
             alt="logo-image"
+            width={500}
+            height={500}
           />
           <HStack display={"flex"} gap={"1rem"}>
             <Icon as={BsFacebook} fontSize="1.38rem" color="#ffffff" />
@@ -217,9 +218,11 @@ export default function FooterSection() {
             </Text>
             <Image
               src={"/qr.png"}
-              _hover={{ cursor: "pointer" }}
               alt="qr-code"
-            ></Image>
+              className="hover:cursor-pointer"
+              width={100}
+              height={100}
+            />
           </VStack>
         </Flex>
       </Flex>

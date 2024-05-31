@@ -1,5 +1,6 @@
-import { Box, Button, Container, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Button, Container, Flex, Text } from "@chakra-ui/react";
 import localFont from "@next/font/local";
+import Image from "next/image";
 
 const jost = localFont({ src: "../public/fonts/jost.ttf" });
 
@@ -9,7 +10,7 @@ const PreOrder = () => {
       bg="#000000"
       h={{ md: "46.5rem", "2xl": "56.5rem" }}
       w="100%"
-      bgImage="url('/herobg.png')"
+      bgColor={"#1A1A1A"}
       backgroundPosition="center"
       backgroundSize="cover"
       display="flex"
@@ -29,14 +30,12 @@ const PreOrder = () => {
         >
           <Box w={"50%"}>
             <Image
-              flex="1"
+              width={500}
+              height={500}
               src="/pos.png"
+              class="flex-1 object-cover w-[20.36125rem] h-[16.963125rem] md:w-[41.41rem] md:h-[34.5rem]"
               alt="pos-image"
-              objectFit="cover"
-              // w="100%"
-              // h="auto"
-              w={{ base: "20.36125rem", md: "41.41rem" }}
-              h={{ base: "16.963125rem", md: "34.5rem" }}
+              loading="lazy"
             />
           </Box>
 
@@ -141,20 +140,18 @@ const PreOrder = () => {
 
         <Image
           src="/Ellipse.svg"
-          pos={"absolute"}
-          top={{ base: "0", md: "20rem" }}
-          left={{ base: "15%", md: "-5rem" }}
-          transform={{ md: "rotate(270deg)" }}
-          w={{ md: "27.976875rem" }}
-          h={{ md: "27.976875rem" }}
+          className="absolute top-0 md:top-80 left-[15%] md:left-[-5rem] md:transform md:rotate-[270deg] md:w-[27.976875rem] md:h-[27.976875rem]"
+          alt="ellipse-image"
+          width={500}
+          height={500}
         />
 
         <Image
           src="/Spiral.png"
-          pos={"absolute"}
-          bottom={"0"}
-          right={"0"}
-          display={["block", "none"]}
+          className="absolute top-auto md:top-0 bottom-[-3rem] md:bottom-auto right-16 md:right-0 h-[16.429375rem] md:h-[38.0175rem] w-[8.191875rem] md:w-[17.4675rem] object-cover transform rotate-90 md:rotate-0 opacity-90"
+          alt="spiral-image"
+          width={500}
+          height={500}
         />
       </Container>
     </Box>

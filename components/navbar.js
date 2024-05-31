@@ -58,6 +58,7 @@ export default function Navbar() {
             src="/logo.png"
             width={{ base: "8.625rem", md: "14.4275rem" }}
             height={{ base: "1.569rem", md: "2.625rem" }}
+            alt="logo"
           />
 
           {/* <Badge position="absolute" left="-10px" top="-15px" colorScheme='green'>BETA</Badge> */}
