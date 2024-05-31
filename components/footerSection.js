@@ -56,7 +56,7 @@ export default function FooterSection() {
       {/* blue part */}
       <Center>
         <Box
-          h={{ base: "23.6875rem", md: "24.8125rem" }}
+          h={{ base: "36.4375rem", md: "24.8125rem" }}
           w={{ base: "24.375rem", sm: "83.75rem" }}
           mt={{ base: "-18.46rem", md: "-15.25rem" }}
           display={{ base: "flex", md: "block" }}
@@ -106,16 +106,15 @@ export default function FooterSection() {
           {/* phone short */}
           <Flex
             position={"Absolute"}
-            top={{ base: "10rem", md: "-15rem" }}
-            right={{ base: "0", md: "-2rem", "2xl": "50rem" }}
-            overflow={"hidden"}
+            top={{ base: "17rem", md: "0rem" }}
+            right={{ base: "10", md: "-2rem", "2xl": "50rem" }}
+            // overflow={"hidden"}
           >
             <Image
-              overflow={"hidden"}
-              width={{ base: "10.2875rem", md: "35.46875rem" }}
-              height={{ base: "17.146875rem", md: "53.009375rem" }}
+              width={{ md: "30.46875rem" }}
+              height={{ md: "full" }}
               alt="mobile-phone-image"
-              src={"/monapp-phone.svg"}
+              src={"/monapp-phone.png"}
               className="object-center object-cover"
             />
           </Flex>
