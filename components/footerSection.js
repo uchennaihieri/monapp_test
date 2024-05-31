@@ -106,7 +106,7 @@ export default function FooterSection() {
           {/* phone short */}
           <Flex
             position={"Absolute"}
-            top={{ base: "17rem", md: "0rem" }}
+            top={{ base: "22rem", md: "0rem" }}
             right={{ base: "10", md: "-2rem" }}
           >
             <Image
@@ -114,7 +114,15 @@ export default function FooterSection() {
               height={500}
               alt="mobile-phone-image"
               src={"/monapp-phone.png"}
-              className="object-center object-cover md:w-[30.46875rem] md:h-[full]"
+              className="object-center object-cover w-[20rem] md:w-[30.46875rem] md:h-[full] hidden md:block"
+              loading="lazy"
+            />
+            <Image
+              width={500}
+              height={500}
+              alt="mobile-phone-image"
+              src={"/mobile-monapp-image.png"}
+              className="object-center object-cover w-[20rem] md:w-[30.46875rem] md:h-[full] block md:hidden"
               loading="lazy"
             />
           </Flex>
