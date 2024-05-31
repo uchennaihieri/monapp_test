@@ -1,7 +1,7 @@
 import { Container, Flex, Text, Box } from "@chakra-ui/react";
 import localFont from "@next/font/local";
 import Image from "next/image";
-import Phone from "@/public/Phone.png";
+import Phone from "@/public/mobile-phone.png";
 
 const jost = localFont({ src: "../public/fonts/jost.ttf" });
 
