@@ -101,8 +101,7 @@ export default function HeroSection() {
         <Flex flex={1} justify={"center"} align={"center"} w={"full"}>
           <Box
             height={"auto"}
-            boxShadow={"2xl"}
-            width={{ base: "auto", md: "auto" }}
+            width={{ base: "dull", md: "auto" }}
             mt={{ base: "3.93rem", md: "0" }}
             position={"relative"}
             overflow="hidden"
@@ -115,9 +114,9 @@ export default function HeroSection() {
               alt={"Hero Image"}
               src={"/heroImg.png"}
               loading="lazy"
-              width={500}
-              height={500}
-              className="w-[80%] h-[auto]"
+              width={1000}
+              height={1000}
+              className="w-[24.29375rem] md:w-[80%] h-[22.921875rem] md:h-[auto]"
             />
           </Box>
         </Flex>
