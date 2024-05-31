@@ -1,6 +1,7 @@
 import { Container, Flex, Text, Box } from "@chakra-ui/react";
 import localFont from "@next/font/local";
 import Image from "next/image";
+import Phone from "@/public/Phone.png";
 
 const jost = localFont({ src: "../public/fonts/jost.ttf" });
 
@@ -64,7 +65,7 @@ export default function CardSection() {
         pb={{ base: "0", md: "5.25rem" }}
       >
         <Box
-          bgImage="url('/map.png')"
+          bgImage="url('/Map.png')"
           backgroundPosition="center"
           backgroundSize={["cover", "contain"]}
           backgroundRepeat={"no-repeat"}
@@ -115,7 +116,7 @@ export default function CardSection() {
               />
 
               <Image
-                src="/phone.png"
+                src={Phone}
                 className="w-[17.5125rem] h-[38.8375rem] sm:w-[34.48656rem] sm:h-[48.97763rem]"
                 alt="phone-image"
                 loading="lazy"

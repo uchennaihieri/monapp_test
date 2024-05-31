@@ -3,10 +3,10 @@
 import { Flex } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 
-const NewHero = dynamic(() => import("@/components/NewHero"));
-// import NewHero from "@/components/NewHero";
-const HeroSection = dynamic(() => import("@/components/heroSection"));
-// import HeroSection from "@/components/heroSection";
+// const NewHero = dynamic(() => import("@/components/NewHero"));
+import NewHero from "@/components/NewHero";
+// const HeroSection = dynamic(() => import("@/components/heroSection"));
+import HeroSection from "@/components/heroSection";
 const Features = dynamic(() => import("@/components/features"));
 // import Features from "@/components/features";
 const CardSection = dynamic(() => import("@/components/cardSection"));

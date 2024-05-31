@@ -31,7 +31,7 @@ function NewHero({ children }) {
 
       <Image
         src="/Spiral.png"
-        className="absolute top-auto md:top-0 bottom-[-3rem] md:bottom-auto right-16 md:right-0 h-[16.429375rem] md:h-[38.0175rem] w-[8.191875rem] md:w-[17.4675rem] object-cover transform rotate-90 md:rotate-0 opacity-90"
+        className="absolute top-auto md:top-0 bottom-[-4rem] md:bottom-auto right-16 md:right-0 h-[16.429375rem] md:h-[38.0175rem] w-[8.191875rem] md:w-[17.4675rem] object-cover transform rotate-90 md:rotate-0 opacity-90"
         alt="spiral-image"
         width={500}
         height={500}

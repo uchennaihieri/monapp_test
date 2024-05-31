@@ -42,7 +42,7 @@ function WhiteEasySteps() {
         position={"relative"}
         gap={["4.5rem", "5rem"]}
         className={jost.className}
-        bgImage={["", "url('/map.png')"]}
+        bgImage="url('/Map.png')"
         backgroundPosition="center"
         backgroundSize={["cover", "contain"]}
       >
@@ -172,7 +172,7 @@ function WhiteEasySteps() {
             experience.
           </Text>
         </Box>
-        
+
         {/* 
         <Image
           src="/line.png"
