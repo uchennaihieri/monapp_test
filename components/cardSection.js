@@ -1,5 +1,6 @@
-import { Container, Image, Flex, Text, Box } from "@chakra-ui/react";
+import { Container, Flex, Text, Box } from "@chakra-ui/react";
 import localFont from "@next/font/local";
+import Image from "next/image";
 
 const jost = localFont({ src: "../public/fonts/jost.ttf" });
 
@@ -25,7 +26,13 @@ const Feature = ({ title, text, icon }) => {
         cursor: "pointer",
       }}
     >
-      <Image src={icon} w="2rem" h="2rem" />
+      <Image
+        src={icon}
+        className="w-8 h-8"
+        alt="icon-image"
+        width={100}
+        height={100}
+      />
 
       <Text
         className={jost.className}
@@ -99,17 +106,21 @@ export default function CardSection() {
 
             <Box position={"relative"}>
               <Image
-                w={["3.9975rem", "6.91125rem"]}
-                h={["3.75375rem", "6.49rem"]}
                 src="/image 78.png"
-                position={"absolute"}
-                top={["0.8rem", "-2rem"]}
-                left={["38%", "35%"]}
+                className="absolute top-[0.8rem] left-[38%] w-[3.9975rem] h-[3.75375rem] sm:w-[6.91125rem] sm:h-[6.49rem] sm:top-[-2rem] sm:left-[35%]"
+                alt="signal-image"
+                loading="lazy"
+                width={500}
+                height={500}
               />
+
               <Image
-                w={["21.46925rem", "34.48656rem"]}
-                h={["38.91756rem", "48.97763rem"]}
-                src="/phone.svg"
+                src="/phone.png"
+                className="w-[17.5125rem] h-[38.8375rem] sm:w-[34.48656rem] sm:h-[48.97763rem]"
+                alt="phone-image"
+                loading="lazy"
+                width={1000}
+                height={1000}
               />
             </Box>
 

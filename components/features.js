@@ -1,6 +1,7 @@
 import localFont from "@next/font/local";
-import { Box, Text, Flex, Image } from "@chakra-ui/react";
+import { Box, Text, Flex } from "@chakra-ui/react";
 import CheckIcon from "./Icons/checkIcon";
+import Image from "next/image";
 
 const dmsans = localFont({ src: "../public/fonts/dm-sans.ttf" });
 const jost = localFont({ src: "../public/fonts/jost.ttf" });
@@ -16,7 +17,7 @@ export default function Features() {
       w={{ base: "24.375rem", md: "70rem", lg: "93rem" }}
       h={{ base: "", md: "33.9375rem" }}
       m={{
-        base: "-3.1275rem auto auto",
+        base: "-2rem auto auto",
         md: "2rem auto",
         lg: "-3.1275rem auto",
       }}
@@ -29,7 +30,7 @@ export default function Features() {
         position={"relative"}
         borderRadius={"0.736rem"}
       >
-        <Image
+        {/* <Image
           src={"/broker.png"}
           h={{ base: "27.5rem", md: "38.70313rem" }}
           w={{ base: "19.31775rem", md: "27.1875rem" }}
@@ -38,6 +39,15 @@ export default function Features() {
           left="50%"
           transform="translate(-50%, -0%)"
           alt="broker-image"
+          loading="lazy"
+        /> */}
+        <Image
+          src="/broker.png"
+          className="absolute bottom-0 left-1/2 transform translate-x-[-50%] h-[27.5rem] md:h-[38.70313rem] w-[19.31775rem] md:w-[27.1875rem]"
+          alt="broker-image"
+          loading="lazy"
+          width={500}
+          height={500}
         />
       </Box>
 
