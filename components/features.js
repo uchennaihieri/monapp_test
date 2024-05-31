@@ -55,7 +55,7 @@ export default function Features() {
         pt={{ base: "2.88rem", md: "3.5rem" }}
         pl={{ base: "0", md: "4rem" }}
         gap={"3.125rem"}
-        bgImage="url('/map.png')"
+        bgImage="url('/Map.png')"
         backgroundPosition="center"
         backgroundSize="contain"
         backgroundRepeat={"no-repeat"}

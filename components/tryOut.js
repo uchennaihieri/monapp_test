@@ -11,7 +11,7 @@ const TryOut = () => {
     <Box bg="#FFFFFF">
       <Container maxW="79.81em" centerContent py={"16"}>
         <Box
-          bgImage="url('/map.png')"
+          bgImage="url('/Map.png')"
           backgroundPosition="center"
           backgroundSize={["cover", "contain"]}
           backgroundRepeat={"no-repeat"}
@@ -45,7 +45,7 @@ const TryOut = () => {
               textAlign={"left"}
               gap={"1.346875rem"}
             >
-              <FromBottomText delay={0.2}>
+              <FromBottomText delay={0.1}>
                 <Text
                   fontSize={{ base: "2rem", md: "2.9525rem" }}
                   fontWeight={600}
@@ -56,7 +56,7 @@ const TryOut = () => {
                 </Text>
               </FromBottomText>
 
-              <FromBottomText delay={0.4}>
+              <FromBottomText delay={0.2}>
                 <Text
                   fontSize={{ base: "1rem", md: "1.4425rem" }}
                   fontWeight={400}
@@ -70,7 +70,7 @@ const TryOut = () => {
                 </Text>
               </FromBottomText>
 
-              <FromBottomText delay={0.6}>
+              <FromBottomText delay={0.3}>
                 <Button
                   borderRadius={"0.669375rem"}
                   color={"white"}

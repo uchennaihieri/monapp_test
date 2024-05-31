@@ -18,7 +18,7 @@ const DowloadApp = () => {
     >
       <Container maxW="79.81em" centerContent>
         <Box
-          bgImage="url('/map.png')"
+          bgImage="url('/Map.png')"
           backgroundPosition="center"
           backgroundSize="contain"
         >
@@ -48,7 +48,7 @@ const DowloadApp = () => {
               textAlign={"left"}
               gap={"1.346875rem"}
             >
-              <FromBottomText delay={0.2}>
+              <FromBottomText delay={0.1}>
                 <Text
                   fontSize={["1rem", "3rem"]}
                   fontWeight={600}
@@ -59,7 +59,7 @@ const DowloadApp = () => {
                 </Text>
               </FromBottomText>
 
-              <FromBottomText delay={0.4}>
+              <FromBottomText delay={0.2}>
                 <Text
                   fontSize={["1rem", "1.4425rem"]}
                   fontWeight={400}
@@ -72,7 +72,7 @@ const DowloadApp = () => {
                 </Text>
               </FromBottomText>
 
-              <FromBottomText delay={0.6}>
+              <FromBottomText delay={0.3}>
                 <Box>
                   <Text
                     fontSize={["1rem", "1.4375rem"]}
@@ -93,7 +93,7 @@ const DowloadApp = () => {
                 </Box>
               </FromBottomText>
 
-              <FromBottomText delay={0.8}>
+              <FromBottomText delay={0.4}>
                 <Button
                   borderRadius={"0.669375rem"}
                   color={"white"}
