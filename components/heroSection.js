@@ -116,7 +116,7 @@ export default function HeroSection() {
               loading="lazy"
               width={1000}
               height={1000}
-              className="w-[24.29375rem] md:w-[80%] h-[22.921875rem] md:h-[auto]"
+              className="w-[24.29375rem] lg:w-[100%] xl:w-[40.280625rem] h-[22.921875rem] md:h-[auto] xl:h-[37.685625rem]"
             />
           </Box>
         </Flex>

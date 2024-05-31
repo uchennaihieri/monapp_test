@@ -114,7 +114,7 @@ export default function FooterSection() {
               height={500}
               alt="mobile-phone-image"
               src={"/monapp-phone.png"}
-              className="object-center object-cover md:w-[30.46875rem] md:h-[full]"
+              className="object-center object-cover w-[20rem] md:w-[30.46875rem] md:h-[full]"
               loading="lazy"
             />
           </Flex>
