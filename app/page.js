@@ -1,16 +1,26 @@
 "use client";
 
 import { Flex } from "@chakra-ui/react";
+import dynamic from "next/dynamic";
 
-import HeroSection from "@/components/heroSection";
-import Features from "@/components/features";
-import CardSection from "@/components/cardSection";
-import FooterSection from "@/components/footerSection";
-import NewHero from "@/components/NewHero";
-import WhiteEasySteps from "@/components/WhiteEasySteps";
-import TryOut from "@/components/tryOut";
-import PreOrder from "@/components/preOrder";
-import DowloadApp from "@/components/DowloadApp";
+const NewHero = dynamic(() => import("@/components/NewHero"));
+// import NewHero from "@/components/NewHero";
+const HeroSection = dynamic(() => import("@/components/heroSection"));
+// import HeroSection from "@/components/heroSection";
+const Features = dynamic(() => import("@/components/features"));
+// import Features from "@/components/features";
+const CardSection = dynamic(() => import("@/components/cardSection"));
+// import CardSection from "@/components/cardSection";
+const WhiteEasySteps = dynamic(() => import("@/components/WhiteEasySteps"));
+// import WhiteEasySteps from "@/components/WhiteEasySteps";
+const TryOut = dynamic(() => import("@/components/tryOut"));
+// import TryOut from "@/components/tryOut";
+const PreOrder = dynamic(() => import("@/components/preOrder"));
+// import PreOrder from "@/components/preOrder";
+const DowloadApp = dynamic(() => import("@/components/DowloadApp"));
+// import DowloadApp from "@/components/DowloadApp";
+const FooterSection = dynamic(() => import("@/components/footerSection"));
+// import FooterSection from "@/components/footerSection";
 
 export default function Home() {
   return (
