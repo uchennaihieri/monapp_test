@@ -14,9 +14,9 @@ function privacyPolicy() {
                         <Text fontSize={'large'} fontWeight={500}>1st June 2024</Text>
                     </Flex>
 
-                    <Text>At Creatorh Technologies Limited (Monapp), the privacy of our (prospective) customers, users of our services and their Personal Data is of utmost importance to us. And in line with our resolution, we have developed this Privacy Policy to explain our privacy practices, particularly regarding how we collect, process, retain, share and protect your Personal Data when you visit our website, premises or use our digital platforms (collectively, "the Platform" or "Services")as well as your rights as a data subject.</Text>
+                    <Text>At Creatorh Technologies Limited (Monapp), the privacy of our (prospective) customers, users of our services and their Personal Data is of utmost importance to us. And in line with our resolution, we have developed this Privacy Policy to explain our privacy practices, particularly regarding how we collect, process, retain, share and protect your Personal Data when you visit our website, premises or use our digital platforms (collectively, &quot;the Platform&quot; or &quot;Services&quot;)as well as your rights as a data subject.</Text>
 
-                    <Text>This Privacy Policy between Creatorh Technologies Limited ("Monapp") and you constitutes our commitment to protecting user privacy and compliance with the relevant data protection laws on all our platforms. It is designed to provide information regarding our privacy practices and help you understand how we handle your data, in full compliance with the provisions of the Nigeria Data Protection Act 2023 and other applicable data protection regulations.</Text>
+                    <Text>This Privacy Policy between Creatorh Technologies Limited (Monapp) and you constitutes our commitment to protecting user privacy and compliance with the relevant data protection laws on all our platforms. It is designed to provide information regarding our privacy practices and help you understand how we handle your data, in full compliance with the provisions of the Nigeria Data Protection Act 2023 and other applicable data protection regulations.</Text>
 
                     <Box my="20px">
                         <Text fontSize={'xx-large'} fontWeight={500}>1. Lawful basis for processing your data</Text>
@@ -159,13 +159,13 @@ function privacyPolicy() {
                     </Box>
 
                     <Box my="20px">
-                        <Text fontSize={'xx-large'} fontWeight={500}>6. How We Use Cookies</Text>
+                        <Text fontSize={'xx-large'} fontWeight={500}>7. How We Use Cookies</Text>
                         <Text>Cookies are small files placed on your device’s browser that enable the website to identify your device as you view different pages. Like most interactive websites, our website uses cookies to enable us track of your activity for the duration of a session. Our website uses only encrypted session cookies which are erased either after a predefined timeout period or once the user logs out of the platform and closes the browser. Session cookies do not collect information from your device. They will typically store data in the form of a session identification that does not personally identify you. Certain aspects of our website are only available through the use of cookies, so your use of our website may be limited or not possible if you choose to disable or decline cookies.</Text>
                     </Box>
 
 
                     <Box my="20px">
-                        <Text fontSize={'xx-large'} fontWeight={500}>7. What Are Your Rights?</Text>
+                        <Text fontSize={'xx-large'} fontWeight={500}>8. What Are Your Rights?</Text>
                         <OrderedList>
                             <ListItem my="10px">Requests to Access, Rectify or Erase.
                                 Access Request: 
@@ -262,7 +262,7 @@ If your request relates to a set of Personal Data that also concerns other indiv
                     </Box>
 
                     <Box my="20px">
-                        <Text fontSize={'xx-large'} fontWeight={500}>8. How Do We Protect Your Personal Data?</Text>
+                        <Text fontSize={'xx-large'} fontWeight={500}>9. How Do We Protect Your Personal Data?</Text>
                         <Text>Security
 We maintain technical, physical, and administrative security measures designed to provide reasonable protection for your Personal Data against loss, misuse, unauthorized access, disclosure, and alteration. The security measures include firewalls, data encryption, physical access controls to our premises, CCTV cameras for public safety and quality control, as well as information access authorization controls.
 <br/>
@@ -278,27 +278,27 @@ We have drafted policies and other documents that ensure the safety, integrity a
                     </Box>
 
                     <Box my="20px">
-                        <Text fontSize={'xx-large'} fontWeight={500}>9. Remedies for Violation and Timeframe for Remedy</Text>
+                        <Text fontSize={'xx-large'} fontWeight={500}>10. Remedies for Violation and Timeframe for Remedy</Text>
                         <Text>In the unlikely event of violation of any of your rights a data subject, our Data Protection Officer shall within 30 days of our notice of the said violation, address the issue and redress the violation as practicable as possible. The available remedies include but not limited to correction or deletion of your data, grant of access to your data, due information on the processing of your data, restriction on further processing and other applicable remedies as the relevant laws prescribe.</Text>
                     </Box>
 
                     <Box my="20px">
-                        <Text fontSize={'xx-large'} fontWeight={500}>10. Governing Law</Text>
+                        <Text fontSize={'xx-large'} fontWeight={500}>11. Governing Law</Text>
                         <Text>This Privacy Policy is made according to the Nigeria Data Protection Regulation (2019) or any other relevant Nigerian laws, regulations or international conventions applicable to Nigeria.</Text>
                     </Box>
 
                     <Box my="20px">
-                        <Text fontSize={'xx-large'} fontWeight={500}>11. Changes to our Privacy Policy</Text>
+                        <Text fontSize={'xx-large'} fontWeight={500}>12. Changes to our Privacy Policy</Text>
                         <Text>This privacy policy is reviewed periodically and when there is any substantial change to business or regulatory requirements. The revised Privacy Policy will be effective as of the published updated date. At the minimum, we shall review this annually and communicate via our communication channels such as Website, Social Media Accounts etc. If the revised version includes a substantial change, we may notify you of the change using emails or other means.</Text>
                     </Box>
 
                     <Box my="20px">
-                        <Text fontSize={'xx-large'} fontWeight={500}>12. Contact Us</Text>
+                        <Text fontSize={'xx-large'} fontWeight={500}>13. Contact Us</Text>
                         <Text>If you have any general questions or concerns about this Privacy Policy or the way in which we handle your Personal Data, kindly contact us via the details below:</Text>
                     </Box>
 
                     <Box my="20px">
-                        <Text fontSize={'xx-large'} fontWeight={500}>13. Declaration</Text>
+                        <Text fontSize={'xx-large'} fontWeight={500}>14. Declaration</Text>
                         <Text >I have read all the terms and conditions within this Notice and hereby agree/ disagree to use of my personal data for above mentioned purposes.</Text>
                     </Box>
 
