@@ -50,9 +50,9 @@ const Verify_user = ({searchParams}) => {
 
           try {
             const response = await axios.post(
-              'https://us-central1-monapp-prod.cloudfunctions.net/app/api/auth/verify-email',
+              // 'https://us-central1-monapp-prod.cloudfunctions.net/app/api/auth/verify-email',
                 // 'https://us-central1-monapp-production.cloudfunctions.net/app/api/auth/verify-email',
-                // 'https://us-central1-monapp-production.cloudfunctions.net/app/api/auth/verify-email',
+                'https://us-central1-monapp-production.cloudfunctions.net/app/api/auth/verify-email',
                 {
                   email: email,
                   token: token
